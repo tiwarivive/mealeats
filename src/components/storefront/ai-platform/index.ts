@@ -1,0 +1,11 @@
+export { default as AIPlatformHero } from "./AIPlatformHero";
+export { default as EverythingYouNeed } from "./EverythingYouNeed";
+export { default as GrowthRecommendations } from "./GrowthRecommendations";
+export { default as ProgressTracking } from "./ProgressTracking";
+export { default as HealthAssistant } from "./HealthAssistant";
+export { default as HealthFeatureCard } from "./HealthFeatureCard";
+export { default as WhatMakesUsDifferent } from "./WhatMakesUsDifferent";
+export { default as DifferenceCard } from "./DifferenceCard";
+export { default as ClinicalCare } from "./ClinicalCare";
+export { default as CareCard } from "./CareCard";
+export { default as Testimonials } from "./Testimonials";
