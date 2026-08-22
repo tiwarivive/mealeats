@@ -37,35 +37,35 @@ const MEALEATS_AI_HREF = "/ai-platform";
 const HEALTH_CARDS: HealthCard[] = [
   {
     icon: BrainCircuit,
-    gif: "/running.gif",
+    gif: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377156/mealeats/products/running.gif",
     title: "A Better Way to Understand Health",
     description:
       "MealEats brings all your health information into one simple experience, helping you understand what matters to you and why.",
   },
   {
     icon: HeartPulse,
-    gif: "/healthismore.gif",
+    gif: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377105/mealeats/products/healthismore.gif",
     title: "Health Is More Than One Number",
     description:
       "We look beyond isolated health metrics to understand the bigger picture — your habits, preferences, nutrition, fitness, and everyday lifestyle.",
   },
   {
     icon: Sparkles,
-    gif: "/running.gif",
+    gif: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377156/mealeats/products/running.gif",
     title: "Personalization Meets AI",
     description:
       "AI helps transform complex health information into practical, personalized guidance that adapts to your needs and goals.",
   },
   {
     icon: UserRoundCheck,
-    gif: "/grocries.gif",
+    gif: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377093/mealeats/products/grocries.gif",
     title: "A Health Companion That Learns",
     description:
       "Every interaction helps MealEats understand what matters to you, making your experience more personal and useful over time.",
   },
   {
     icon: ShieldCheck,
-    gif: "/healthprofile.gif",
+    gif: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377106/mealeats/products/healthprofile.gif",
     title: "Towards Intelligent, Personalized Health",
     description:
       "Our vision is to create a trusted health companion that helps individuals and families make healthier, smarter decisions every day.",
@@ -214,7 +214,7 @@ function StickyStoryContent() {
         "
       >
         <Image
-          src="/myheath.png"
+          src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377137/mealeats/products/myheath.png"
           alt=""
           height={236}
           width={441}

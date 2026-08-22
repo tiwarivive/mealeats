@@ -22,11 +22,11 @@ type Category = {
 const categories: Category[] = [
   {
     title: "Millets",
-    image: "/millets.png",
+    image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377134/mealeats/products/millets.png",
   },
   {
     title: "High Protein",
-    image: "/high-protein.png",
+    image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377115/mealeats/products/high-protein.png",
   },
   {
     title: "Diabetes Friendly",
@@ -34,15 +34,15 @@ const categories: Category[] = [
   },
   {
     title: "Weight Loss",
-    image: "/weight-loss.png",
+    image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377167/mealeats/products/weight-loss.png",
   },
   {
     title: "Kids Nutrition",
-    image: "/kids-nutrition.png",
+    image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377127/mealeats/products/kids-nutrition.png",
   },
   {
     title: "Healthy Snacks",
-    image: "/healthy-snacks.png",
+    image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377108/mealeats/products/healthy-snacks.png",
   },
 ];
 

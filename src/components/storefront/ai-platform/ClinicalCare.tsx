@@ -16,7 +16,7 @@ type CareItem = {
 
 const CARE_ICONS = {
   clinical: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377080/mealeats/products/continuouslearning.gif",
-  human: "/Humanreview.gif",
+  human: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377120/mealeats/products/humanreview.gif",
   learning: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377079/mealeats/products/clinicalguardrails.gif",
 } as const;
 

@@ -5,7 +5,7 @@ const articles = [
   {
     // Figma card 1 = Fruit Sugar
     // Uses the 3rd uploaded image: fruit + oats + tart
-    image: "/fruite-sugar.png",
+    image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377090/mealeats/products/fruite-sugar.png",
     category: "NUTRITION BASICS",
     title: "Is Fruit Sugar Actually Bad for You?",
     description:
@@ -16,7 +16,7 @@ const articles = [
   {
     // Figma card 2 = High Fiber
     // Uses the 2nd uploaded image: oats + kiwi + banana + nuts
-    image: "/highfiber.png",
+    image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377117/mealeats/products/highfiber.png",
     category: "NUTRITION BASICS",
     title: "What does “High Fiber” really mean?",
     description:

@@ -7,25 +7,25 @@ const profileItems = [
     title: "Personal Information",
     description:
       "Basic details like age, gender and activity levels so guidance starts from a realistic baseline.",
-    icon: "/personal.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377140/mealeats/products/personal.gif",
   },
   {
     title: "Health Conditions",
     description:
       "Anything we should be careful about — so suggestions stay safe and sensitive for you.",
-    icon: "/healthcondition.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377104/mealeats/products/healthcondition.gif",
   },
   {
     title: "Goals",
     description:
       "What you're working toward, whether that's energy, balance, strength or steadier meals.",
-    icon: "/goals.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377091/mealeats/products/goals.gif",
   },
   {
     title: "Eating Pattern",
     description:
       "How you actually eat across a day — timings, portions, eating out and snacking habits.",
-    icon: "",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377084/mealeats/products/eatingpattern.gif",
   },
   {
     title: "Ingredients at Home",
@@ -37,7 +37,7 @@ const profileItems = [
     title: "Food Preferences",
     description:
       "What you love, what you avoid, and any allergies or diets we must respect.",
-    icon: "/foodprefrence.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377089/mealeats/products/foodprefrence.gif",
   },
 ] as const;
 

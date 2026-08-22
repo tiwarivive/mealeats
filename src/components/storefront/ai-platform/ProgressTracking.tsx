@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const IMAGE = "/progress-tracking.png";
+const IMAGE = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377148/mealeats/products/progress-tracking.png";
 
 export default function ProgressTracking() {
   return (

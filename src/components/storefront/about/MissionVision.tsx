@@ -10,8 +10,8 @@ import SectionBadge from "./SectionBadge";
 const MISSION_VISION_IMAGE = "/overlaymission.png";
 const MISSION_GIF = "/mission.gif";
 
-const PROBLEM_GIF = "/problem.gif";
-const SOLUTION_GIF = "/thesolution.gif";
+const PROBLEM_GIF = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377145/mealeats/products/problem.gif";
+const SOLUTION_GIF = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377163/mealeats/products/thesolution.gif";
 
 /* =========================================================
    CONTENT

@@ -29,25 +29,22 @@ type ChatScreenProps = {
     message: string,
     files?: File[],
   ) => void | Promise<void>;
-
   onRegenerateMessage?: (
     message: ChatMessage,
     index: number,
   ) => void | Promise<void>;
-
   onStartChat?: () => void;
 };
 
-type FeedbackState =
-  | "like"
-  | "dislike"
-  | null;
+type FeedbackState = "like" | "dislike" | null;
 
 /* ===============================================================
    CONSTANTS
 =============================================================== */
 
 const AUTO_SCROLL_THRESHOLD = 120;
+const MOBILE_BREAKPOINT = 768;
+const MIN_MOBILE_CHAT_HEIGHT = 320;
 
 /* ===============================================================
    MAIN CHAT SCREEN
@@ -56,43 +53,33 @@ const AUTO_SCROLL_THRESHOLD = 120;
 export default function ChatScreen({
   messages = [],
   isLoading = false,
-  onSendMessage = async () => { },
+  onSendMessage = async () => {},
   onRegenerateMessage,
 }: ChatScreenProps) {
-  const scrollRef =
-    useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const composerRef = useRef<HTMLDivElement>(null);
+  const chatScreenRef = useRef<HTMLElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const composerRef =
-    useRef<HTMLDivElement>(null);
+  const previousMessageCountRef = useRef(messages.length);
+  const shouldFollowBottomRef = useRef(true);
 
-  const searchInputRef =
-    useRef<HTMLInputElement>(null);
+  const messageRefs = useRef<
+    Record<string, HTMLDivElement | null>
+  >({});
 
-  const previousMessageCountRef =
-    useRef(messages.length);
+  const copyTimeoutsRef = useRef<
+    Record<string, number>
+  >({});
 
-  const shouldFollowBottomRef =
-    useRef(true);
+  const [composerHeight, setComposerHeight] = useState(132);
 
-  const messageRefs =
-    useRef<Record<string, HTMLDivElement | null>>(
-      {},
-    );
-  const copyTimeoutsRef =
-    useRef<
-      Record<
-        string,
-        number
-      >
-    >({});
+  const [mobileChatHeight, setMobileChatHeight] =
+    useState<number | null>(null);
 
-  const [composerHeight, setComposerHeight] =
-    useState(132);
-
-  const [feedback, setFeedback] =
-    useState<
-      Record<string, FeedbackState>
-    >({});
+  const [feedback, setFeedback] = useState<
+    Record<string, FeedbackState>
+  >({});
 
   const [menuMessageId, setMenuMessageId] =
     useState<string | null>(null);
@@ -103,31 +90,135 @@ export default function ChatScreen({
   const [showScrollButton, setShowScrollButton] =
     useState(false);
 
-  const [searchOpen, setSearchOpen] =
-    useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
-  const [searchQuery, setSearchQuery] =
-    useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [activeSearchIndex, setActiveSearchIndex] =
     useState(0);
+
+  /* =============================================================
+     MOBILE VISUAL VIEWPORT
+     
+     Important:
+     90vh does not reliably represent the visible mobile
+     viewport when the browser keyboard is open.
+
+     This calculates the actual available viewport height while
+     keeping desktop behavior unchanged.
+  ============================================================= */
+
+  useEffect(() => {
+    const updateMobileViewport = () => {
+      if (typeof window === "undefined") {
+        return;
+      }
+
+      if (window.innerWidth >= MOBILE_BREAKPOINT) {
+        setMobileChatHeight(null);
+        return;
+      }
+
+      const section = chatScreenRef.current;
+
+      if (!section) {
+        return;
+      }
+
+      const visualViewport = window.visualViewport;
+
+      const viewportHeight =
+        visualViewport?.height ?? window.innerHeight;
+
+      const sectionTop = Math.max(
+        0,
+        section.getBoundingClientRect().top,
+      );
+
+      const availableHeight = Math.max(
+        MIN_MOBILE_CHAT_HEIGHT,
+        Math.round(viewportHeight - sectionTop),
+      );
+
+      setMobileChatHeight(availableHeight);
+    };
+
+    updateMobileViewport();
+
+    const visualViewport =
+      typeof window !== "undefined"
+        ? window.visualViewport
+        : null;
+
+    window.addEventListener(
+      "resize",
+      updateMobileViewport,
+      { passive: true },
+    );
+
+    window.addEventListener(
+      "orientationchange",
+      updateMobileViewport,
+      { passive: true },
+    );
+
+    window.addEventListener(
+      "scroll",
+      updateMobileViewport,
+      { passive: true },
+    );
+
+    visualViewport?.addEventListener(
+      "resize",
+      updateMobileViewport,
+    );
+
+    visualViewport?.addEventListener(
+      "scroll",
+      updateMobileViewport,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "resize",
+        updateMobileViewport,
+      );
+
+      window.removeEventListener(
+        "orientationchange",
+        updateMobileViewport,
+      );
+
+      window.removeEventListener(
+        "scroll",
+        updateMobileViewport,
+      );
+
+      visualViewport?.removeEventListener(
+        "resize",
+        updateMobileViewport,
+      );
+
+      visualViewport?.removeEventListener(
+        "scroll",
+        updateMobileViewport,
+      );
+    };
+  }, []);
 
   /* =============================================================
      SEARCH RESULTS
   ============================================================= */
 
   const searchResults = useMemo(() => {
-    const query =
-      searchQuery.trim().toLowerCase();
+    const query = searchQuery.trim().toLowerCase();
 
     if (!query) {
       return [];
     }
 
     return messages.filter((message) =>
-      message.content
-        .toLowerCase()
-        .includes(query),
+      message.content.toLowerCase().includes(query),
     );
   }, [messages, searchQuery]);
 
@@ -180,59 +271,52 @@ export default function ChatScreen({
      SCROLL POSITION
   ============================================================= */
 
-  const checkScrollPosition =
-    useCallback(() => {
-      const element = scrollRef.current;
+  const checkScrollPosition = useCallback(() => {
+    const element = scrollRef.current;
 
-      if (!element) {
-        return true;
-      }
+    if (!element) {
+      return true;
+    }
 
-      const distanceFromBottom =
-        element.scrollHeight -
-        element.scrollTop -
-        element.clientHeight;
+    const distanceFromBottom =
+      element.scrollHeight -
+      element.scrollTop -
+      element.clientHeight;
 
-      const isNearBottom =
-        distanceFromBottom <=
-        AUTO_SCROLL_THRESHOLD;
+    const isNearBottom =
+      distanceFromBottom <= AUTO_SCROLL_THRESHOLD;
 
-      shouldFollowBottomRef.current =
-        isNearBottom;
+    shouldFollowBottomRef.current = isNearBottom;
 
-      setShowScrollButton(!isNearBottom);
+    setShowScrollButton(!isNearBottom);
 
-      return isNearBottom;
-    }, []);
+    return isNearBottom;
+  }, []);
 
   /* =============================================================
      SCROLL TO BOTTOM
   ============================================================= */
 
-  const scrollToBottom =
-    useCallback(
-      (
-        behavior: ScrollBehavior = "smooth",
-      ) => {
-        const element =
-          scrollRef.current;
+  const scrollToBottom = useCallback(
+    (
+      behavior: ScrollBehavior = "smooth",
+    ) => {
+      const element = scrollRef.current;
 
-        if (!element) {
-          return;
-        }
+      if (!element) {
+        return;
+      }
 
-        element.scrollTo({
-          top: element.scrollHeight,
-          behavior,
-        });
+      element.scrollTo({
+        top: element.scrollHeight,
+        behavior,
+      });
 
-        shouldFollowBottomRef.current =
-          true;
-
-        setShowScrollButton(false);
-      },
-      [],
-    );
+      shouldFollowBottomRef.current = true;
+      setShowScrollButton(false);
+    },
+    [],
+  );
 
   /* =============================================================
      TRACK SCROLL
@@ -275,8 +359,7 @@ export default function ChatScreen({
     const previousCount =
       previousMessageCountRef.current;
 
-    const currentCount =
-      messages.length;
+    const currentCount = messages.length;
 
     if (currentCount > previousCount) {
       const latestMessage =
@@ -315,20 +398,18 @@ export default function ChatScreen({
       return;
     }
 
-    const frame =
-      requestAnimationFrame(() => {
-        const element =
-          scrollRef.current;
+    const frame = requestAnimationFrame(() => {
+      const element = scrollRef.current;
 
-        if (!element) {
-          return;
-        }
+      if (!element) {
+        return;
+      }
 
-        element.scrollTo({
-          top: element.scrollHeight,
-          behavior: "auto",
-        });
+      element.scrollTo({
+        top: element.scrollHeight,
+        behavior: "auto",
       });
+    });
 
     return () => {
       cancelAnimationFrame(frame);
@@ -339,76 +420,68 @@ export default function ChatScreen({
      SEARCH
   ============================================================= */
 
-  const openSearch =
-    useCallback(() => {
-      setSearchOpen(true);
+  const openSearch = useCallback(() => {
+    setSearchOpen(true);
 
-      requestAnimationFrame(() => {
-        searchInputRef.current?.focus();
-      });
-    }, []);
+    requestAnimationFrame(() => {
+      searchInputRef.current?.focus();
+    });
+  }, []);
 
-  const closeSearch =
-    useCallback(() => {
-      setSearchOpen(false);
-      setSearchQuery("");
-      setActiveSearchIndex(0);
-    }, []);
+  const closeSearch = useCallback(() => {
+    setSearchOpen(false);
+    setSearchQuery("");
+    setActiveSearchIndex(0);
+  }, []);
 
-  const scrollToSearchResult =
-    useCallback(
-      (index: number) => {
-        if (searchResults.length === 0) {
-          return;
-        }
-
-        const safeIndex =
-          ((index % searchResults.length) +
-            searchResults.length) %
-          searchResults.length;
-
-        const message =
-          searchResults[safeIndex];
-
-        if (!message) {
-          return;
-        }
-
-        setActiveSearchIndex(
-          safeIndex,
-        );
-
-        const target =
-          messageRefs.current[
-          message.id
-          ];
-
-        if (!target) {
-          return;
-        }
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      },
-      [searchResults],
-    );
-
-  const goToNextSearchResult =
-    useCallback(() => {
+  const scrollToSearchResult = useCallback(
+    (index: number) => {
       if (searchResults.length === 0) {
         return;
       }
 
-      scrollToSearchResult(
-        activeSearchIndex + 1,
-      );
-    }, [
-      activeSearchIndex,
-      searchResults.length,
-      scrollToSearchResult,
-    ]);
+      const safeIndex =
+        ((index % searchResults.length) +
+          searchResults.length) %
+        searchResults.length;
+
+      const message =
+        searchResults[safeIndex];
+
+      if (!message) {
+        return;
+      }
+
+      setActiveSearchIndex(safeIndex);
+
+      const target =
+        messageRefs.current[message.id];
+
+      if (!target) {
+        return;
+      }
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    },
+    [searchResults],
+  );
+
+  const goToNextSearchResult = useCallback(() => {
+    if (searchResults.length === 0) {
+      return;
+    }
+
+    scrollToSearchResult(
+      activeSearchIndex + 1,
+    );
+  }, [
+    activeSearchIndex,
+    searchResults.length,
+    scrollToSearchResult,
+  ]);
 
   const goToPreviousSearchResult =
     useCallback(() => {
@@ -438,10 +511,8 @@ export default function ChatScreen({
       event: KeyboardEvent,
     ) => {
       const isSearchShortcut =
-        (event.metaKey ||
-          event.ctrlKey) &&
-        event.key.toLowerCase() ===
-        "k";
+        (event.metaKey || event.ctrlKey) &&
+        event.key.toLowerCase() === "k";
 
       if (isSearchShortcut) {
         event.preventDefault();
@@ -525,24 +596,31 @@ export default function ChatScreen({
     };
   }, []);
 
-  const hasMessages =
-    messages.length > 0;
+  const hasMessages = messages.length > 0;
 
   return (
     <section
+      ref={chatScreenRef}
       className="
         chat-screen
         relative
         top-0
         flex
-        !h-[90vh]
+        h-[100vh]
         min-h-0
         w-full
         flex-col
         overflow-hidden
         bg-[var(--color-primary)]
         text-[var(--color-text)]
+        
       "
+      style={{
+        height:
+          mobileChatHeight !== null
+            ? `${mobileChatHeight}px`
+            : undefined,
+      }}
       aria-label="Meal Eats AI chat"
     >
       {/* =========================================================
@@ -584,17 +662,18 @@ export default function ChatScreen({
             className="
               mx-auto
               flex
+              min-h-10
               w-full
               max-w-[920px]
               items-center
               gap-1.5
               sm:gap-2
-              min-h-10
             "
           >
             <div
               className="
                 flex
+                min-h-10
                 min-w-0
                 flex-1
                 items-center
@@ -602,7 +681,6 @@ export default function ChatScreen({
                 rounded-[14px]
                 border
                 border-[var(--color-border)]
-                min-h-10
                 bg-[var(--color-surface-light)]
                 px-3
                 transition-colors
@@ -621,25 +699,17 @@ export default function ChatScreen({
                   );
                 }}
                 onKeyDown={(event) => {
-                  if (
-                    event.key ===
-                    "Enter"
-                  ) {
+                  if (event.key === "Enter") {
                     event.preventDefault();
 
-                    if (
-                      event.shiftKey
-                    ) {
+                    if (event.shiftKey) {
                       goToPreviousSearchResult();
                     } else {
                       goToNextSearchResult();
                     }
                   }
 
-                  if (
-                    event.key ===
-                    "Escape"
-                  ) {
+                  if (event.key === "Escape") {
                     closeSearch();
                   }
                 }}
@@ -663,7 +733,6 @@ export default function ChatScreen({
                   type="button"
                   onClick={() => {
                     setSearchQuery("");
-
                     searchInputRef.current?.focus();
                   }}
                   aria-label="Clear search"
@@ -699,12 +768,8 @@ export default function ChatScreen({
               aria-live="polite"
             >
               {searchQuery
-                ? searchResults.length >
-                  0
-                  ? `${activeSearchIndex +
-                  1
-                  } / ${searchResults.length
-                  }`
+                ? searchResults.length > 0
+                  ? `${activeSearchIndex + 1} / ${searchResults.length}`
                   : "No results"
                 : "Search"}
             </span>
@@ -715,8 +780,7 @@ export default function ChatScreen({
                 goToPreviousSearchResult
               }
               disabled={
-                searchResults.length ===
-                0
+                searchResults.length === 0
               }
               aria-label="Previous search result"
               title="Previous result"
@@ -744,8 +808,7 @@ export default function ChatScreen({
                 goToNextSearchResult
               }
               disabled={
-                searchResults.length ===
-                0
+                searchResults.length === 0
               }
               aria-label="Next search result"
               title="Next result"
@@ -792,12 +855,6 @@ export default function ChatScreen({
       )}
 
       {/* =========================================================
-          DEFAULT SEARCH BUTTON
-      ========================================================= */}
-
-      
-
-      {/* =========================================================
           CHAT SCROLL AREA
       ========================================================= */}
 
@@ -816,10 +873,11 @@ export default function ChatScreen({
           touch-pan-y
           [scrollbar-color:#d7d7d7_transparent]
           [scrollbar-width:thin]
+          !pt-[120px]
         "
       >
         <div
-          className={`
+          className="
             mx-auto
             flex
             min-h-full
@@ -828,14 +886,14 @@ export default function ChatScreen({
             min-w-0
             flex-col
             px-4
-            pt-16
             sm:px-8
-            sm:pt-20
+            
             lg:px-0
-            lg:pt-[92px]
-          `}
+            
+            
+          "
           style={{
-            paddingBottom: `calc(${composerHeight}px + 32px)`,
+            paddingBottom: `calc(${composerHeight}px + 18px)`,
           }}
         >
           {!hasMessages ? (
@@ -859,8 +917,7 @@ export default function ChatScreen({
                       .toLowerCase();
 
                   const isSearchMatch =
-                    normalizedQuery.length >
-                    0 &&
+                    normalizedQuery.length > 0 &&
                     message.content
                       .toLowerCase()
                       .includes(
@@ -871,8 +928,7 @@ export default function ChatScreen({
                     isSearchMatch &&
                     searchResults[
                       activeSearchIndex
-                    ]?.id ===
-                    message.id;
+                    ]?.id === message.id;
 
                   return (
                     <div
@@ -890,31 +946,26 @@ export default function ChatScreen({
                         scroll-mt-24
                         transition-all
                         duration-200
-                        ${isActiveSearchMatch
-                          ? "rounded-[18px] ring-2 ring-[var(--color-accent)]/35 ring-offset-8"
-                          : ""
+                        
+                        ${
+                          isActiveSearchMatch
+                            ? "rounded-[18px] ring-2 ring-[var(--color-accent)]/35 ring-offset-8"
+                            : ""
                         }
                       `}
                     >
-                      {message.role ===
-                        "user" ? (
+                      {message.role === "user" ? (
                         <UserMessage
-                          message={
-                            message
-                          }
-                          searchQuery={
-                            searchQuery
-                          }
+                          message={message}
+                          searchQuery={searchQuery}
                         />
                       ) : (
                         <AssistantMessage
-                          message={
-                            message
-                          }
+                          message={message}
                           index={index}
                           feedback={
                             feedback[
-                            message.id
+                              message.id
                             ] ?? null
                           }
                           copied={
@@ -928,9 +979,7 @@ export default function ChatScreen({
                           searchQuery={
                             searchQuery
                           }
-                          isLoading={
-                            isLoading
-                          }
+                          isLoading={isLoading}
                           onCopy={() =>
                             handleCopyMessage(
                               message,
@@ -963,7 +1012,7 @@ export default function ChatScreen({
                             setMenuMessageId(
                               (current) =>
                                 current ===
-                                  message.id
+                                message.id
                                   ? null
                                   : message.id,
                             )
@@ -1026,7 +1075,7 @@ export default function ChatScreen({
             sm:right-8
           "
           style={{
-            bottom: `calc(${composerHeight}px + 18px)`,
+            bottom: `calc(${composerHeight}px + 18px + env(safe-area-inset-bottom))`,
           }}
         >
           <ArrowDownIcon />
@@ -1035,6 +1084,10 @@ export default function ChatScreen({
 
       {/* =========================================================
           FIXED COMPOSER
+
+          The composer stays inside ChatScreen so that when the
+          mobile keyboard changes the visual viewport, the entire
+          chat section and composer resize together.
       ========================================================= */}
 
       <div
@@ -1065,9 +1118,7 @@ export default function ChatScreen({
         >
           <ChatComposer
             disabled={isLoading}
-            onSendMessage={
-              onSendMessage
-            }
+            onSendMessage={onSendMessage}
           />
         </div>
       </div>
@@ -1087,6 +1138,7 @@ export default function ChatScreen({
             18s
             ease-in-out
             infinite;
+
           transform-origin: center center;
           will-change: transform;
         }
@@ -1097,6 +1149,7 @@ export default function ChatScreen({
             24s
             ease-in-out
             infinite;
+
           transform-origin: center center;
           will-change: transform;
         }
@@ -1204,12 +1257,10 @@ function AnimatedChatBackground() {
       className="
         pointer-events-none
         absolute
-        top-0
         inset-0
         z-0
         overflow-hidden
         bg-white
-        pt-[114px]
       "
       aria-hidden="true"
     >
@@ -1279,7 +1330,7 @@ function EmptyChatState() {
     <div
       className="
         flex
-        min-h-[calc(100dvh-330px)]
+        min-h-full
         min-w-0
         max-w-full
         flex-1
@@ -1287,6 +1338,7 @@ function EmptyChatState() {
         items-center
         justify-center
         px-4
+        pb-8
         text-center
       "
     >
@@ -1389,13 +1441,17 @@ function AssistantMessage({
   onToggleMenu,
   onCloseMenu,
 }: AssistantMessageProps) {
+  const pdfUrl = extractPdfUrl(
+    message.content,
+  );
+
   return (
-    <div className="flex w-full min-w-0 flex-col items-start">
+    <div className="flex w-full min-w-0 flex-col items-start ">
       <div
         className="
-          min-w-0
           w-full
           max-w-[700px]
+          min-w-0
           overflow-hidden
           break-words
           [overflow-wrap:anywhere]
@@ -1444,6 +1500,19 @@ function AssistantMessage({
         >
           <LinkIcon />
         </ActionButton>
+
+        {/* =====================================================
+            PDF DOWNLOAD
+
+            This button appears ONLY when the AI response
+            actually contains a PDF URL.
+        ===================================================== */}
+
+        {pdfUrl && (
+          <PdfDownloadButton
+            url={pdfUrl}
+          />
+        )}
 
         <ActionButton
           label="Like response"
@@ -1515,6 +1584,49 @@ function AssistantMessage({
 }
 
 /* ===============================================================
+   PDF DOWNLOAD BUTTON
+=============================================================== */
+
+function PdfDownloadButton({
+  url,
+}: {
+  url: string;
+}) {
+  return (
+    <a
+      href={url}
+      download
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Download PDF"
+      title="Download PDF"
+      className="
+        flex
+        h-9
+        w-9
+        shrink-0
+        items-center
+        justify-center
+        rounded-full
+        text-[var(--color-text-muted)]
+        transition-all
+        duration-150
+        hover:bg-[var(--color-border-light)]
+        hover:text-[var(--color-text)]
+        active:scale-95
+        focus-visible:outline-none
+        focus-visible:ring-2
+        focus-visible:ring-[var(--color-accent)]/40
+        sm:h-8
+        sm:w-8
+      "
+    >
+      <DownloadPdfIcon />
+    </a>
+  );
+}
+
+/* ===============================================================
    ACTION BUTTON
 =============================================================== */
 
@@ -1557,9 +1669,11 @@ function ActionButton({
         focus-visible:ring-[var(--color-accent)]/40
         sm:h-8
         sm:w-8
-        ${active
-          ? "bg-[#f1f6e8] text-[#6f9f27]"
-          : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
+
+        ${
+          active
+            ? "bg-[#f1f6e8] text-[#6f9f27]"
+            : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
         }
       `}
     >
@@ -1750,10 +1864,7 @@ function MessageText({
     >
       {blocks.map(
         (block, index) => {
-          if (
-            block.type ===
-            "list"
-          ) {
+          if (block.type === "list") {
             return (
               <ul
                 key={`list-${index}`}
@@ -1790,10 +1901,7 @@ function MessageText({
             );
           }
 
-          if (
-            block.type ===
-            "heading"
-          ) {
+          if (block.type === "heading") {
             return (
               <h4
                 key={`heading-${index}`}
@@ -1809,9 +1917,7 @@ function MessageText({
                 "
               >
                 <InlineText
-                  text={
-                    block.text
-                  }
+                  text={block.text}
                   searchQuery={
                     searchQuery
                   }
@@ -1820,10 +1926,7 @@ function MessageText({
             );
           }
 
-          if (
-            block.type ===
-            "divider"
-          ) {
+          if (block.type === "divider") {
             return (
               <hr
                 key={`divider-${index}`}
@@ -1866,20 +1969,20 @@ function MessageText({
 
 type MessageBlock =
   | {
-    type: "paragraph";
-    text: string;
-  }
+      type: "paragraph";
+      text: string;
+    }
   | {
-    type: "heading";
-    text: string;
-  }
+      type: "heading";
+      text: string;
+    }
   | {
-    type: "list";
-    items: string[];
-  }
+      type: "list";
+      items: string[];
+    }
   | {
-    type: "divider";
-  };
+      type: "divider";
+    };
 
 /* ===============================================================
    MESSAGE PARSER
@@ -1892,33 +1995,25 @@ function parseMessage(
     .replace(/\r\n/g, "\n")
     .split("\n");
 
-  const blocks: MessageBlock[] =
-    [];
+  const blocks: MessageBlock[] = [];
 
-  let currentList: string[] =
-    [];
+  let currentList: string[] = [];
 
   const flushList = () => {
-    if (
-      currentList.length ===
-      0
-    ) {
+    if (currentList.length === 0) {
       return;
     }
 
     blocks.push({
       type: "list",
-      items: [
-        ...currentList,
-      ],
+      items: [...currentList],
     });
 
     currentList = [];
   };
 
   for (const originalLine of lines) {
-    const line =
-      originalLine.trim();
+    const line = originalLine.trim();
 
     if (line === "---") {
       flushList();
@@ -1930,9 +2025,7 @@ function parseMessage(
       continue;
     }
 
-    if (
-      /^#{1,3}\s+/.test(line)
-    ) {
+    if (/^#{1,3}\s+/.test(line)) {
       flushList();
 
       blocks.push({
@@ -1946,9 +2039,7 @@ function parseMessage(
       continue;
     }
 
-    if (
-      /^[-*]\s+/.test(line)
-    ) {
+    if (/^[-*]\s+/.test(line)) {
       currentList.push(
         line.replace(
           /^[-*]\s+/,
@@ -1989,7 +2080,7 @@ function InlineText({
   searchQuery: string;
 }) {
   const parts = text.split(
-    /(\*\*[^*]+\*\*)/g,
+    /(\*\*[^\*]+\*\*)/g,
   );
 
   return (
@@ -1997,12 +2088,8 @@ function InlineText({
       {parts.map(
         (part, index) => {
           const isBold =
-            part.startsWith(
-              "**",
-            ) &&
-            part.endsWith(
-              "**",
-            ) &&
+            part.startsWith("**") &&
+            part.endsWith("**") &&
             part.length > 4;
 
           const value = isBold
@@ -2049,8 +2136,7 @@ function HighlightedText({
   text: string;
   searchQuery: string;
 }) {
-  const query =
-    searchQuery.trim();
+  const query = searchQuery.trim();
 
   if (!query) {
     return <>{text}</>;
@@ -2113,6 +2199,61 @@ function escapeRegExp(
 }
 
 /* ===============================================================
+   PDF URL DETECTION
+=============================================================== */
+
+function extractPdfUrl(
+  content: string,
+): string | null {
+  const urls: string[] = [];
+
+  /*
+   * Normal URLs
+   */
+  const normalUrls =
+    content.match(
+      /https?:\/\/[^\s<>"'`)\]]+/gi,
+    ) ?? [];
+
+  urls.push(...normalUrls);
+
+  /*
+   * Markdown URLs:
+   * [Download PDF](https://example.com/file.pdf)
+   */
+  const markdownRegex =
+    /\[[^\]]*\]\((https?:\/\/[^)\s]+)\)/gi;
+
+  let markdownMatch: RegExpExecArray | null;
+
+  while (
+    (markdownMatch =
+      markdownRegex.exec(content)) !== null
+  ) {
+    if (markdownMatch[1]) {
+      urls.push(markdownMatch[1]);
+    }
+  }
+
+  const cleanedUrls = urls.map(
+    (url) =>
+      url.replace(
+        /[.,!?;:)\]}]+$/,
+        "",
+      ),
+  );
+
+  const pdfUrl = cleanedUrls.find(
+    (url) =>
+      /\.pdf(?:$|[?#&])/i.test(
+        url,
+      ),
+  );
+
+  return pdfUrl ?? null;
+}
+
+/* ===============================================================
    COPY
 =============================================================== */
 
@@ -2122,10 +2263,7 @@ async function handleCopyMessage(
     SetStateAction<string | null>
   >,
   copyTimeoutsRef: MutableRefObject<
-    Record<
-      string,
-      number
-    >
+    Record<string, number>
   >,
 ) {
   try {
@@ -2157,9 +2295,7 @@ async function handleCopyMessage(
 
       textarea.select();
 
-      document.execCommand(
-        "copy",
-      );
+      document.execCommand("copy");
 
       document.body.removeChild(
         textarea,
@@ -2172,12 +2308,12 @@ async function handleCopyMessage(
 
     if (
       copyTimeoutsRef.current[
-      message.id
+        message.id
       ]
     ) {
       clearTimeout(
         copyTimeoutsRef.current[
-        message.id
+          message.id
         ],
       );
     }
@@ -2189,7 +2325,7 @@ async function handleCopyMessage(
         setCopiedMessageId(
           (current) =>
             current ===
-              message.id
+            message.id
               ? null
               : current,
         );
@@ -2217,13 +2353,10 @@ function handleOpenLinks(
 ) {
   const urls =
     message.content.match(
-      /https?:\/\/[^\s<>"'`]+/g,
+      /https?:\/\/[^\s<>"'`]+/gi,
     );
 
-  if (
-    !urls ||
-    urls.length === 0
-  ) {
+  if (!urls || urls.length === 0) {
     return;
   }
 
@@ -2239,10 +2372,8 @@ function handleOpenLinks(
     );
 
     if (
-      url.protocol !==
-      "http:" &&
-      url.protocol !==
-      "https:"
+      url.protocol !== "http:" &&
+      url.protocol !== "https:"
     ) {
       return;
     }
@@ -2279,8 +2410,7 @@ function handleFeedback(
   setFeedback(
     (current) => ({
       ...current,
-      [messageId]:
-        value,
+      [messageId]: value,
     }),
   );
 }
@@ -2474,6 +2604,34 @@ function LinkIcon() {
       <path d="M10 13a5 5 0 0 0 7.07 0l2-2a5 5 0 0 0-7.07-7.07l-1.15 1.15" />
 
       <path d="M14 11a5 5 0 0 0-7.07 0l-2 2A5 5 0 0 0 7 20.07l1.15-1.15" />
+    </svg>
+  );
+}
+
+/* ===============================================================
+   DOWNLOAD PDF ICON
+=============================================================== */
+
+function DownloadPdfIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="
+        h-[17px]
+        w-[17px]
+      "
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 3v12" />
+
+      <path d="m7 10 5 5 5-5" />
+
+      <path d="M5 21h14" />
     </svg>
   );
 }

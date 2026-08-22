@@ -23,9 +23,9 @@ interface Difference {
 ========================================================= */
 
 const DIFFERENCE_IMAGES = {
-  insights: "/Group 2085663266.png",
-  nutrition: "/Group 2085664079.png",
-  progress: "/Group 2085664080.png",
+  insights: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377094/mealeats/products/group%202085663266.png",
+  nutrition: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377095/mealeats/products/group%202085664079.png",
+  progress: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377096/mealeats/products/group%202085664080.png",
 } as const;
 
 /* =========================================================

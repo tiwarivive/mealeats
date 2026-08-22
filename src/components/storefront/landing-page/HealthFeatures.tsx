@@ -8,8 +8,8 @@ import Link from "next/link";
 ========================================================= */
 
 const IMAGES = {
-  couple: "/health-couple.png",
-  meal: "/healthy-meal.png",
+  couple: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377101/mealeats/products/health-couple.png",
+  meal: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377107/mealeats/products/healthy-meal.png",
 };
 
 /* =========================================================

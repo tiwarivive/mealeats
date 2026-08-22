@@ -17,10 +17,10 @@ type HealthFeature = {
 const PHONE_IMAGE = "/health-assistant-phone.png";
 
 const FEATURE_ICONS = {
-  mealSuggestions: "/PersonalizedMealSuggestions.gif",
-  healthRecommendations: "/health.gif",
+  mealSuggestions: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377143/mealeats/products/personalizedmealsuggestions.gif",
+  healthRecommendations: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377103/mealeats/products/health.gif",
   exercisePlans: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377072/mealeats/products/airecipegenerator.gif",
-  recipeGenerator: "/recipie.gif",
+  recipeGenerator: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377151/mealeats/products/recipie.gif",
 } as const;
 
 /* =========================================================

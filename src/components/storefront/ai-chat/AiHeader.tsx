@@ -16,7 +16,7 @@ import Link from "next/link";
    - Logo remains aligned to the left
 ========================================================= */
 
-const LOGO = "/mealeats.png";
+const LOGO = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377132/mealeats/products/mealeats.png";
 
 export default function AIHeader() {
   return (

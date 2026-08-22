@@ -5,25 +5,25 @@ const recommendations = [
     title: "Why This Meal?",
     description:
       "Understand the nutritional value behind personalized meal suggestions.",
-    icon: "/speech-buble.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377159/mealeats/products/speech-buble.gif",
   },
   {
     title: "Why This Exercise?",
     description:
       "Learn how different types of movement can support different fitness goals.",
-    icon: "/support.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377162/mealeats/products/support.gif",
   },
   {
     title: "Understand Your Health",
     description:
       "Explore educational information related to the health topics you care about.",
-    icon: "/question.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377150/mealeats/products/question.gif",
   },
   {
     title: "Learn Before You Decide",
     description:
       "Build knowledge for better healthcare conversations.",
-    icon: "/inventetion.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377126/mealeats/products/inventetion.gif",
   },
 ] as const;
 

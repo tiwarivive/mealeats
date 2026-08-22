@@ -23,35 +23,35 @@ const capabilities: Capability[] = [
     title: "Ingredients to Recipe",
     description:
       "Enter ingredients you have at home and get healthy recipes.",
-    icon: "/ingredinets.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377122/mealeats/products/ingredinets.gif",
   },
   {
     id: 2,
     title: "Personalised Recommendation",
     description:
       "All suggestions based on your health, goals and preferences.",
-    icon: "/personalised.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377142/mealeats/products/personalised.gif",
   },
   {
     id: 3,
     title: "Daily Nutrition Score",
     description:
       "Track your daily nutrition and understand how balanced you are.",
-    icon: "/nutiritionsscore.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377138/mealeats/products/nutiritionsscore.gif",
   },
   {
     id: 4,
     title: "Product Comparison",
     description:
       "Compare products and make healthier, more informed choices with personalized guidance tailored to your needs.",
-    icon: "/productcomparison.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377146/mealeats/products/productcomparison.gif",
   },
   {
     id: 5,
     title: "Smart Shopping",
     description:
       "Find the right products, trusted brands, and healthier alternatives with personalized recommendations tailored to your health goals and needs.",
-    icon: "/smartshoping.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377158/mealeats/products/smartshoping.gif",
   },
 ];
 

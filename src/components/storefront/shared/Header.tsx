@@ -53,7 +53,7 @@ const navigation = [
   },
 ];
 
-const LOGO = "/mealeats.png";
+const LOGO = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377132/mealeats/products/mealeats.png";
 
 /* =========================================================
    HEADER

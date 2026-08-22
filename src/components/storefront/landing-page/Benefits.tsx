@@ -27,28 +27,28 @@ const features: Record<FeatureIconName, Feature> = {
     title: "AI Health Assistant",
     description:
       "Ask anything in plain language. The assistant remembers your conditions, allergies and goals before it answers.",
-    icon: "/running.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377156/mealeats/products/running.gif",
   },
 
   diet: {
     title: "Personalised Diet Plans",
     description:
       "Daily and weekly plans built around your calorie target, macros, cuisine preference and medical profile.",
-    icon: "/robottalking.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377155/mealeats/products/robottalking.gif",
   },
 
   workout: {
     title: "Workout Recommendations",
     description:
       "Home, gym, office-stretch or senior-friendly routines that adapt to your recovery and energy levels.",
-    icon: "/grocries.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377093/mealeats/products/grocries.gif",
   },
 
   recipe: {
     title: "AI Recipe Generator",
     description:
       "Type what's already in your kitchen and get a healthy recipe with full nutrition facts in seconds.",
-    icon: "/food.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377088/mealeats/products/food.gif",
   },
 };
 
@@ -251,7 +251,7 @@ function PhoneVisual() {
       "
     >
       <img
-        src="/health-assistant-phone.png"
+        src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377100/mealeats/products/health-assistant-phone.png"
         alt="Meal Eats AI health assistant interface"
         width={1241}
         height={2048}

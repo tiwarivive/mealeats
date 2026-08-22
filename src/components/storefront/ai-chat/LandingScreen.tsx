@@ -535,7 +535,7 @@ export default function ChatScreen({
         relative
         top-0
         flex
-        !h-[90vh]
+        !h-[100vh]
         min-h-0
         w-full
         flex-col

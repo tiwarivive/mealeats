@@ -437,7 +437,7 @@ function FooterBrand() {
         "
       >
         <Image
-          src="/mealeats.png"
+          src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377132/mealeats/products/mealeats.png"
           alt="Meal Eats"
           width={190}
           height={100}

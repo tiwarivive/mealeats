@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const IMAGE = "/growth-recommendations.png";
+const IMAGE = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377097/mealeats/products/growth-recommendations.png";
 
 export default function GrowthRecommendations() {
   return (

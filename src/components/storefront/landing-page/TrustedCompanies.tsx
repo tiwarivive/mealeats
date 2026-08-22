@@ -10,7 +10,7 @@ import { motion, useReducedMotion } from "motion/react";
 const logos = [
   {
     name: "Humana",
-    src: "/humana.png",
+    src: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377119/mealeats/products/humana.png",
     width: 250,
     height: 67,
   },
@@ -34,7 +34,7 @@ const logos = [
   },
   {
     name: "Sixt",
-    src: "/sixt.png",
+    src: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377157/mealeats/products/sixt.png",
     width: 170,
     height: 74,
   },

@@ -22,13 +22,13 @@ const coreValues: CoreValue[] = [
     title: "Innovation with evidence",
     description:
       "Every model output is grounded in nutrition science and clinical guidelines, not internet folklore.",
-    gif: "/innovative.gif",
+    gif: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377123/mealeats/products/innovative.gif",
   },
   {
     title: "Privacy as a default",
     description:
       "Health data is encrypted, minimised and never sold. You can export or erase everything at any time.",
-    gif: "/privacy.gif",
+    gif: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377144/mealeats/products/privacy.gif",
   },
   {
     title: "Trust before growth",
@@ -40,7 +40,7 @@ const coreValues: CoreValue[] = [
     title: "Radical personalisation",
     description:
       "Two members with the same weight can receive opposite advice because their bodies and histories differ.",
-    gif: "/redical.gif",
+    gif: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377152/mealeats/products/redical.gif",
   },
 ];
 

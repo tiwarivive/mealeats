@@ -21,25 +21,25 @@ const capabilities: Capability[] = [
     title: "Complete Nutrition",
     description:
       "Full macro and micronutrient breakdown per serving.",
-    icon: "/strategy.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377161/mealeats/products/strategy.gif",
   },
   {
     title: "Healthy Swaps",
     description:
       "Healthy swaps for anything you profile flags.",
-    icon: "/holi.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377118/mealeats/products/holi.gif",
   },
   {
     title: "Step-by-Step Guidance",
     description:
       "Step-by-step instructions with timings.",
-    icon: "/protien-shake.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377149/mealeats/products/protien-shake.gif",
   },
   {
     title: "Smart Meal Planning",
     description:
       "Save to your weekly plan or shopping list.",
-    icon: "/rise-bowl.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377154/mealeats/products/rise-bowl.gif",
   },
 ];
 

@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionBadge from "../about/SectionBadge";
 
-const HERO_BACKGROUND = "/hero-sectio.png";
-const HERO_DASHBOARD = "/heromiddle image.png";
+const HERO_BACKGROUND = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377112/mealeats/products/hero-sectio.png";
+const HERO_DASHBOARD = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377114/mealeats/products/heromiddle%20image.png";
 
 export default function KnowledgeHero() {
   return (
@@ -67,7 +67,7 @@ export default function KnowledgeHero() {
           ================================================= */}
 
           <Image
-            src="/knowledge-left.png"
+            src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377128/mealeats/products/knowledge-left.png"
             alt=""
             width={237}
             height={117}
@@ -103,7 +103,7 @@ export default function KnowledgeHero() {
           ================================================= */}
 
           <Image
-            src="/knowledge-right.png"
+            src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377129/mealeats/products/knowledge-right.png"
             alt=""
             width={237}
             height={117}

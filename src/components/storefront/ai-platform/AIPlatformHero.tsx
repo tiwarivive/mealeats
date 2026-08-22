@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const HERO_IMAGE = "/erp-dashboard.png";
+const HERO_IMAGE = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377085/mealeats/products/erp-dashboard.png";
 
 export default function AIPlatformHero() {
   return (

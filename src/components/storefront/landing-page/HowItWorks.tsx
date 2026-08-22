@@ -27,21 +27,21 @@ const steps: Step[] = [
   },
   {
     id: 2,
-    icon: "/robottalking.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377155/mealeats/products/robottalking.gif",
     title: 'AI learns your patterns',
     description:
       "Every meal, workout and reading refines the model of how your body responds.",
   },
   {
     id: 3,
-    icon: "/running.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377156/mealeats/products/running.gif",
     title: 'Get daily guidance',
     description:
       "Meals, recipes, workouts and reminders arrive already tailored to today.",
   },
   {
     id: 4,
-    icon: "/trackprogrress.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377164/mealeats/products/trackprogrress.gif",
     title: 'Track real progress',
     description:
       "Watch your health score, weight trend and consistency improve week over week.",
@@ -73,7 +73,7 @@ function DesktopConnectors() {
     >
       {/* STEP 1 → STEP 2 */}
       <img
-        src="/leftthread.png"
+        src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377130/mealeats/products/leftthread.png"
         alt=""
         width={867}
         height={120}
@@ -92,7 +92,7 @@ function DesktopConnectors() {
 
       {/* STEP 2 → STEP 3 */}
       <img
-        src="/middlethread.png"
+        src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377133/mealeats/products/middlethread.png"
         alt=""
         width={867}
         height={120}
@@ -111,7 +111,7 @@ function DesktopConnectors() {
 
       {/* STEP 3 → STEP 4 */}
       <img
-        src="/rightthread.png"
+        src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377153/mealeats/products/rightthread.png"
         alt=""
         width={867}
         height={120}
