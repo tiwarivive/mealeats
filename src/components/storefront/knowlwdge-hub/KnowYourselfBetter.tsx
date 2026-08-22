@@ -74,8 +74,8 @@ export default function KnowYourselfBetter() {
               tracking-[-4%]
               text-secondary
 
-              max-[767px]:!text-[24px]
-              max-[767px]:!leading-[30px]
+              max-[767px]:!text-[28px]
+              max-[767px]:!leading-[41px]
               max-[767px]:!tracking-[-2%]
             "
           >
@@ -108,8 +108,8 @@ export default function KnowYourselfBetter() {
 
               max-[767px]:mt-[7px]
               max-[767px]:max-w-[340px]
-              max-[767px]:!text-[12px]
-              max-[767px]:!leading-[18px]
+              max-[767px]:!text-[16px]
+              max-[767px]:!leading-[22px]
             "
           >
             The more you share, the better the meal suggestions and health
@@ -138,6 +138,7 @@ export default function KnowYourselfBetter() {
             max-[767px]:shadow-none
             max-[767px]:border-none
             max-[767px]:overflow-visible
+            max-[767px]:!shadow-none
           "
         >
           {/* =========================================================
@@ -280,7 +281,7 @@ export default function KnowYourselfBetter() {
 
                     max-[767px]:!mt-[39px]
                     max-[767px]:!text-[20px]
-                    max-[767px]:!leading-[22px]
+                    max-[767px]:!leading-[30px]
                     max-[767px]:!tracking-[-4%]
                   "
                 >

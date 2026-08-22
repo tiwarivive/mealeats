@@ -16,7 +16,7 @@ export default function KnowledgeHero() {
         overflow-hidden
         bg-accent-light
         mt-[-112px]
-        max-[768px]:mt-0
+        
 
         /* =========================
            MOBILE

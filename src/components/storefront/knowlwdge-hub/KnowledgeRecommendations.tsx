@@ -38,16 +38,16 @@ export default function KnowledgeRecommendations() {
             HEADER
         ===================================================== */}
 
-        <div className="grid items-end gap-[18px] sm:gap-[24px] lg:grid-cols-[1.15fr_0.85fr] lg:gap-[72px]">
+        <div className="grid items-end gap-[18px] max-[768px]:!gap-[12px] sm:gap-[24px] lg:grid-cols-[1.15fr_0.85fr] lg:gap-[72px]">
           {/* LEFT */}
           <div>
-            <span className="inline-flex items-center rounded-full border border-border-light bg-[#CED9BD33] px-[9px] py-[4px] font-primary !text-[13px] font-medium uppercase leading-[28px] tracking-[-3%] text-[#007246] sm:px-[10px] sm:py-[5px] sm:text-[8px]">
+            <span className="inline-flex items-center rounded-full border border-border-light bg-[#CED9BD33] px-[9px] py-[4px] font-primary !text-[13px] font-medium uppercase leading-[28px] tracking-[-3%] text-[#007246] sm:px-[10px] sm:py-[5px] max-[768px]:!text-[10px]">
               AI + KNOWLEDGE
             </span>
 
             <h2
               id="recommendations-heading"
-              className="mt-[10px] max-w-[520px] font-primary !text-h2 font-medium leading-[69px] tracking-[-4%] text-secondary sm:mt-[12px]"
+              className="mt-[10px] max-w-[520px] font-primary !text-h2 font-medium leading-[69px] max-[768px]:!text-[28px] max-[768px]:!leading-[41px] tracking-[-4%] text-secondary max-[768px]:mt-[0px]"
             >
               Go Beyond
               <br />
@@ -56,7 +56,7 @@ export default function KnowledgeRecommendations() {
           </div>
 
           {/* RIGHT */}
-          <p className="max-w-[460px] font-primary text-body leading-[28px] text-text-muted lg:pb-[4px] ">
+          <p className="max-w-[460px] font-primary text-body leading-[28px] text-text-muted lg:pb-[4px] max-[768px]:!text-[16px] max-[768px]:!leading-[20px] max-[768px]:!mt-[12px] ">
             Your AI can suggest a meal or exercise — but understanding why it
             was suggested matters too. Explore educational content that helps
             you understand the thinking behind healthier choices.
@@ -78,7 +78,8 @@ export default function KnowledgeRecommendations() {
                 border
                 border-border-light
                 bg-primary
-                p-[14px]
+                px-[16px]
+                py-[24px]
                 shadow-[0_1px_4px_rgba(0,0,0,0.025)]
                 transition-[box-shadow,transform]
                 duration-200
@@ -135,7 +136,8 @@ export default function KnowledgeRecommendations() {
                   tracking-[-0.02em]
                   text-secondary
                   sm:mt-[16px]
-                  sm:text-[11px]
+                  max-[768px]:text-[20px]
+                  max-[768px]:leading-[30px]
                   lg:text-[11px]
                   
                 "
@@ -151,13 +153,14 @@ export default function KnowledgeRecommendations() {
                 className="
                   mt-[6px]
                   max-w-[230px]
+                  max-[768px]:max-w-full
                   font-primary
                   !text-body
                   leading-[20px]
                   text-text-muted
-                  sm:mt-[7px]
-                  sm:text-[8px]
-                  lg:text-[8px]
+                  max-[768px]:mt-[14px]
+                  max-[768px]:leading-[20px]
+                  
                 "
               >
                 {description}

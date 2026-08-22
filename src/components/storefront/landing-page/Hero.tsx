@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const HERO_IMAGE = "/https://res.cloudinary.com/gppcmjpt/image/upload/v1787377099/mealeats/products/handphonehero.png";
-const HERO_BACKGROUND = "/hero-bg.png";
+const HERO_IMAGE = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377099/mealeats/products/handphonehero.png";
+const HERO_BACKGROUND = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787396914/hero-bg.png";
 
 export default function Hero() {
   return (
@@ -70,6 +70,7 @@ export default function Hero() {
       <div
         className="
           container-page
+          max-[768px]:mt-[22px]
           relative
           z-10
           mx-auto
@@ -276,6 +277,7 @@ export default function Hero() {
               h-[42px]
               lg:min-w-[142px]
               xl:min-w-[142px]
+              max-[370px]:!px-[15px]
               shrink-0
               items-center
               justify-center
@@ -313,22 +315,7 @@ export default function Hero() {
 
             "
           >
-            <span
-              aria-hidden="true"
-              className="
-                mr-[6px]
-                text-[15px]
-                leading-none
-
-                max-[767px]:mr-[5px]
-                max-[767px]:text-[13px]
-
-                max-[480px]:mr-[4px]
-                max-[480px]:text-[12px]
-              "
-            >
-              ✧
-            </span>
+            <Image src='https://res.cloudinary.com/gppcmjpt/image/upload/v1787398839/tryaistar.png' alt="ai-platform-stars" height={15} width={15} className="h-[15px] w-[15px] mr-[6.8px]" />
 
             Try Meal Eats AI
           </Link>
@@ -343,6 +330,7 @@ export default function Hero() {
               inline-flex
               tracking-[-4%]
               h-[42px]
+              max-[370px]:!px-[15px]
               min-w-[148px]
               shrink-0
               items-center

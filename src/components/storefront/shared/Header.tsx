@@ -440,8 +440,8 @@ export default function Header({
                   px-[18px]
 
                   font-primary
-                  text-[13px]
-                  font-medium
+                  text-[14px]
+                  font-normal
                   leading-none
 
                   !text-primary
@@ -484,7 +484,7 @@ export default function Header({
                     text-primary
                   "
                 >
-                  ✧
+                  <Image src='https://res.cloudinary.com/gppcmjpt/image/upload/v1787398839/tryaistar.png' alt="ai-platform-stars" height={20} width={20} className="h-[20px] w-[20px] object-contain mr-[2.8px]" />
                 </span>
 
                 <span>Try AI Beta</span>
@@ -518,7 +518,7 @@ export default function Header({
                   px-[10px]
 
                   font-primary
-                  text-[12px]
+                  text-[14px]
                   font-normal
                   leading-none
 
@@ -547,12 +547,12 @@ export default function Header({
 
                   sm:h-[42px]
                   sm:min-w-[120px]
-                  sm:px-[12px]
+                  max-[768px]:px-[24px]
                   sm:text-[13px]
 
                   md:h-[44px]
                   md:min-w-[128px]
-                  md:px-[14px]
+                  md:px-[24px]
                 "
               >
                 <span
@@ -574,7 +574,7 @@ export default function Header({
                     sm:text-[19px]
                   "
                 >
-                  ✧
+                  <Image src='https://res.cloudinary.com/gppcmjpt/image/upload/v1787398839/tryaistar.png' alt="ai-platform-stars" height={20} width={20} className="h-[20px] w-[20px] object-contain mr-[2.8px]" />
                 </span>
 
                 <span className="whitespace-nowrap">

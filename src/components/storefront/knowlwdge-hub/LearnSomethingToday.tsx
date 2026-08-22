@@ -27,7 +27,7 @@ const articles = [
   {
     // Figma card 3 = Carbohydrates
     // Uses the 1st uploaded image: bread + pasta + grains
-    image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377077/mealeats/products/centene.png",
+    image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377076/mealeats/products/carbs.png",
     category: "MYTH BUSTING",
     title: "Carbs Aren't the Enemy",
     description:

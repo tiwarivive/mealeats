@@ -891,9 +891,9 @@ export default function HealthFeatures() {
                      MOBILE
                   ================================================== */
 
-                  max-[767px]:text-[21px]
+                  max-[768px]:!text-[16px]
 
-                  max-[480px]:text-[20px]
+                 
                 "
               >
                 Private Health Suggestions Anytime - Anywhere

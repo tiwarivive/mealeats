@@ -20,7 +20,7 @@ type Step = {
 const steps: Step[] = [
   {
     id: 1,
-    icon: "/healthprofile.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377106/mealeats/products/healthprofile.gif",
     title: 'Build your health profile',
     description:
       "Age, weight, conditions, allergies, activity level and goals — two minutes, once.",
@@ -164,6 +164,7 @@ function StepIcon({ step }: { step: Step }) {
         border-dashed
         border-accent
         bg-primary
+        max-[768px]:mt-[41px]
 
         /* ================================================
            MOBILE
