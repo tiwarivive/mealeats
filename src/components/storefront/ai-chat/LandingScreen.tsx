@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 import {
   useCallback,
   useEffect,
@@ -13,7 +11,7 @@ import {
 import type {
   ChangeEvent,
   Dispatch,
-  KeyboardEvent,
+  KeyboardEvent as ReactKeyboardEvent,
   MutableRefObject,
   ReactNode,
   SetStateAction,
@@ -439,9 +437,9 @@ export default function ChatScreen({
   ============================================================= */
 
   useEffect(() => {
-    const handleKeyDown = (
-      event: KeyboardEvent,
-    ) => {
+  const handleKeyDown = (
+    event: globalThis.KeyboardEvent,
+  ) => {
       const isSearchShortcut =
         (event.metaKey ||
           event.ctrlKey) &&
@@ -1587,8 +1585,8 @@ function FigmaEmptyComposer({
   };
 
   const handleKeyDown = (
-    event: KeyboardEvent<HTMLTextAreaElement>,
-  ) => {
+  event: ReactKeyboardEvent<HTMLTextAreaElement>,
+) => {
     if (
       event.key === "Enter" &&
       !event.shiftKey &&
