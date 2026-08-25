@@ -442,11 +442,9 @@ export default function Testimonials() {
               inline-flex
               items-center
               rounded-full
-              border
-              border-accent/20
               bg-[#F4F4F433]
               px-3
-              py-1.5
+              py-1
             "
           >
             <span
@@ -454,10 +452,11 @@ export default function Testimonials() {
                 font-primary
                 text-[13px]
                 max-[768px]:text-[10px]
+                leading-[28px]
                 font-normal
                 uppercase
-                leading-none
-                tracking-[0.08em]
+                leading-[28px]
+                tracking-[-3%]
                 text-[#007246]
               "
             >
@@ -509,9 +508,7 @@ export default function Testimonials() {
               text-text-muted
             "
           >
-            These testimonials highlight our commitment
-            to providing personalized, compassionate and
-            effective healthcare solutions.
+            These Testimonials highlights our commitment to providing Personalised, Compassionate and Effective Healthcare Solutions
           </p>
         </div>
 

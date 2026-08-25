@@ -21,19 +21,19 @@ type Category = {
 
 const categories: Category[] = [
   {
-    title: "Millets",
+    title: "Millets Based Food",
     image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377134/mealeats/products/millets.png",
   },
   {
-    title: "High Protein",
+    title: "Protein-Rich Foods",
     image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377115/mealeats/products/high-protein.png",
   },
   {
-    title: "Diabetes Friendly",
+    title: "Balanced Eating",
     image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377083/mealeats/products/diabetes-friendly.png",
   },
   {
-    title: "Weight Loss",
+    title: "Weight Management",
     image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377167/mealeats/products/weight-loss.png",
   },
   {
@@ -41,7 +41,7 @@ const categories: Category[] = [
     image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377127/mealeats/products/kids-nutrition.png",
   },
   {
-    title: "Healthy Snacks",
+    title: "Better Snacking",
     image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377108/mealeats/products/healthy-snacks.png",
   },
 ];
@@ -136,11 +136,11 @@ function CategoryCard({ title, image }: Category) {
             m-0
             text-center
             font-primary
-            !text-[20px]
+            !text-body
             font-medium
-            leading-[1.2]
-            tracking-[-0.025em]
-            text-secondary
+            leading-[28px]
+            tracking-[-4%]
+            text-[#1B1B1B]
           "
         >
           {title}
@@ -233,7 +233,7 @@ export default function PopularCategories() {
               max-[767px]:text-[8px]
             "
           >
-            Popular Categories
+            POPULAR CATEGORIES
           </p>
 
           {/* =================================================
@@ -273,16 +273,16 @@ export default function PopularCategories() {
               max-[480px]:text-[28px]
             "
           >
-            Explore the foods that fit your{" "}
+            Explore Food for the Way {" "}
             <span
               className="
                 font-accent
                 italic
                 font-normal
-                tracking-[-0.04em]
+                tracking-[-4%]
               "
             >
-              lifestyle...
+              You Live
             </span>
           </h2>
 
@@ -315,8 +315,7 @@ export default function PopularCategories() {
               max-[480px]:text-[12px]
             "
           >
-            Browse the ways people eat — then let Meal Eats explain what
-            actually suits you.
+            Everyone's food priorities are different. Explore recipes, ingredients and practical food knowledge across popular lifestyles and nutrition goals—then let Meal Eats personalize the experience around you.
           </p>
         </header>
 

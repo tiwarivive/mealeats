@@ -8,6 +8,7 @@ import Image from "next/image";
 
 type Capability = {
   id: number;
+  topLabel: boolean;
   title: string;
   description: string;
   icon: string;
@@ -21,36 +22,41 @@ const capabilities: Capability[] = [
   {
     id: 1,
     title: "Ingredients to Recipe",
+    topLabel:false,
     description:
-      "Enter ingredients you have at home and get healthy recipes.",
+      "Enter ingredients you already have and discover recipe ideas that consider your preferences and goals—helping you cook smarter and reduce unnecessary food purchases.",
     icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377122/mealeats/products/ingredinets.gif",
   },
   {
     id: 2,
     title: "Personalised Recommendation",
+    topLabel:false,
     description:
-      "All suggestions based on your health, goals and preferences.",
+      "Receive food and recipe suggestions based on the profile, preferences and goals you choose to share instead of generic recommendations.",
     icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377142/mealeats/products/personalised.gif",
   },
   {
     id: 3,
     title: "Daily Nutrition Score",
+    topLabel:false,
     description:
-      "Track your daily nutrition and understand how balanced you are.",
+      "Understand estimated calories, protein, carbohydrates, fats, fibre and available nutrition information behind your meals so you can make more informed everyday choices.",
     icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377138/mealeats/products/nutiritionsscore.gif",
   },
   {
     id: 4,
     title: "Product Comparison",
+    topLabel:true,
     description:
-      "Compare products and make healthier, more informed choices with personalized guidance tailored to your needs.",
+      "Compare food products based on ingredients, nutrition and your stated preferences to understand which option may better match what you're looking for.",
     icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377146/mealeats/products/productcomparison.gif",
   },
   {
     id: 5,
     title: "Smart Shopping",
+    topLabel:true,
     description:
-      "Find the right products, trusted brands, and healthier alternatives with personalized recommendations tailored to your health goals and needs.",
+      "Turn planned meals into an organized ingredient list, account for what you already have and make it easier to purchase missing ingredients through supported shopping platforms.",
     icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377158/mealeats/products/smartshoping.gif",
   },
 ];
@@ -75,11 +81,11 @@ function CapabilityCard({
         w-full
         flex-col
         overflow-hidden
-        rounded-[16px]
+        !rounded-[16px]
         border
-        border-[#E1E1E1]
+        border-[#E3E3E3]
         bg-white
-        px-[38px]
+        px-[32px]
         pt-[37px]
         pb-[38px]
 
@@ -132,13 +138,16 @@ function CapabilityCard({
         max-[480px]:pt-[21px]
         max-[480px]:pb-[23px]
         !max-h-[277px]
+        lg:min-h-[317px]
+        xl:min-h-[317px]
       `}
     >
       {/* =====================================================
           ICON
       ===================================================== */}
 
-      <div
+    <div className="">
+        <div
         className="
           flex
           h-[56px]
@@ -193,6 +202,15 @@ function CapabilityCard({
           "
         />
       </div>
+      {
+        capability.topLabel && (
+          <div className="h-[32px] w-[123px] bg-[#F3F6F2] rounded-[6px] absolute top-[32px] right-[32px] flex items-center justify-center gap-1 text-[14px] font-medium leading-[30px] tracking-[-3%]">
+            <span className="h-[6px] w-[6px] bg-[#6DA01D] inline-block rounded-full"></span>
+            <div className="text-[14px] font-medium leading-[30px] tracking-[-3%] text-[#6DA01D] font-primary">Coming Soon</div>
+          </div>
+        )
+      }
+    </div>
 
       {/* =====================================================
           CARD CONTENT
@@ -200,7 +218,7 @@ function CapabilityCard({
 
       <div
         className="
-          mt-[84px]
+          !mt-[51px]
 
           max-[1439px]:mt-[72px]
 
@@ -223,20 +241,9 @@ function CapabilityCard({
             font-primary
             !text-[24px]
             font-medium
-            leading-[30px]
-            tracking-[-0.045em]
+            !leading-[30px]
+            tracking-[-3%]
             text-dark
-
-            max-[1439px]:text-[26px]
-
-            max-[1199px]:text-[24px]
-
-            max-[1023px]:text-[23px]
-            max-[1023px]:leading-[1.16]
-
-            max-[767px]:text-[21px]
-            max-[767px]:leading-[1.18]
-
             max-[480px]:text-[20px]
           "
         >
@@ -249,15 +256,15 @@ function CapabilityCard({
 
         <p
           className="
-            m-0
+            !mt-[16px]
             mt-[18px]
             max-w-[900px]
             font-primary
-            text-[18px]
+            text-[16px]
             font-normal
-            leading-[1.35]
-            tracking-[-0.02em]
-            text-[#858585]
+            leading-[20px]
+            tracking-[-3%]
+            text-[#7E7E7E]
 
             max-[1439px]:text-[17px]
 
@@ -298,6 +305,9 @@ export default function GeneralChatbot() {
         text-secondary
         py-[76px]
         px-[56px]
+        max-w-[1328px]
+        mx-auto
+        lg:px-0
 
         /* =====================================================
            LARGE DESKTOP
@@ -308,11 +318,7 @@ export default function GeneralChatbot() {
         /* =====================================================
            TABLET
         ===================================================== */
-
-        max-[1199px]:px-[40px]
         max-[1199px]:py-[58px]
-
-        max-[1023px]:px-[30px]
         max-[1023px]:py-[52px]
 
         /* =====================================================
@@ -346,13 +352,19 @@ export default function GeneralChatbot() {
             relative
             z-10
             w-full
+            grid
+            lg:grid-cols-[430px_609px]
+            justify-between 
           "
         >
           {/* =================================================
               EYEBROW
           ================================================= */}
 
-          <p
+          <div className="">
+
+
+              <p
             className="
               m-0
               font-primary
@@ -383,10 +395,10 @@ export default function GeneralChatbot() {
               max-w-[900px]
               font-primary
               text-h2
-              font-normal
+              font-medium
               leading-[1.06]
               tracking-[-0.06em]
-              text-[#111111]
+              text-secondary
 
               max-[1439px]:text-[52px]
 
@@ -424,6 +436,11 @@ export default function GeneralChatbot() {
             <br />
             do for you?
           </h2>
+
+          </div>
+
+          <p className="text-[16px] leading-[28px] text-[#545454] tracking-[-4%]">From deciding tonight's dinner to planning next week's groceries, Meal Eats is being built to connect everyday food decisions that are usually scattered across recipe websites, nutrition apps, shopping lists and search engines.
+</p>
         </header>
 
         {/* ===================================================

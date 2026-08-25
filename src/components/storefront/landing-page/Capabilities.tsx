@@ -18,28 +18,28 @@ type Capability = {
 
 const capabilities: Capability[] = [
   {
-    title: "Complete Nutrition",
+    title: "Complete Nutrition Understanding",
     description:
-      "Full macro and micronutrient breakdown per serving.",
-    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377161/mealeats/products/strategy.gif",
+      "See estimated calories, protein, carbohydrates, fats, fibre and available micronutrient information per serving so you understand more than just the recipe.",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377154/mealeats/products/rise-bowl.gif",
   },
   {
-    title: "Healthy Swaps",
+    title: "Smarter Ingredient Swaps",
     description:
-      "Healthy swaps for anything you profile flags.",
-    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377118/mealeats/products/holi.gif",
-  },
-  {
-    title: "Step-by-Step Guidance",
-    description:
-      "Step-by-step instructions with timings.",
+      "Missing something? Discover practical substitutions that can work with your recipe while considering your selected food preferences and restrictions.",
     icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377149/mealeats/products/protien-shake.gif",
+  },
+  {
+    title: "Step-by-Step Cooking Guidance",
+    description:
+      "Follow clear ingredient quantities, preparation instructions, cooking steps, estimated cooking time and serving guidance.",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377161/mealeats/products/strategy.gif",
   },
   {
     title: "Smart Meal Planning",
     description:
-      "Save to your weekly plan or shopping list.",
-    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377154/mealeats/products/rise-bowl.gif",
+      "Like the recipe? Add it to your food plan and let Meal Eats help organize your week and identify what you'll need next.",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377118/mealeats/products/holi.gif",
   },
 ];
 
@@ -92,7 +92,7 @@ function CapabilityItem({
           justify-center
           overflow-hidden
           rounded-[8px]
-          bg-primary-gradient
+          bg-[linear-gradient(136.8deg,#7BB322_21.81%,#B8ED97_116.26%)]
 
           max-[1280px]:h-[48px]
           max-[1280px]:w-[48px]
@@ -233,13 +233,13 @@ function PhoneMockup() {
 
         flex
         h-full
-        w-[36%]
+        w-[45%]
         items-start
         justify-end
 
-        max-[1280px]:w-[37%]
+        max-[1280px]:w-[45%]
 
-        max-[1024px]:w-[37%]
+        max-[1024px]:w-[45%]
 
         /* ===================================================
            MOBILE PHONE
@@ -278,7 +278,7 @@ function PhoneMockup() {
         "
         className="
           block
-          h-[547px]
+          h-[677px]
           w-auto
           max-w-none
           shrink-0
@@ -327,15 +327,18 @@ export default function Capabilities() {
         w-full
         overflow-hidden
         bg-white
+        max-w-[1328px]
+        mx-auto
+        
 
         px-0
 
-        lg:px-[56px]
+        lg:px-[0px]
 
         /* ===================================================
            MOBILE
         ==================================================== */
-
+        max-[767px]:px-[16px]
         max-[767px]:overflow-visible
       "
     >
@@ -503,8 +506,9 @@ export default function Capabilities() {
               max-[375px]:text-[29px]
             "
           >
-            Cook something healthy with{" "}
+            Cook Something You'll{" "}
             <br className="max-[767px]:hidden" />
+            Love with what you
 
             <span
               className="
@@ -512,15 +516,17 @@ export default function Capabilities() {
                 italic
                 font-normal
                 tracking-[-0.045em]
+                !ml-[2px]
               "
             >
-              what you Already Have
+              Already Have
             </span>
           </h2>
 
           {/* =================================================
               DESCRIPTION
           ================================================= */}
+          <p className="text-[16px] font-medium leading-[24px] tracking-[-4%] text-[#232323]">Don't know what to cook? Start with your kitchen.</p>
 
           <p
             className="
@@ -565,9 +571,7 @@ export default function Capabilities() {
               max-[375px]:text-[12.5px]
             "
           >
-            Eggs, spinach, rice, a bit of chicken? That&apos;s a meal.
-            The generator respects your calorie target, allergies and
-            cooking time.
+            Tell Meal Eats what ingredients you have and what you’re craving. It combines them with your Food Profile to suggest recipes tailored to your preferences and goals.
           </p>
 
           {/* =================================================

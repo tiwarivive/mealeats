@@ -20,31 +20,31 @@ type Step = {
 const steps: Step[] = [
   {
     id: 1,
-    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377106/mealeats/products/healthprofile.gif",
-    title: 'Build your health profile',
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377142/mealeats/products/personalised.gif",
+    title: 'Tell Us About You',
     description:
-      "Age, weight, conditions, allergies, activity level and goals — two minutes, once.",
+      "Create your Food Profile by sharing your food preferences, goals, allergies or restrictions, likes and dislikes, eating patterns and lifestyle.",
   },
   {
     id: 2,
-    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377155/mealeats/products/robottalking.gif",
-    title: 'AI learns your patterns',
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377122/mealeats/products/ingredinets.gif",
+    title: "Tell Us What's in Your Kitchen",
     description:
-      "Every meal, workout and reading refines the model of how your body responds.",
+      "Add ingredients you already have at home so Meal Eats can make recommendations that are practical for your real kitchen.",
   },
   {
     id: 3,
-    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377156/mealeats/products/running.gif",
-    title: 'Get daily guidance',
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377093/mealeats/products/grocries.gif",
+    title: 'Get Personalized Food Decisions',
     description:
-      "Meals, recipes, workouts and reminders arrive already tailored to today.",
+      "Discover recipes, meal ideas, alternatives and nutrition insights designed around your context—not generic recommendations made for everyone.",
   },
   {
     id: 4,
-    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377164/mealeats/products/trackprogrress.gif",
-    title: 'Track real progress',
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377120/mealeats/products/humanreview.gif",
+    title: 'Plan What Comes Next',
     description:
-      "Watch your health score, weight trend and consistency improve week over week.",
+      "Turn recommendations into a daily or weekly food plan, identify missing ingredients and prepare a smarter shopping list.",
   },
 ];
 
@@ -315,16 +315,16 @@ function StepItem({ step }: { step: Step }) {
           ============================================== */
 
           lg:mt-[68px]
-          lg:max-w-[220px]
+          lg:max-w-[284px]
           lg:px-0
           lg:text-[15px]
           lg:leading-[1.42]
           lg:tracking-[-0.025em]
 
-          xl:max-w-[220px]
+          xl:max-w-[284px]
           xl:text-[15px]
 
-          2xl:max-w-[225px]
+          2xl:max-w-[284px]
           2xl:text-[16px]
         "
       >
@@ -423,7 +423,7 @@ export default function HowItWorks() {
             xl:text-[48px]
           "
         >
-          How it{" "}
+          How Meal Eats {" "}
           <span className="font-accent italic">
             Works
           </span>
@@ -460,7 +460,7 @@ export default function HowItWorks() {
             xl:text-[18px]
           "
         >
-          Four steps to a health routine that sticks
+          From understanding you to helping with your next meal.
         </p>
       </header>
 

@@ -30,7 +30,6 @@ function HealthAIIcon() {
         justify-center
         overflow-hidden
         rounded-[12px]
-        bg-accent
         shadow-button
 
         min-[375px]:h-[56px]
@@ -47,24 +46,50 @@ function HealthAIIcon() {
       "
     >
       <Image
-        src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377068/mealeats/products/ai-assistant.gif"
-        height={32}
-        width={32}
+        src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377155/mealeats/products/robottalking.gif"
+        height={40}
+        width={40}
         alt=""
         aria-hidden="true"
         draggable={false}
         className="
-          h-[28px]
-          w-[28px]
+          !h-[40px]
+          !w-[40px]
           object-contain
-
-          min-[375px]:h-[30px]
-          min-[375px]:w-[30px]
-
-          sm:h-[32px]
-          sm:w-[32px]
         "
       />
+    </div>
+  );
+}
+
+/* =========================================================
+   REMAINING FEATURE ICONS
+========================================================= */
+
+function CookWithWhatYouHaveIcon() {
+  return (
+    <div
+      aria-hidden="true"
+      className="
+        flex h-[56px] w-[56px] shrink-0 items-center justify-center
+        rounded-[8px] border border-border bg-white/40
+      "
+    >
+      <Image src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377088/mealeats/products/food.gif" alt="food.gif" height={40} width={40} />
+    </div>
+  );
+}
+
+function PlanAheadIcon() {
+  return (
+     <div
+      aria-hidden="true"
+      className="
+        flex h-[56px] w-[56px] shrink-0 items-center justify-center
+        rounded-[8px] border border-border bg-white/40
+      "
+    >
+      <Image src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377138/mealeats/products/nutiritionsscore.gif" alt="food.gif" height={40} width={40} />
     </div>
   );
 }
@@ -263,10 +288,9 @@ export default function HealthFeatures() {
               tracking-[-0.04em]
             "
           >
-            Smarter Health
+            Smarter Food Decisions,
           </span>{" "}
-          Every
-          <br className="hidden sm:block" /> Single Day
+          <br className="hidden sm:block" /> Every Single Day
         </h2>
 
         {/* ===================================================
@@ -313,9 +337,8 @@ export default function HealthFeatures() {
             max-[480px]:text-[13px]
           "
         >
-          By Healthcare AI simplifies wellness with real-time tracking,
-          medical-aware insights and AI guidance — helping you make better
-          choices and feel your best.
+          Healthy eating isn't simply about knowing which foods are considered healthy. It's about finding what works for your preferences, your goals, your kitchen, your routine and your everyday life.  Meal Eats brings these decisions together in one intelligent experience—helping you understand your food, plan ahead and make choices that become more relevant as Meal Eats learns from you.
+
         </p>
       </div>
 
@@ -630,7 +653,7 @@ export default function HealthFeatures() {
                   max-[767px]:text-[24px]
                 "
               >
-                Optimise Your Health with AI Insights
+                Personalized Food Intelligence
               </h4>
 
               <p
@@ -663,9 +686,7 @@ export default function HealthFeatures() {
                   max-[767px]:text-[14px]
                 "
               >
-                Automatically track meals, monitor vitals and get
-                real-time, condition-aware insights that improve every
-                decision you make about your body.
+                Move beyond one-size-fits-all food advice. Meal Eats uses the preferences, goals, restrictions and eating patterns you choose to share to make food recommendations more relevant to you.
               </p>
 
               {/* =================================================
@@ -896,8 +917,319 @@ export default function HealthFeatures() {
                  
                 "
               >
-                Private Health Suggestions Anytime - Anywhere
+                Private Food Suggestions Anytime - Anywhere
               </h4>
+            </div>
+          </article>
+        </div>
+
+        {/* =====================================================
+            REMAINING FIGMA FEATURE CARDS
+            Existing cards above are intentionally untouched.
+        ====================================================== */}
+
+        <div
+          className="
+            mt-[16px]
+            grid
+            w-full
+            grid-cols-1
+            gap-[16px]
+
+            sm:gap-[20px]
+
+            md:gap-[24px]
+
+            lg:mt-[28px]
+            lg:grid-cols-2
+            lg:gap-[28px]
+
+            xl:mt-[32px]
+            xl:gap-[32px]
+
+            max-[1023px]:mt-[20px]
+            max-[1023px]:grid-cols-2
+            max-[1023px]:gap-[20px]
+
+            max-[767px]:mt-[16px]
+            max-[767px]:grid-cols-1
+            max-[767px]:gap-[16px]
+          "
+        >
+          {/* CARD 4 — COOK WITH WHAT YOU HAVE */}
+          <article
+            className="
+              flex
+              min-w-0
+              w-full
+              flex-col
+              rounded-[18px]
+              border
+              border-border
+              bg-accent-light
+              p-[20px]
+
+              min-[375px]:rounded-[20px]
+              min-[375px]:p-[22px]
+
+              sm:min-h-[230px]
+              sm:rounded-[20px]
+              sm:p-[28px]
+
+              md:p-[32px]
+
+              lg:min-h-[248px]
+              lg:p-[28px]
+
+              xl:min-h-[260px]
+              xl:p-[32px]
+
+              max-[1023px]:min-h-[250px]
+              max-[1023px]:p-[24px]
+
+              max-[767px]:min-h-0
+            "
+          >
+            <CookWithWhatYouHaveIcon />
+
+            <div className="flex min-w-0 flex-1 flex-col pt-[24px] sm:pt-[28px]">
+              <h4
+                className="
+                  w-full
+                  max-w-[470px]
+                  break-words
+                  mt-[10px]
+
+                  font-primary
+                  font-sans
+                  !text-[24px]
+                  font-medium
+                  leading-[30px]
+                  tracking-[-0.03em]
+                  text-secondary
+
+                  min-[375px]:text-[22px]
+                  min-[480px]:text-[23px]
+                  sm:text-[24px]
+
+                  max-[1023px]:text-[21px]
+                  max-[767px]:text-[21px]
+                "
+              >
+                Cook With What You Have
+              </h4>
+
+              <p
+                className="
+                  mt-[12px]
+                  w-full
+                  max-w-[620px]
+
+                  font-primary
+                  text-[14px]
+                  font-normal
+                  leading-[1.5]
+                  tracking-[-0.012em]
+                  text-[#545454]
+
+                  max-[1023px]:text-[13px]
+                  max-[767px]:text-[14px]
+                "
+              >
+                See recipes that use what&apos;s already in your kitchen and
+                discover new ways to make the most of the food you have.
+              </p>
+
+              <Link
+                href="/recipes"
+                className="
+                  !mt-[11px]
+                  flex
+                  min-h-[47px]
+                  w-full
+                  max-w-[313px]
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-primary-gradient
+                  px-[20px]
+
+                  font-primary
+                  text-[16px]
+                  font-medium
+                  leading-[24px]
+                  !text-primary
+
+                  shadow-button
+                  transition-all
+                  duration-200
+
+                  hover:brightness-[0.96]
+                  hover:shadow-card
+
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-accent
+                  focus-visible:ring-offset-2
+
+                  active:scale-[0.99]
+
+                  sm:mt-auto
+                  sm:h-[52px]
+                  sm:text-[16px]
+
+                  max-[1023px]:mt-auto
+                  max-[1023px]:min-h-[50px]
+                  max-[1023px]:h-[50px]
+                  max-[1023px]:text-[14px]
+
+                  max-[767px]:mt-[22px]
+                  max-[767px]:h-[50px]
+                  max-[767px]:min-h-[50px]
+                  max-[767px]:max-w-full
+                  max-[767px]:text-[15px]
+                "
+              >
+                Find a Recipe
+              </Link>
+            </div>
+          </article>
+
+          {/* CARD 5 — PLAN AHEAD, STRESS LESS */}
+          <article
+            className="
+              flex
+              min-w-0
+              w-full
+              flex-col
+              rounded-[18px]
+              border
+              border-border
+              bg-accent-light
+              p-[20px]
+
+              min-[375px]:rounded-[20px]
+              min-[375px]:p-[22px]
+
+              sm:min-h-[230px]
+              sm:rounded-[20px]
+              sm:p-[28px]
+
+              md:p-[32px]
+
+              lg:min-h-[248px]
+              lg:p-[28px]
+
+              xl:min-h-[260px]
+              xl:p-[32px]
+
+              max-[1023px]:min-h-[250px]
+              max-[1023px]:p-[24px]
+
+              max-[767px]:min-h-0
+            "
+          >
+            <PlanAheadIcon />
+
+            <div className="flex min-w-0 flex-1 flex-col pt-[24px] sm:pt-[28px]">
+              <h4
+                className="
+                  w-full
+                  max-w-[470px]
+                  break-words
+
+                  font-primary
+                  font-sans
+                  text-[21px]
+                  font-medium
+                  leading-[1.12]
+                  tracking-[-0.03em]
+                  text-secondary
+
+                  min-[375px]:text-[22px]
+                  min-[480px]:text-[23px]
+                  sm:text-[24px]
+
+                  max-[1023px]:text-[21px]
+                  max-[767px]:text-[21px]
+                "
+              >
+                Plan Ahead, Stress Less
+              </h4>
+
+              <p
+                className="
+                  mt-[12px]
+                  w-full
+                  max-w-[620px]
+
+                  font-primary
+                  text-[14px]
+                  font-normal
+                  leading-[1.5]
+                  tracking-[-0.012em]
+                  text-[#545454]
+
+                  max-[1023px]:text-[13px]
+                  max-[767px]:text-[14px]
+                "
+              >
+                Turn ingredients, preferences and your routine into a practical
+                plan that makes everyday food decisions easier.
+              </p>
+
+              <Link
+                href="/ai"
+                className="
+                  mt-[20px]
+                  flex
+                  min-h-[47px]
+                  w-full
+                  max-w-[313px]
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-primary-gradient
+                  px-[20px]
+
+                  font-primary
+                  text-[15px]
+                  font-medium
+                  leading-none
+                  !text-primary
+
+                  shadow-button
+                  transition-all
+                  duration-200
+
+                  hover:brightness-[0.96]
+                  hover:shadow-card
+
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-accent
+                  focus-visible:ring-offset-2
+
+                  active:scale-[0.99]
+
+                  sm:mt-auto
+                  sm:h-[52px]
+                  sm:text-[16px]
+
+                  max-[1023px]:mt-auto
+                  max-[1023px]:min-h-[50px]
+                  max-[1023px]:h-[50px]
+                  max-[1023px]:text-[14px]
+
+                  max-[767px]:mt-[22px]
+                  max-[767px]:h-[50px]
+                  max-[767px]:min-h-[50px]
+                  max-[767px]:max-w-full
+                  max-[767px]:text-[15px]
+                "
+              >
+                Explore Smart Planning
+              </Link>
             </div>
           </article>
         </div>

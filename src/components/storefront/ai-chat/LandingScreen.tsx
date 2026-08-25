@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import {
   useCallback,
   useEffect,
@@ -9,7 +11,9 @@ import {
 } from "react";
 
 import type {
+  ChangeEvent,
   Dispatch,
+  KeyboardEvent,
   MutableRefObject,
   ReactNode,
   SetStateAction,
@@ -17,6 +21,7 @@ import type {
 
 import ChatComposer from "./ChatComposer";
 import type { ChatMessage } from "./AIChat";
+import { Search } from "lucide-react";
 
 /* ===============================================================
    TYPES
@@ -535,12 +540,12 @@ export default function ChatScreen({
         relative
         top-0
         flex
-        !h-[100vh]
+        !h-[100dvh]
         min-h-0
         w-full
         flex-col
         overflow-hidden
-        bg-[var(--color-primary)]
+        bg-transparent
         text-[var(--color-text)]
       "
       aria-label="Meal Eats AI chat"
@@ -795,7 +800,7 @@ export default function ChatScreen({
           DEFAULT SEARCH BUTTON
       ========================================================= */}
 
-      
+
 
       {/* =========================================================
           CHAT SCROLL AREA
@@ -803,20 +808,20 @@ export default function ChatScreen({
 
       <div
         ref={scrollRef}
-        className="
+        className={`
           relative
           z-10
           min-h-0
           min-w-0
           flex-1
           overflow-x-hidden
-          overflow-y-auto
+          ${hasMessages ? "overflow-y-auto" : "overflow-hidden"}
           overscroll-y-contain
           [scrollbar-gutter:stable]
           touch-pan-y
           [scrollbar-color:#d7d7d7_transparent]
           [scrollbar-width:thin]
-        "
+        `}
       >
         <div
           className={`
@@ -824,22 +829,24 @@ export default function ChatScreen({
             flex
             min-h-full
             w-full
-            max-w-[920px]
             min-w-0
             flex-col
-            px-4
-            pt-16
-            sm:px-8
-            sm:pt-20
-            lg:px-0
-            lg:pt-[92px]
+            ${hasMessages
+              ? "max-w-[920px] px-4 pt-16 sm:px-8 sm:pt-20 lg:px-0 lg:pt-[92px]"
+              : "max-w-none px-0 pt-0"
+            }
           `}
-          style={{
-            paddingBottom: `calc(${composerHeight}px + 32px)`,
-          }}
+          style={
+            hasMessages
+              ? { paddingBottom: `calc(${composerHeight}px + 32px)` }
+              : undefined
+          }
         >
           {!hasMessages ? (
-            <EmptyChatState />
+            <EmptyChatState
+              isLoading={isLoading}
+              onSendMessage={onSendMessage}
+            />
           ) : (
             <div
               className="
@@ -1035,42 +1042,45 @@ export default function ChatScreen({
 
       {/* =========================================================
           FIXED COMPOSER
+
+          Active conversations keep the fixed composer. The empty Figma
+          state renders the composer inline in the center of the page.
       ========================================================= */}
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-x-0
-          bottom-0
-          z-40
-          px-3
-          pb-[max(10px,env(safe-area-inset-bottom))]
-          pt-12
-          sm:px-5
-          sm:pb-[max(14px,env(safe-area-inset-bottom))]
-          sm:pt-14
-          lg:px-0
-        "
-      >
+      {hasMessages && (
         <div
-          ref={composerRef}
           className="
-            pointer-events-auto
-            mx-auto
-            w-full
-            max-w-[920px]
-            min-w-0
+            pointer-events-none
+            absolute
+            inset-x-0
+            bottom-0
+            z-40
+            px-3
+            pb-[max(10px,env(safe-area-inset-bottom))]
+            pt-12
+            sm:px-5
+            sm:pb-[max(14px,env(safe-area-inset-bottom))]
+            sm:pt-14
+            lg:px-0
           "
         >
-          <ChatComposer
-            disabled={isLoading}
-            onSendMessage={
-              onSendMessage
-            }
-          />
+          <div
+            ref={composerRef}
+            className="
+              pointer-events-auto
+              mx-auto
+              w-full
+              max-w-[920px]
+              min-w-0
+            "
+          >
+            <ChatComposer
+              disabled={isLoading}
+              onSendMessage={onSendMessage}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* =========================================================
           BACKGROUND ANIMATION CSS
@@ -1081,110 +1091,82 @@ export default function ChatScreen({
           isolation: isolate;
         }
 
-        .chat-background {
-          animation:
-            chatBackgroundWave
-            18s
-            ease-in-out
-            infinite;
-          transform-origin: center center;
-          will-change: transform;
+        /* Base Figma-style green/white field. The movement is intentionally
+           very slow so the background feels alive without distracting from
+           the chat UI. */
+        .chat-background-base {
+          animation: chatBackgroundWave 24s ease-in-out infinite;
+          transform-origin: 50% 42%;
+          will-change: transform, background-position;
         }
 
         .chat-background-soft {
-          animation:
-            chatBackgroundSoftWave
-            24s
-            ease-in-out
-            infinite;
+          animation: chatBackgroundSoftWave 30s ease-in-out infinite;
           transform-origin: center center;
-          will-change: transform;
+          will-change: transform, opacity;
+        }
+
+        /* Individual vertical Figma bars. Each bar has a slightly different
+           delay, creating a soft left-to-right wave instead of moving the
+           entire background as one block. */
+        .chat-background-bar {
+          animation: chatBarWave 18s ease-in-out infinite;
+          transform-origin: 50% 50%;
+          will-change: transform, opacity;
         }
 
         @keyframes chatBackgroundWave {
-          0% {
-            transform:
-              scale(1.04)
-              translate3d(0%, 0%, 0)
-              skewX(0deg)
-              skewY(0deg);
+          0%, 100% {
+            transform: scale(1.035) translate3d(0, 0, 0);
+            background-position: 50% 50%;
           }
-
-          20% {
-            transform:
-              scale(1.055)
-              translate3d(-0.7%, 0.35%, 0)
-              skewX(0.12deg)
-              skewY(-0.08deg);
+          25% {
+            transform: scale(1.045) translate3d(-0.35%, 0.12%, 0);
+            background-position: 49% 50.5%;
           }
-
-          40% {
-            transform:
-              scale(1.07)
-              translate3d(0.45%, -0.45%, 0)
-              skewX(-0.1deg)
-              skewY(0.1deg);
+          50% {
+            transform: scale(1.055) translate3d(0.35%, -0.16%, 0);
+            background-position: 51% 49.5%;
           }
-
-          60% {
-            transform:
-              scale(1.055)
-              translate3d(0.75%, 0.3%, 0)
-              skewX(0.1deg)
-              skewY(-0.08deg);
+          75% {
+            transform: scale(1.045) translate3d(0.2%, 0.1%, 0);
+            background-position: 50.5% 50%;
           }
+        }
 
-          80% {
-            transform:
-              scale(1.065)
-              translate3d(-0.4%, -0.25%, 0)
-              skewX(-0.12deg)
-              skewY(0.08deg);
+        @keyframes chatBarWave {
+          0%, 100% {
+            transform: translate3d(0, 0, 0) skewX(0deg) scaleX(1);
+            opacity: 0.72;
           }
-
-          100% {
-            transform:
-              scale(1.04)
-              translate3d(0%, 0%, 0)
-              skewX(0deg)
-              skewY(0deg);
+          25% {
+            transform: translate3d(10px, -0.2%, 0) skewX(-0.45deg) scaleX(1.015);
+            opacity: 0.88;
+          }
+          50% {
+            transform: translate3d(-12px, 0.25%, 0) skewX(0.55deg) scaleX(0.985);
+            opacity: 0.78;
+          }
+          75% {
+            transform: translate3d(7px, -0.12%, 0) skewX(-0.3deg) scaleX(1.01);
+            opacity: 0.86;
           }
         }
 
         @keyframes chatBackgroundSoftWave {
-          0% {
-            transform:
-              translate3d(0%, 0%, 0)
-              scale(1);
+          0%, 100% {
+            transform: translate3d(0, 0, 0) scale(1);
+            opacity: 0.68;
           }
-
-          25% {
-            transform:
-              translate3d(0.8%, -0.4%, 0)
-              scale(1.015);
-          }
-
           50% {
-            transform:
-              translate3d(-0.6%, 0.5%, 0)
-              scale(1.025);
-          }
-
-          75% {
-            transform:
-              translate3d(-0.8%, -0.3%, 0)
-              scale(1.015);
-          }
-
-          100% {
-            transform:
-              translate3d(0%, 0%, 0)
-              scale(1);
+            transform: translate3d(-0.5%, 0.25%, 0) scale(1.025);
+            opacity: 0.88;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .chat-background,
+          .chat-background-base,
+          .chat-background-bar,
           .chat-background-soft {
             animation: none;
           }
@@ -1204,55 +1186,111 @@ function AnimatedChatBackground() {
       className="
         pointer-events-none
         absolute
-        top-0
         inset-0
         z-0
         overflow-hidden
-        bg-white
-        pt-[114px]
+        bg-[#f8fbf3]
       "
       aria-hidden="true"
     >
-      {/* MAIN IMAGE */}
-
-      <img
-        src="/chat-bg.png"
-        alt=""
-        draggable={false}
+      <div
         className="
-          chat-background
+          chat-background-base
           absolute
-          left-1/2
-          top-1/2
-          h-[110%]
-          w-[110%]
-          max-w-none
-          -translate-x-1/2
-          -translate-y-1/2
-          object-cover
-          object-center
-          opacity-[0.94]
+          inset-[-8%]
+          opacity-[0.98]
         "
+        style={{
+          backgroundImage: `
+            radial-gradient(ellipse at 50% 34%, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.82) 24%, rgba(255,255,255,0) 56%),
+            linear-gradient(90deg,
+              rgba(190,222,150,0.42) 0%,
+              rgba(226,242,204,0.30) 10%,
+              rgba(255,255,255,0.86) 23%,
+              rgba(239,247,227,0.36) 34%,
+              rgba(255,255,255,0.90) 47%,
+              rgba(239,247,227,0.36) 60%,
+              rgba(255,255,255,0.88) 73%,
+              rgba(220,239,198,0.32) 85%,
+              rgba(194,226,155,0.42) 100%
+            ),
+            linear-gradient(180deg, #ffffff 0%, #fbfdf8 34%, #f3f9e9 68%, #dff0c5 100%)
+          `,
+          backgroundSize: "120% 120%, 120% 100%, 100% 100%",
+        }}
       />
 
-      {/* SECOND SOFT LAYER */}
+      {/* =============================================================
+          FIGMA VERTICAL WAVE BARS
+          -------------------------------------------------------------
+          These are real layered elements rather than a repeating-gradient.
+          That lets every vertical band move independently and slowly, which
+          creates the soft wave visible in the Figma reference.
+      ============================================================= */}
+      <div
+        className="
+          absolute
+          inset-[-7%]
+          overflow-hidden
+        "
+      >
+        {[
+          { left: "2%", width: "8.5%", delay: "-1.0s" },
+          { left: "12.5%", width: "7.5%", delay: "-3.2s" },
+          { left: "22%", width: "8%", delay: "-5.4s" },
+          { left: "32.5%", width: "7%", delay: "-7.6s" },
+          { left: "42%", width: "8%", delay: "-9.8s" },
+          { left: "52.5%", width: "7.5%", delay: "-12.0s" },
+          { left: "62%", width: "8%", delay: "-14.2s" },
+          { left: "72.5%", width: "7.5%", delay: "-16.4s" },
+          { left: "82%", width: "8.5%", delay: "-4.1s" },
+          { left: "92%", width: "7%", delay: "-8.7s" },
+        ].map((bar, index) => (
+          <div
+            key={`chat-bg-bar-${index}`}
+            className="
+              chat-background-bar
+              absolute
+              top-0
+              h-full
+              rounded-[999px]
+              border-l
+              border-r
+              border-[#a9cd7d]/[0.055]
+              bg-[linear-gradient(90deg,rgba(173,210,125,0.025)_0%,rgba(151,195,94,0.085)_45%,rgba(173,210,125,0.025)_100%)]
+              shadow-[inset_1px_0_0_rgba(142,181,91,0.055),inset_-1px_0_0_rgba(142,181,91,0.045)]
+              blur-[0.15px]
+            "
+            style={{
+              left: bar.left,
+              width: bar.width,
+              animationDelay: bar.delay,
+            }}
+          >
+            <span
+              aria-hidden="true"
+              className="
+                absolute
+                inset-y-0
+                left-1/2
+                w-px
+                -translate-x-1/2
+                bg-gradient-to-b
+                from-transparent
+                via-[#9bc36c]/[0.075]
+                to-transparent
+              "
+            />
+          </div>
+        ))}
+      </div>
 
       <div
         className="
           chat-background-soft
           absolute
-          inset-[-5%]
-          bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.18),transparent_55%)]
-        "
-      />
-
-      {/* CONTENT READABILITY */}
-
-      <div
-        className="
-          absolute
-          inset-0
-          bg-white/[0.10]
+          inset-[-6%]
+          bg-[radial-gradient(ellipse_at_50%_38%,rgba(255,255,255,0.58)_0%,rgba(255,255,255,0.18)_35%,transparent_66%)]
         "
       />
 
@@ -1261,9 +1299,9 @@ function AnimatedChatBackground() {
           absolute
           inset-0
           bg-gradient-to-b
-          from-white/5
+          from-white/10
           via-transparent
-          to-white/20
+          to-[#dff0c5]/16
         "
       />
     </div>
@@ -1274,35 +1312,493 @@ function AnimatedChatBackground() {
    EMPTY STATE
 =============================================================== */
 
-function EmptyChatState() {
+function EmptyChatState({
+  isLoading,
+  onSendMessage,
+}: {
+  isLoading: boolean;
+  onSendMessage: (
+    message: string,
+    files?: File[],
+  ) => void | Promise<void>;
+}) {
   return (
     <div
       className="
+        relative
         flex
-        min-h-[calc(100dvh-330px)]
-        min-w-0
-        max-w-full
-        flex-1
+        min-h-[100dvh]
+        w-full
         flex-col
         items-center
-        justify-center
+        overflow-hidden
         px-4
+        pb-8
+        pt-0
         text-center
+        sm:px-6
       "
     >
-      <p
+
+      {/* =========================================================
+          FIGMA EMPTY STATE
+      ========================================================= */}
+      <div
         className="
-          max-w-[420px]
-          text-[15px]
-          leading-6
-          text-[var(--color-text-muted)]
-          sm:text-[16px]
+          relative
+          z-10
+          flex
+          min-h-[100dvh]
+          w-full
+          max-w-[1400px]
+          flex-col
+          items-center
+          text-center
         "
       >
-        Ask me anything about food,
-        nutrition, recipes, or healthy
-        living.
-      </p>
+        {/* BADGE */}
+        <div
+          className="
+            absolute
+            left-1/2
+            top-[168px]
+            inline-flex
+            h-[38px]
+            -translate-x-1/2
+            items-center
+            justify-center
+            gap-[8px]
+            whitespace-nowrap
+            rounded-full
+            border
+            border-white/80
+            bg-white/55
+            px-[20px]
+            font-primary
+            text-[13px]
+            font-medium
+            uppercase
+            leading-none
+            tracking-[-0.012em]
+            text-[#007246]
+            shadow-[0_6px_24px_rgba(72,115,40,0.07)]
+            backdrop-blur-[5px]
+            sm:top-[190px]
+            sm:h-[40px]
+            sm:px-[22px]
+            sm:text-[12px]
+            max-[768px]:!text-[10px]
+            max-[768px]:!leading-[28px]
+            lg:top-[202px]
+          "
+        >
+          <span
+            aria-hidden="true"
+            className="text-[16px] leading-none sm:text-[17px]"
+          >
+
+          </span>
+          AI POWERED FOOD DECISION PLATFORM
+        </div>
+
+        {/* HEADING */}
+        <h1
+          className="
+            absolute
+            left-1/2
+            !top-[245px]
+            w-[calc(100%-32px)]
+            -translate-x-1/2
+            font-primary
+            !text-h2
+            font-medium
+            !leading-[71px]
+            tracking-[-4%]
+            text-[#141414]
+            sm:top-[265px]
+            sm:w-[calc(100%-80px)]
+            lg:top-[330px]
+            lg:w-[1200px]
+            lg:max-w-[1200px]
+            lg:!text-h2
+            xl:!text-h2
+            max-[768px]:!text-[32px]
+            max-[768px]:!leading-[41px]
+            max-[768px]:!top-[225px]
+          "
+        >
+          <span className="inline mr-[6px] min-[767px]:block">
+            Ask Meal Eats anything about
+          </span>
+
+          <span
+            className="
+              mt-[14px]
+              inline
+              font-accent
+              text-[42px]
+              font-normal
+              min-[767px]:block
+              italic
+              leading-[0.86]
+              tracking-[-0.045em]
+              sm:mt-[15px]
+              sm:text-[52px]
+              md:text-[58px]
+              lg:text-[64px]
+              xl:text-[68px]
+            "
+          >
+            your health...
+          </span>
+        </h1>
+
+        {/* =======================================================
+            FIGMA EMPTY COMPOSER
+
+            Intentionally independent from ChatComposer. The normal
+            ChatComposer owns its own layout rules and was causing
+            the oversized white bar in the empty state.
+        ======================================================= */}
+        <div
+          className="
+            absolute
+            left-1/2
+            top-[455px]
+            w-[calc(100%-32px)]
+            max-w-[520px]
+            -translate-x-1/2
+            sm:top-[475px]
+            sm:w-[520px]
+            lg:top-[433px]
+            lg:max-w-[520px]
+            max-[768px]:!top-[330px]
+            xl:w-[520px]
+          "
+        >
+          <FigmaEmptyComposer
+            disabled={isLoading}
+            onSendMessage={onSendMessage}
+          />
+        </div>
+
+        {/* PRIVACY */}
+        <p
+          className="
+            absolute
+            left-1/2
+            w-[calc(100%-32px)]
+            max-w-[620px]
+            -translate-x-1/2
+            px-2
+            font-primary
+            text-[11px]
+            font-normal
+            leading-[1.5]
+            tracking-[-0.012em]
+            text-[#727772]
+            sm:text-[12px]
+            lg:top-[625px]
+            lg:text-[13px]
+            max-[768px]:!top-[580px]
+          "
+        >
+          By messaging MealEatsAI, you agree to our{" "}
+          <span className="underline underline-offset-2">
+            Terms
+          </span>{" "}
+          and{" "}
+          <span className="underline underline-offset-2">
+            Privacy Policy
+          </span>
+          .
+          <br />
+          Your privacy choices
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ===============================================================
+   FIGMA EMPTY COMPOSER
+=============================================================== */
+
+function FigmaEmptyComposer({
+  disabled,
+  onSendMessage,
+}: {
+  disabled: boolean;
+  onSendMessage: (
+    message: string,
+    files?: File[],
+  ) => void | Promise<void>;
+}) {
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const [value, setValue] = useState("");
+  const [selectedFile, setSelectedFile] =
+    useState<File | null>(null);
+
+  const submit = useCallback(() => {
+    const message = value.trim();
+
+    if (disabled || (!message && !selectedFile)) {
+      return;
+    }
+
+    const files = selectedFile
+      ? [selectedFile]
+      : [];
+
+    void onSendMessage(message, files);
+
+    setValue("");
+    setSelectedFile(null);
+
+    requestAnimationFrame(() => {
+      if (inputRef.current) {
+        inputRef.current.style.height = "40px";
+        inputRef.current.focus();
+      }
+    });
+  }, [
+    disabled,
+    onSendMessage,
+    selectedFile,
+    value,
+  ]);
+
+  const handleChange = (
+    event: ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    const textarea = event.target;
+    setValue(textarea.value);
+
+    textarea.style.height = "0px";
+
+    const nextHeight = Math.min(
+      Math.max(textarea.scrollHeight, 40),
+      120,
+    );
+
+    textarea.style.height = `${nextHeight}px`;
+  };
+
+  const handleKeyDown = (
+    event: KeyboardEvent<HTMLTextAreaElement>,
+  ) => {
+    if (
+      event.key === "Enter" &&
+      !event.shiftKey &&
+      !event.nativeEvent.isComposing
+    ) {
+      event.preventDefault();
+      submit();
+    }
+  };
+
+  const handleFileChange = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      setSelectedFile(file);
+    }
+
+    event.target.value = "";
+  };
+
+  const canSend =
+    !disabled &&
+    (value.trim().length > 0 ||
+      selectedFile !== null);
+
+  return (
+    <div className="w-full">
+      {selectedFile && (
+        <div
+          className="
+            mb-2
+            flex
+            max-w-full
+            items-center
+            justify-between
+            rounded-[12px]
+            border
+            border-[#e2e6df]
+            bg-white/90
+            px-3
+            py-2
+            text-left
+            shadow-[0_4px_16px_rgba(0,0,0,0.05)]
+          "
+        >
+          <span className="min-w-0 truncate text-[11px] text-[#626662]">
+            {selectedFile.name}
+          </span>
+
+          <button
+            type="button"
+            onClick={() => setSelectedFile(null)}
+            className="
+              ml-2
+              shrink-0
+              text-[11px]
+              text-[#777]
+              underline
+              underline-offset-2
+            "
+          >
+            Remove
+          </button>
+        </div>
+      )}
+
+
+
+      <div
+        className="
+          flex
+          flex-col
+          min-h-[84px]
+          w-full
+          items-center
+          gap-[12px]
+          rounded-[24px]
+          border
+          border-[#e5e8e4]
+          bg-white
+          px-[18px]
+          py-[14px]
+          text-left
+          shadow-[0_12px_32px_rgba(45,67,35,0.12)]
+          transition-[border-color,box-shadow]
+          duration-200
+          focus-within:border-[#d4ddd0]
+          focus-within:shadow-[0_14px_38px_rgba(45,67,35,0.15)]
+          sm:rounded-[25px]
+          sm:px-[20px]
+        "
+      >
+        <div className="flex items-center mr-auto gap-[5.5px]">
+          <div className="search-icon"><Search className="h-[16px] w-[16px] text-dark" /> </div>
+          <div className="text"><p className="text-body leading-[150%] text-dark">Hey Dia...</p></div>
+        </div>
+        <div className="flex justify-between items-center !w-full">
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={disabled}
+            aria-label="Add tabs or files"
+            title="Add tabs or files"
+            className="
+            flex
+            h-[36px]
+            w-[36px]
+            shrink-0
+            items-center
+            justify-center
+            rounded-full
+            text-[#7c817c]
+            transition-colors
+            hover:bg-[#f2f4f0]
+            hover:text-[#202420]
+            disabled:pointer-events-none
+            disabled:opacity-40
+          "
+          >
+            <span
+              aria-hidden="true"
+              className="text-[28px] font-light leading-none"
+            >
+              +
+            </span>
+          </button>
+
+          <input
+            ref={fileInputRef}
+            type="file"
+            className="hidden"
+            onChange={handleFileChange}
+          />
+
+          <textarea
+            ref={inputRef}
+            value={value}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            disabled={disabled}
+            rows={1}
+            placeholder="Ask anything"
+            aria-label="Ask Meal Eats anything"
+            className="
+            min-h-[40px]
+            min-w-0
+            flex-1
+            resize-none
+            overflow-hidden
+            border-0
+            bg-transparent
+            px-0
+            py-[9px]
+            font-primary
+            text-[15px]
+            font-normal
+            leading-[22px]
+            tracking-[-0.01em]
+            text-[#252725]
+            outline-none
+            placeholder:text-[#8b8f8a]
+            disabled:cursor-not-allowed
+            disabled:opacity-50
+          "
+          />
+
+          <button
+            type="button"
+            onClick={submit}
+            disabled={!canSend}
+            aria-label="Send message"
+            title="Send message"
+            className="
+            flex
+            h-[42px]
+            w-[42px]
+            shrink-0
+            items-center
+            justify-center
+            rounded-full
+            bg-[#050505]
+            text-white
+            shadow-[0_4px_12px_rgba(0,0,0,0.10)]
+            transition-[transform,background-color,opacity]
+            duration-200
+            hover:scale-[1.03]
+            hover:bg-[#111]
+            active:scale-95
+            disabled:cursor-default
+            disabled:bg-[#bfc1bf]
+          "
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-[19px] w-[19px]"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 19V5" />
+              <path d="m6 11 6-6 6 6" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

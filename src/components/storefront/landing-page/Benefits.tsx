@@ -24,30 +24,30 @@ type Feature = {
 
 const features: Record<FeatureIconName, Feature> = {
   assistant: {
-    title: "AI Health Assistant",
+    title: "AI Food Companion",
     description:
-      "Ask anything in plain language. The assistant remembers your conditions, allergies and goals before it answers.",
+      "Tell Meal Eats what’s already in your kitchen to discover recipes tailored to your ingredients, preferences, and goals—while reducing food waste.",
     icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377156/mealeats/products/running.gif",
   },
 
   diet: {
-    title: "Personalised Diet Plans",
+    title: "Personalised Smart Food Plans",
     description:
-      "Daily and weekly plans built around your calorie target, macros, cuisine preference and medical profile.",
-    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377155/mealeats/products/robottalking.gif",
-  },
-
-  workout: {
-    title: "Workout Recommendations",
-    description:
-      "Home, gym, office-stretch or senior-friendly routines that adapt to your recovery and energy levels.",
+      "Plan meals around your lifestyle—not generic diet charts. Meal Eats tailors daily and weekly meals to your preferences, routine, goals, and ingredients.",
     icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377093/mealeats/products/grocries.gif",
   },
 
-  recipe: {
-    title: "AI Recipe Generator",
+  workout: {
+    title: "Daily Food Guidance",
     description:
-      "Type what's already in your kitchen and get a healthy recipe with full nutrition facts in seconds.",
+      "Get practical suggestions for breakfast, lunch, dinner and snacks based on your Food Profile, previous choices & the ingredients availability.",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377122/mealeats/products/ingredinets.gif",
+  },
+
+  recipe: {
+    title: "Ingredients-to-Recipe AI",
+    description:
+      "Tell Meal Eats what's already in your kitchen and get a healthy recipe with full nutrition facts in seconds.",
     icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377088/mealeats/products/food.gif",
   },
 };
@@ -459,9 +459,7 @@ function BenefitsHeader() {
           lg:leading-[1.65]
         "
       >
-        Nutrition, movement, hydration, sleep and medical awareness —
-        connected, so every recommendation accounts for the rest of your
-        day.
+        Food choices don't happen in isolation. Your goals, preferences, routine, available ingredients and everyday habits influence what works for you. Meal Eats brings this context together to make food recommendations more personal, practical and easier to follow.
       </motion.p>
     </header>
   );
@@ -514,6 +512,7 @@ function DesktopBenefitsLayout() {
         max-w-[1320px]
         lg:grid
         lg:grid-cols-[minmax(250px,1fr)_minmax(350px,430px)_minmax(250px,1fr)]
+        justify-between
         lg:items-start
         lg:gap-x-[38px]
 

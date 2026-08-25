@@ -48,7 +48,7 @@ const GUEST_SESSION_KEY = "mealeats_guest_session_id";
  */
 const API_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "https://mealseats.onrender.com/api";
+  "https://mealeats-ai.onrender.com/api";
 
 /**
  * Backend base URL used for generated PDF files.
@@ -61,7 +61,7 @@ const API_URL =
  */
 const BACKEND_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/api\/?$/, "") ||
-  "https://mealseats.onrender.com";
+  "https://mealeats-ai.onrender.com";
 
 /* =========================================================
    HELPERS

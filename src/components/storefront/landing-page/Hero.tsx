@@ -108,7 +108,9 @@ export default function Hero() {
             justify-center
             gap-[6px]
             font-primary
-            text-[10px]
+            text-[13px]
+            tracking-[-3%]
+            font-[400]
             font-[#007246]
             uppercase
             leading-[28px]
@@ -121,7 +123,7 @@ export default function Hero() {
         >
           <Image src='https://res.cloudinary.com/gppcmjpt/image/upload/v1787377070/mealeats/products/ai-platform-stars.png' alt="ai-platform-stars" height={12} width={12} className="h-[12px] w-[12px] mr-[2.5px]" />
 
-          AI POWERED FOOD DECISION PLATFORM
+          YOUR PERSONAL AI FOOD COMPANION
         </div>
 
         {/* =======================================================
@@ -185,7 +187,7 @@ export default function Hero() {
                 tracking-[-0.04em]
               "
             >
-             Every Day
+              Every Day
             </span>
           </span>
         </h1>
@@ -231,10 +233,7 @@ export default function Hero() {
             max-[375px]:leading-[1.52]
           "
         >
-          Meal Eats AI turns your medical profile, meals and movement into
-          daily guidance you can actually follow — diet plans, recipes from
-          what&apos;s in your kitchen, workouts, and a dashboard that finally
-          makes sense.
+          Meal Eats is your personal AI food companion that learns your food preferences, lifestyle, goals and everyday eating patterns to help you make smarter food decisions.
         </p>
 
         {/* =======================================================
@@ -275,8 +274,6 @@ export default function Hero() {
               inline-flex
               !tracking-[-4%]
               h-[42px]
-              lg:min-w-[142px]
-              xl:min-w-[142px]
               max-[370px]:!px-[15px]
               shrink-0
               items-center
@@ -285,7 +282,6 @@ export default function Hero() {
               bg-primary-gradient
               px-[20px]
               font-primary
-              text-[13px]
               font-medium
               leading-none
               !text-primary
@@ -302,11 +298,13 @@ export default function Hero() {
               focus-visible:ring-accent
               focus-visible:ring-offset-2
 
-              max-[1024px]:h-[40px]
-              max-[1024px]:min-w-[136px]
-              max-[1024px]:text-[12px]
-
-              max-[768px]:h-[44px]
+              lg:text-body
+              lg:leading-[28px]
+              lg:tracking-[-4%]
+              lg:font-[500]
+              lg:!min-w-[219px]
+              lg:h-[48px]
+              max-[768px]:!h-[44px]
               max-[768px]:text-[14px]
               max-[768px]:px-[28px]
               max-[768px]:!font-medium
@@ -360,8 +358,14 @@ export default function Hero() {
               focus-visible:ring-offset-2
 
               max-[1024px]:h-[40px]
-              max-[1024px]:min-w-[142px]
               max-[1024px]:text-[12px]
+
+              lg:!text-body
+              lg:leading-[28px]
+              lg:tracking-[-4%]
+              lg:font-[500]
+              lg:!min-w-[219px]
+              lg:!h-[48px]
 
               max-[768px]:h-[44px]
               max-[768px]:!px-[28px]
@@ -372,6 +376,8 @@ export default function Hero() {
             Understand Yourself
           </Link>
         </div>
+
+        <p className="text-[18px] leading-[69px] text-[#55820C] text-center mt-[24px] font-primary">Personalized to You  •  Built Around Real Food  •  Designed for Everyday Life</p>
 
         {/* =======================================================
             PHONE / HAND VISUAL

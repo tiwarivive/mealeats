@@ -198,11 +198,11 @@ export default function TrustedCompanies() {
             w-full
             text-center
             font-primary
-            text-[24px]
+            !text-[23px]
             font-medium
             leading-[1.15]
             tracking-[-0.045em]
-            text-secondary
+            text-[#0F0F0F]
 
             max-[767px]:text-[22px]
 

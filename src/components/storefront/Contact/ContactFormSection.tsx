@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { Check } from "lucide-react";
 
 const CONTACT_API_URL =
-  "https://mealseats.onrender.com/api/contact/add";
+  "https://mealeats-ai.onrender.com/api/contact/add";
 
 /* =========================================================
    INCLUDED ITEMS
