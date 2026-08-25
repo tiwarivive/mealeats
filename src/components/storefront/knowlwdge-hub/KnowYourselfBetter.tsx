@@ -31,7 +31,7 @@ const profileItems = [
     title: "Ingredients at Home",
     description:
       "What's already in your pantry and fridge, so recommendations are practical tonight.",
-    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377118/mealeats/products/holi.gif",
+    icon: "/ingredients.gif",
   },
   {
     title: "Food Preferences",
