@@ -60,6 +60,9 @@ export default function MealPlanShoppingList() {
 
         max-[375px]:pt-[58px]
         max-[375px]:pb-[56px]
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
       "
     >
       {/* =====================================================
@@ -157,14 +160,8 @@ export default function MealPlanShoppingList() {
           z-10
           mx-auto
           w-full
-          max-w-content
-          px-page
-
-          /* ================= MOBILE ================= */
-
-          max-md:px-5
-          max-[480px]:px-4
-          max-[375px]:px-3.5
+          max-w-full
+          
         "
       >
         {/* ===================================================

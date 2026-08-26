@@ -38,6 +38,9 @@ export default function MissionVision() {
       className="
         relative
         w-full
+        lg:px-[56px]
+        xl:px-[56px]
+     
         overflow-hidden
         bg-primary
       "
@@ -48,7 +51,7 @@ export default function MissionVision() {
 
       <div
         className="
-          container-content
+          max-w-full
           mx-auto
           w-full
           px-[16px]
@@ -93,7 +96,7 @@ export default function MissionVision() {
 
               font-primary
               text-h2
-              font-normal
+              font-medium
               leading-[60px]
               tracking-[-4%]
               text-secondary
@@ -172,7 +175,7 @@ export default function MissionVision() {
 
               rounded-[18px]
 
-              aspect-[2.05/1]
+              
               max-[768px]:!hidden
 
           
@@ -181,11 +184,12 @@ export default function MissionVision() {
             <Image
               src='/bg.png'
               alt="People collaborating together in a healthcare and wellness environment"
-              width={1328}
+              width={2000}
               height={645}
               className="
               min-h-[600px]
-              max-w-[1328px]
+              max-w-full
+              w-full
               mx-auto
                 object-cover
                 object-center

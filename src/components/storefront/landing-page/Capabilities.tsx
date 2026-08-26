@@ -328,18 +328,19 @@ export default function Capabilities() {
         w-full
         overflow-hidden
         bg-white
-        max-w-[1328px]
+        max-w-full
         mx-auto
         
 
-        px-0
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
 
-        lg:px-[0px]
+      
 
         /* ===================================================
            MOBILE
         ==================================================== */
-        max-[767px]:px-[16px]
         max-[767px]:overflow-visible
       "
     >
@@ -357,7 +358,7 @@ export default function Capabilities() {
 
           overflow-hidden
 
-          px-0
+        
           !pt-[109px]
           pb-[18px]
 
@@ -374,15 +375,15 @@ export default function Capabilities() {
 
           max-[767px]:min-h-0
           max-[767px]:overflow-visible
-          max-[767px]:px-[20px]
+   
           max-[767px]:pt-[34px]
           max-[767px]:pb-[56px]
 
-          max-[600px]:px-[18px]
+        
           max-[600px]:pt-[32px]
           max-[600px]:pb-[52px]
 
-          max-[480px]:px-[16px]
+      
           max-[480px]:pt-[30px]
           max-[480px]:pb-[48px]
 

@@ -10,9 +10,10 @@ export default function OurStory() {
         w-full
         overflow-hidden
         py-[66px]
-        px-[0px]
+       lg:px-[56px]
+        xl:px-[56px]
         max-[768px]:px-[16px]
-        sm:px-[16px]
+       
         max-[768px]:py-0
         
         
@@ -117,7 +118,7 @@ export default function OurStory() {
             What started with a simple idea is evolving
             <br className="hidden lg:block" />
             into a smarter, more personalized approach to
-            
+
             everyday health.
           </h2>
 

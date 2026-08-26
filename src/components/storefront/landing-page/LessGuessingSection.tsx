@@ -57,7 +57,7 @@ export default function LessGuessingSection() {
         className="
           mx-auto
           w-full
-          max-w-content
+          max-w-full
         "
       >
         {/* =====================================================
@@ -145,7 +145,10 @@ export default function LessGuessingSection() {
 
             grid
             w-full
-            max-w-[1320px]
+            max-w-full
+            lg:px-[56px]
+        xl:px-[56px]
+      
             grid-cols-4
 
             gap-[16px]

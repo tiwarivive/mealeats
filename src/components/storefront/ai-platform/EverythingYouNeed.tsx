@@ -1,6 +1,8 @@
 export default function EverythingYouNeed() {
   return (
-    <section className="bg-white py-0 sm:pt-0  lg:py-0">
+    <section className="bg-white py-0 sm:pt-0  lg:py-0 lg:px-[56px]
+        xl:px-[56px]
+        ">
       <div className="mx-auto max-w-[890px] px-5 max-[768px]:px-4 text-center">
         <h2 className="!text-h2 font-medium leading-[69px] tracking-[-4%] text-secondary max-[768px]:!text-[28px] max-[768px]:!leading-[41px]">
           Everything you need at{" "}

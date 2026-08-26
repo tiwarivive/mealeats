@@ -84,15 +84,9 @@ function FooterColumn({
           font-primary
           !text-[23px]
           font-medium
-          !leading-[31px]
-          tracking-[-0.02em]
+          leading-[31px]
+          tracking-[-3%]
           text-[var(--color-secondary)]
-
-          min-[400px]:!text-[23px]
-          sm:!text-[13px]
-          md:!text-[13.5px]
-          lg:!text-[14px]
-          xl:!text-[15px]
         "
       >
         {title}
@@ -105,22 +99,22 @@ function FooterColumn({
           flex
           min-w-0
           flex-col
-          gap-[6px]
+          gap-[0px]
 
           min-[400px]:mt-[12px]
           min-[400px]:gap-[7px]
 
           sm:mt-[11px]
-          sm:gap-[7px]
+         
 
           md:mt-[12px]
-          md:gap-[7.5px]
+         
 
           lg:mt-[13px]
-          lg:gap-[8px]
+          
 
           xl:mt-[14px]
-          xl:gap-[8.5px]
+          
         "
       >
         {links.map((link) => (
@@ -138,13 +132,9 @@ function FooterColumn({
               font-primary
               !text-[16px]
               font-normal
-              leading-[1.3]
-              tracking-[-0.01em]
+              leading-[24px]
+              tracking-[-2%]
               text-[var(--color-text-muted)]
-
-              min-[400px]:!text-[16px]
-              sm:!text-[10.5px]
-
               transition-opacity
               duration-[var(--transition-fast)]
 
@@ -225,15 +215,9 @@ function ContactItem({
           font-primary
           !text-[16px]
           font-normal
-          leading-[1.4]
-          tracking-[-0.01em]
+          leading-[120%]
+          tracking-[-2%]
           text-[var(--color-text-muted)]
-
-          min-[400px]:!text-[16px]
-
-          sm:!text-[10.5px]
-          md:!text-[11px]
-          lg:!text-[12px]
         "
       >
         {children}
@@ -248,62 +232,19 @@ function ContactItem({
 
 function FacebookIcon() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-      className="h-full w-full"
-    >
-      <path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H8v3h2.6v8h3.1Z" />
-    </svg>
+    <Image src='/instagram (2).png' alt="facebook" className='h-[24px] w-[24px]' height={24} width={24} />
   );
 }
 
 function LinkedInIcon() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-      className="h-full w-full"
-    >
-      <path d="M5.1 3.5A1.8 1.8 0 1 1 5.1 7a1.8 1.8 0 0 1 0-3.5ZM3.5 8.5h3.2V20H3.5V8.5Zm5.2 0h3v1.6h.1c.4-.8 1.5-1.9 3.2-1.9 3.4 0 4 2.2 4 5.1V20h-3.2v-5.9c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3V20H8.7V8.5Z" />
-    </svg>
+    <Image src='/linkdin (2).png' alt="facebook" className='h-[24px] w-[24px]' height={24} width={24} />
   );
 }
 
 function InstagramIcon() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      aria-hidden="true"
-      className="h-full w-full"
-    >
-      <rect
-        x="3.5"
-        y="3.5"
-        width="17"
-        height="17"
-        rx="4"
-      />
-
-      <circle
-        cx="12"
-        cy="12"
-        r="4"
-      />
-
-      <circle
-        cx="17.4"
-        cy="6.7"
-        r="1"
-        fill="currentColor"
-        stroke="none"
-      />
-    </svg>
+    <Image src='/facebook (2).png' alt="facebook" className='h-[24px] w-[24px]' height={24} width={24} />
   );
 }
 
@@ -426,7 +367,7 @@ function FooterBrand() {
           inline-flex
           max-w-full
           items-start
-          !justify-end
+          !justify-start
           
           min-[400px]:justify-start
 
@@ -434,6 +375,7 @@ function FooterBrand() {
           focus-visible:ring-1
           focus-visible:ring-[var(--color-accent)]
           focus-visible:ring-offset-1
+          !w-full
         "
       >
         <Image
@@ -446,6 +388,7 @@ function FooterBrand() {
             block
             h-auto
             w-[120px]
+            !mr-auto
             max-w-full
             object-contain
             object-left
@@ -510,16 +453,11 @@ function FooterContact() {
           font-primary
           !text-[23px]
           font-medium
-          leading-[1.15]
-          tracking-[-0.02em]
+          leading-[31px]
+          tracking-[-3%]
           text-[var(--color-secondary)]
 
-          min-[400px]:!text-[23px]
-
-          sm:!text-[13px]
-          md:!text-[13.5px]
-          lg:!text-[14px]
-          xl:!text-[15px]
+         
         "
       >
         Contact
@@ -637,29 +575,30 @@ function FooterMain() {
         className="
           mx-auto
           w-full
-          max-w-[var(--container-max-width)]
+          max-w-full
 
-          px-[18px]
+       
           pt-[22px]
           pb-[30px]
 
-          min-[400px]:px-[18px]
+       
           min-[400px]:pt-[24px]
           min-[400px]:pb-[30px]
 
-          sm:px-[28px]
+        
           sm:pt-[36px]
           sm:pb-[28px]
 
-          md:px-[40px]
           md:pt-[40px]
           md:pb-[30px]
 
-          lg:px-[64px]
+         
           lg:pt-[46px]
           lg:pb-[34px]
 
-          xl:px-[74px]
+       lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
           xl:pt-[52px]
           xl:pb-[38px]
         "
@@ -788,24 +727,23 @@ function FooterUtility() {
         className="
           mx-auto
           w-full
-          max-w-[var(--container-max-width)]
+          max-w-full
 
-          px-[18px]
+      
           pb-[25px]
 
           min-[400px]:px-[18px]
           min-[400px]:pb-[26px]
 
-          sm:px-[28px]
+  
           sm:pb-[25px]
 
           md:px-[40px]
           md:pb-[28px]
 
-          lg:px-[64px]
+        
           lg:pb-[31px]
 
-          xl:px-[74px]
           xl:pb-[34px]
         "
       >
@@ -978,7 +916,7 @@ function FooterBrandArea() {
         bg-[linear-gradient(181.18deg,#FFFFFF_12.77%,#7BB322_97.78%)]
         opacity-[70%]
       "
-     
+
     >
       <div
         aria-hidden="true"

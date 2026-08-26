@@ -173,15 +173,18 @@ export default function ClinicalCare() {
         sm:pb-[17px]
         lg:pt-[62px]
         lg:pb-[17px]
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
     
       "
     >
       <div
         className="
-          container-content
+          max-w-full
           mx-auto
           w-full
-          px-[var(--spacing-page)]
+          
         "
       >
         <div

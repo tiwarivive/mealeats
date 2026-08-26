@@ -70,6 +70,9 @@ export default function SmartFoodPlanning() {
         relative
         w-full
         overflow-hidden
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
         bg-primary
         text-secondary
       "
@@ -84,8 +87,7 @@ export default function SmartFoodPlanning() {
           relative
           mx-auto
           w-full
-          max-w-[1328px]
-          px-[16px]
+          max-w-full
           pb-[76px]
         "
       >
@@ -304,6 +306,7 @@ export default function SmartFoodPlanning() {
             className="
               inline-flex
               min-h-[48px]
+              h-[48px]
               w-full
               max-w-[313px]
               items-center

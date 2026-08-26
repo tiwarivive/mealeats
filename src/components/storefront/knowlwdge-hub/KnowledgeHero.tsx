@@ -39,7 +39,7 @@ export default function KnowledgeHero() {
     >
       <div
         className="
-          container-content
+          max-w-full
           mt-[112px]
           relative
           z-10

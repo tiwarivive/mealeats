@@ -559,7 +559,7 @@ export default function PersonalHealth() {
     >
       <div
         className="
-          container-content
+          max-w-full
           mx-auto
           w-full
           px-[16px]
@@ -589,6 +589,9 @@ export default function PersonalHealth() {
             items-stretch
 
             grid-cols-[minmax(0,1fr)_minmax(420px,0.88fr)]
+            lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
 
             gap-[72px]
 

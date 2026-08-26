@@ -111,12 +111,11 @@ function DifferenceVisual({
           w-full
           object-contain
           object-bottom
-          ${
-            type === "insights"
-              ? "max-w-[215px] sm:max-w-[230px] lg:max-w-[245px] max-[768px]:!max-w-full"
-              : type === "nutrition"
-                ? "max-w-[205px] sm:max-w-[220px] lg:max-w-[235px] max-[768px]:!max-w-full"
-                : "max-w-[220px] sm:max-w-[235px] lg:max-w-[250px] max-[768px]:!max-w-full"
+          ${type === "insights"
+            ? "max-w-[215px] sm:max-w-[230px] lg:max-w-[245px] max-[768px]:!max-w-full"
+            : type === "nutrition"
+              ? "max-w-[205px] sm:max-w-[220px] lg:max-w-[235px] max-[768px]:!max-w-full"
+              : "max-w-[220px] sm:max-w-[235px] lg:max-w-[250px] max-[768px]:!max-w-full"
           }
         `}
       />
@@ -146,7 +145,7 @@ export default function WhatMakesUsDifferent() {
     >
       <div
         className="
-          container-content
+          max-w-full
           mx-auto
           w-full
         "
@@ -216,7 +215,9 @@ export default function WhatMakesUsDifferent() {
             grid
             grid-cols-1
             gap-[var(--spacing-lg)]
-            px-[var(--spacing-page)]
+            lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
             sm:gap-[var(--spacing-xl)]
             md:grid-cols-2
             lg:grid-cols-3

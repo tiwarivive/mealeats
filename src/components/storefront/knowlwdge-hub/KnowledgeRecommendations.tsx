@@ -33,7 +33,9 @@ export default function KnowledgeRecommendations() {
       aria-labelledby="recommendations-heading"
       className="bg-primary py-[56px] sm:py-[72px] lg:py-[88px] max-[768px]:pb-[0px]"
     >
-      <div className="container-content px-[var(--spacing-page)]">
+      <div className="max-w-full lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]">
         {/* =====================================================
             HEADER
         ===================================================== */}

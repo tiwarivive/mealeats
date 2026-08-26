@@ -241,15 +241,18 @@ export default function ContactFormSection() {
         min-[768px]:bg-[linear-gradient(180deg,#F3FDDE_0%,#FFFFFF_100%)]
 
         !mt-[-110px]
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
         max-[767px]:bg-white
       "
     >
       <div
         className="
-          container-content
+          max-w-full
           mx-auto
           w-full
-          px-[16px]
+       
           py-[64px]
 
           max-[1280px]:py-[58px]
@@ -295,7 +298,7 @@ export default function ContactFormSection() {
               min-w-0
               pt-[5px]
 
-              max-[767px]:px-[16px]
+            
               max-[767px]:pt-0
             "
           >

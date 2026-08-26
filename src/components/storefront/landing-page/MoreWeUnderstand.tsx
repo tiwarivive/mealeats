@@ -52,12 +52,16 @@ export default function MoreWeUnderstand() {
         sm:pb-[76px]
         lg:pb-[96px]
         max-[768px]:pb-[28px]
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
+
       "
     >
       <div
         className="
-          container-content
-          px-[var(--spacing-page)]
+          max-w-full
+       
         "
       >
         {/* =========================================================

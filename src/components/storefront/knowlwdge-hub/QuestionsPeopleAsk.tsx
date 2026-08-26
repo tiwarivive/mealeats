@@ -90,6 +90,7 @@ function FAQItem({
                 self-start
                 w-full
                 min-w-0
+                max-w-full
                 overflow-hidden
 
                 rounded-[16px]
@@ -117,10 +118,11 @@ function FAQItem({
                 onClick={onToggle}
                 className="
                     flex
-                    min-h-[78px]
                     w-full
+                    min-w-0
                     items-center
                     justify-between
+
                     gap-[16px]
 
                     px-[20px]
@@ -128,28 +130,46 @@ function FAQItem({
 
                     text-left
 
-                    max-[480px]:
-                    min-h-[48px]
-                    gap-[8px]
-                    px-[12px]
-                    py-[8px]
-
-                    sm:
-                    min-h-[58px]
-                    px-[16px]
-
-                    md:
-                    min-h-[70px]
-                    px-[18px]
-
-                    lg:
-                    min-h-[78px]
-                    px-[20px]
-
                     focus-visible:outline-none
                     focus-visible:ring-2
                     focus-visible:ring-[var(--color-accent)]
                     focus-visible:ring-inset
+
+                    /* -----------------------------------------
+                       MOBILE ONLY
+                    ----------------------------------------- */
+
+                    max-[767px]:
+                    min-h-[30px]
+                    gap-[8px]
+                    px-[10px]
+                    py-[7px]
+
+                    max-[480px]:
+                    min-h-[29px]
+                    gap-[7px]
+                    px-[9px]
+                    py-[6px]
+
+                    max-[359px]:
+                    min-h-[28px]
+                    gap-[6px]
+                    px-[8px]
+                    py-[6px]
+
+                    /* -----------------------------------------
+                       DESKTOP — EXISTING DESIGN
+                    ----------------------------------------- */
+
+                    md:
+                    min-h-[70px]
+                    gap-[16px]
+                    px-[18px]
+                    py-[14px]
+
+                    lg:
+                    min-h-[78px]
+                    px-[20px]
                 "
             >
                 <span
@@ -157,23 +177,44 @@ function FAQItem({
                         min-w-0
                         flex-1
 
+                        overflow-hidden
+                        break-words
+                        whitespace-normal
+
                         font-primary
                         font-medium
-
-                        !text-[20px]
-                        !leading-[30px]
 
                         tracking-[-0.01em]
 
                         text-[var(--color-secondary)]
 
-                        max-[480px]:
-                        !text-[11px]
-                        !leading-[16px]
+                        /* -----------------------------------------
+                           BASE / DESKTOP
+                        ----------------------------------------- */
 
-                        sm:
-                        !text-[14px]
-                        !leading-[21px]
+                        !text-[20px]
+                        !leading-[30px]
+
+                        /* -----------------------------------------
+                           MOBILE — MATCH FIGMA SCALE
+                        ----------------------------------------- */
+
+                        max-[767px]:
+                        !text-[10px]
+                        !leading-[14px]
+                        tracking-[-0.01em]
+
+                        max-[480px]:
+                        !text-[10px]
+                        !leading-[14px]
+
+                        max-[359px]:
+                        !text-[9px]
+                        !leading-[13px]
+
+                        /* -----------------------------------------
+                           DESKTOP RESTORED
+                        ----------------------------------------- */
 
                         md:
                         !text-[17px]
@@ -190,9 +231,10 @@ function FAQItem({
                 <ChevronDown
                     aria-hidden="true"
                     className="
+                        shrink-0
+
                         h-[16px]
                         w-[16px]
-                        shrink-0
 
                         text-[var(--color-text-muted)]
 
@@ -200,13 +242,25 @@ function FAQItem({
                         duration-[var(--transition-normal)]
                         ease-out
 
-                        max-[480px]:
-                        h-[13px]
-                        w-[13px]
+                        /* -----------------------------------------
+                           MOBILE
+                        ----------------------------------------- */
 
-                        sm:
-                        h-[14px]
-                        w-[14px]
+                        max-[767px]:
+                        h-[11px]
+                        w-[11px]
+
+                        max-[480px]:
+                        h-[10px]
+                        w-[10px]
+
+                        max-[359px]:
+                        h-[9px]
+                        w-[9px]
+
+                        /* -----------------------------------------
+                           DESKTOP
+                        ----------------------------------------- */
 
                         md:
                         h-[15px]
@@ -224,8 +278,7 @@ function FAQItem({
             {/* =================================================
                 ANSWER
 
-                Height belongs ONLY to this FAQ.
-                It cannot affect another desktop column.
+                The answer only expands its own FAQ card.
             ================================================= */}
 
             <div
@@ -253,15 +306,28 @@ function FAQItem({
                             pb-[20px]
                             pt-[16px]
 
-                            max-[480px]:
-                            px-[12px]
-                            pb-[12px]
-                            pt-[10px]
+                            /* -----------------------------------------
+                               MOBILE
+                            ----------------------------------------- */
 
-                            sm:
-                            px-[16px]
-                            pb-[16px]
-                            pt-[13px]
+                            max-[767px]:
+                            px-[10px]
+                            pb-[10px]
+                            pt-[8px]
+
+                            max-[480px]:
+                            px-[9px]
+                            pb-[9px]
+                            pt-[7px]
+
+                            max-[359px]:
+                            px-[8px]
+                            pb-[8px]
+                            pt-[7px]
+
+                            /* -----------------------------------------
+                               DESKTOP — EXISTING DESIGN
+                            ----------------------------------------- */
 
                             md:
                             px-[18px]
@@ -277,19 +343,35 @@ function FAQItem({
                         <p
                             className="
                                 font-manrope
-                                text-body
                                 font-normal
 
-                                !leading-[145%]
+                                break-words
+                                whitespace-normal
 
                                 text-[var(--color-text-muted)]
+
+                                !text-[16px]
+                                !leading-[145%]
+
+                                /* -----------------------------------------
+                                   MOBILE
+                                ----------------------------------------- */
+
+                                max-[767px]:
+                                !text-[10px]
+                                !leading-[145%]
 
                                 max-[480px]:
                                 !text-[10px]
                                 !leading-[145%]
 
-                                sm:
-                                !text-[11px]
+                                max-[359px]:
+                                !text-[9px]
+                                !leading-[145%]
+
+                                /* -----------------------------------------
+                                   DESKTOP
+                                ----------------------------------------- */
 
                                 md:
                                 !text-[13px]
@@ -314,45 +396,18 @@ function FAQItem({
 export default function QuestionsPeopleAsk() {
     /*
      * ONE OPEN FAQ ONLY
-     *
-     * null:
-     *      All FAQs closed.
-     *
-     * "fruit-sugar":
-     *      Fruit Sugar is open.
-     *
-     * "protein":
-     *      Protein is open.
-     *
-     * When another FAQ opens, the previous one closes.
      */
 
     const [openId, setOpenId] = useState<string | null>(null);
 
     const handleToggle = (id: string) => {
         setOpenId((currentId) => {
-            if (currentId === id) {
-                return null;
-            }
-
-            return id;
+            return currentId === id ? null : id;
         });
     };
 
     /*
-     * IMPORTANT:
-     *
-     * Desktop:
-     * We deliberately create TWO independent columns.
-     *
-     * This is NOT:
-     *
-     * grid grid-cols-2
-     *
-     * because CSS Grid rows would make the height of one FAQ
-     * affect the FAQ beside it.
-     *
-     * Instead:
+     * DESKTOP:
      *
      * LEFT:
      *   1
@@ -365,8 +420,6 @@ export default function QuestionsPeopleAsk() {
      *   4
      *   6
      *   8
-     *
-     * Therefore opening item 1 only affects the LEFT column.
      */
 
     const leftColumnItems = faqItems.filter(
@@ -383,6 +436,8 @@ export default function QuestionsPeopleAsk() {
             aria-labelledby="health-faq-heading"
             className="
                 w-full
+                max-w-full
+                overflow-x-hidden
 
                 bg-[var(--color-primary)]
 
@@ -411,27 +466,43 @@ export default function QuestionsPeopleAsk() {
                     container-page
                     mx-auto
                     w-full
+                    min-w-0
+                    max-w-full
+
+                    /* -----------------------------------------
+                       MOBILE
+
+                       Remove inherited container padding.
+                    ----------------------------------------- */
+
+                    max-[767px]:
+                    !w-full
+                    !max-w-none
+                    
+        max-[768px]:px-[16px]
                 "
             >
                 {/* =================================================
                     SECTION BADGE
+
+                    Desktop unchanged.
+                    Hidden on mobile because the Figma mobile
+                    FAQ reference starts directly with the heading.
                 ================================================= */}
 
                 <div
                     className="
                         mx-auto
                         mb-[24px]
+
                         flex
                         justify-center
 
-                        max-[480px]:
-                        mb-[18px]
-
-                        sm:
-                        mb-[22px]
+                        max-[767px]:
+                        hidden
 
                         md:
-                        mb-[24px]
+                        flex
                     "
                 >
                     <SectionBadge>
@@ -448,6 +519,9 @@ export default function QuestionsPeopleAsk() {
                     className="
                         mt-[var(--spacing-sm)]
 
+                        mx-auto
+                        w-full
+
                         text-center
 
                         font-primary
@@ -459,17 +533,37 @@ export default function QuestionsPeopleAsk() {
 
                         text-[var(--color-secondary)]
 
+                        /* -----------------------------------------
+                           MOBILE — FIGMA
+                        ----------------------------------------- */
+
+                        max-[767px]:
+                        max-w-[260px]
+                        px-0
+                        !text-[16px]
+                        !leading-[1.15]
+                        tracking-[-0.03em]
+
                         max-[480px]:
-                        !text-[24px]
+                        max-w-[250px]
+                        !text-[16px]
                         !leading-[1.15]
 
-                        sm:
-                        !text-[28px]
-                        !leading-[1.15]
+                        max-[359px]:
+                        max-w-[235px]
+                        !text-[15px]
+
+                        /* -----------------------------------------
+                           DESKTOP — EXISTING DESIGN
+                        ----------------------------------------- */
 
                         md:
+                        max-w-none
                         !text-[36px]
                         !leading-[1.15]
+
+                        max-[768px]:!text-[28px]
+                        max-[768px]:leading-[41px]
 
                         lg:
                         !text-[40px]
@@ -489,19 +583,7 @@ export default function QuestionsPeopleAsk() {
                 </h2>
 
                 {/* =================================================
-                    DESKTOP FAQ AREA
-
-                    TWO COMPLETELY INDEPENDENT COLUMNS.
-
-                    Opening a card on the LEFT:
-                    - does not resize RIGHT cards
-                    - does not move RIGHT cards
-                    - does not change RIGHT column
-
-                    Opening a card on the RIGHT:
-                    - does not resize LEFT cards
-                    - does not move LEFT cards
-                    - does not change LEFT column
+                    FAQ AREA
                 ================================================= */}
 
                 <div
@@ -512,37 +594,62 @@ export default function QuestionsPeopleAsk() {
 
                         w-full
                         max-w-full
+                        min-w-0
 
-                        px-[56px]
+                        
+
+                        /* -----------------------------------------
+                           MOBILE — COMPACT FIGMA LAYOUT
+                        ----------------------------------------- */
+
+                        max-[767px]:
+                        mt-[14px]
+                        
 
                         max-[480px]:
-                        mt-[32px]
-                        px-0
+                        mt-[14px]
+                        
+
+                        max-[359px]:
+                        mt-[12px]
+                        
+
+                        /* -----------------------------------------
+                           DESKTOP — EXISTING DESIGN
+                        ----------------------------------------- */
 
                         sm:
                         mt-[48px]
-                        px-[20px]
+                        
 
                         md:
                         mt-[60px]
-                        px-[32px]
+                        
 
                         lg:
                         mt-[80px]
-                        px-[56px]
+                        
                     "
                 >
                     {/* =================================================
                         MOBILE
-
-                        One vertical column.
                     ================================================= */}
 
                     <div
                         className="
                             flex
+                            w-full
+                            min-w-0
+
                             flex-col
-                            gap-[10px]
+
+                            gap-[4px]
+
+                            max-[480px]:
+                            gap-[4px]
+
+                            max-[359px]:
+                            gap-[3px]
 
                             md:hidden
                         "
@@ -562,7 +669,7 @@ export default function QuestionsPeopleAsk() {
                     {/* =================================================
                         DESKTOP
 
-                        Independent columns.
+                        Existing two-column design preserved.
                     ================================================= */}
 
                     <div

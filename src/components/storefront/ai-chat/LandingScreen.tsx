@@ -1417,8 +1417,8 @@ function EmptyChatState({
             sm:top-[265px]
             sm:w-[calc(100%-80px)]
             lg:top-[330px]
-            lg:w-[1200px]
-            lg:max-w-[1200px]
+            lg:w-full
+            lg:max-w-full
             lg:!text-h2
             xl:!text-h2
             max-[768px]:!text-[32px]

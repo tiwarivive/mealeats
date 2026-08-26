@@ -332,7 +332,7 @@ export default function FAQ() {
           mx-auto
           grid
           w-full
-          max-w-[1440px]
+          max-w-fullpx
           min-w-0
           grid-cols-1
 

@@ -12,9 +12,11 @@ export default function Hero() {
     <section
       aria-labelledby="about-hero-title"
       className="relative w-full overflow-hidden bg-white 
-        
+        lg:px-[56px]
+        xl:px-[56px]
         max-[768px]:px-[16px]
-        sm:px-[16px] mx-auto"
+     
+         mx-auto"
     >
       <div
         className="

@@ -162,7 +162,7 @@ export default function HealthAssistant() {
         className="
           mx-auto
           w-full
-          max-w-[1200px]
+          max-w-full
           px-page
           lg:px-0
         "
@@ -174,9 +174,13 @@ export default function HealthAssistant() {
             items-center
             gap-[48px]
             lg:grid-cols-[440px_minmax(0,1fr)]
+            xl:grid-cols-[640px_minmax(0,1fr)]
             max-[768px]:flex
             max-[768px]:flex-col-reverse
             lg:gap-[120px]
+            lg:px-[56px]
+        xl:px-[56px]
+       
           "
         >
           {/* =================================================

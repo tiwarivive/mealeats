@@ -11,6 +11,9 @@ export default function ProgressTracking() {
         bg-primary
         py-[80px]
         max-[768px]:pb-0
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
         pt-0
         lg:pt-0
         lg:py-[11px]
@@ -20,8 +23,7 @@ export default function ProgressTracking() {
         className="
           mx-auto
           w-full
-          max-w-[1200px]
-          px-page
+          max-w-full
           lg:px-0
         "
       >

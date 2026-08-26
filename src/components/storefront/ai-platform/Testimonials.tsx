@@ -406,7 +406,7 @@ export default function Testimonials() {
         relative
         w-full
         overflow-hidden
-        max-w-[1328px]
+        max-w-full
         mx-auto
         bg-primary
         py-[var(--spacing-4xl)]

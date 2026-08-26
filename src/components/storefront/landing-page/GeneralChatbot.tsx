@@ -305,8 +305,10 @@ export default function GeneralChatbot() {
         text-secondary
         py-[48px]
         !pb-0
-        px-[56px]
-        max-w-[1328px]
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
+        max-w-full
         mx-auto
         lg:px-0
 

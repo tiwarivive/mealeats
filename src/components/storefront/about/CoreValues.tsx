@@ -34,7 +34,7 @@ const coreValues: CoreValue[] = [
     title: "Trust before growth",
     description:
       "We would rather say 'ask your doctor' than invent an answer. Safety rails ship before features.",
-    gif: "/trust.gif",
+    gif: "/practicallife.gif",
   },
   {
     title: "Radical personalisation",
@@ -69,7 +69,7 @@ function CoreValueCard({
 
         px-[21px]
         py-[21px]
-        max-[768px]:px-[16px]
+        
 
         shadow-[0px_2px_7.4px_0px_#ACACAC59]
 
@@ -212,6 +212,9 @@ export default function CoreValues() {
         w-full
         overflow-hidden
         bg-[#FCF8F28F]
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
       "
     >
       {/* ===================================================
@@ -226,19 +229,17 @@ export default function CoreValues() {
 
           py-[72px]
 
-          max-[1440px]:px-[48px]
+    
           max-[1440px]:py-[68px]
 
-          max-[1280px]:px-[40px]
+         
           max-[1280px]:py-[64px]
 
-          max-[1024px]:px-[32px]
+        
           max-[1024px]:py-[60px]
 
-          max-[768px]:px-[24px]
+          
           max-[768px]:py-[56px]
-
-          max-[480px]:px-[16px]
           max-[480px]:py-[48px]
         "
       >

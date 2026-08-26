@@ -175,7 +175,7 @@ export default function TrustedCompanies() {
 
       <div
         className="
-          container-content
+          max-w-full
           mx-auto
           flex
           w-full

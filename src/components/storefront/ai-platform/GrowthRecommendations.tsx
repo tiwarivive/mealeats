@@ -17,7 +17,7 @@ export default function GrowthRecommendations() {
         className="
           mx-auto
           w-full
-          max-w-[1200px]
+          max-w-full
           px-page
           lg:px-0
         "

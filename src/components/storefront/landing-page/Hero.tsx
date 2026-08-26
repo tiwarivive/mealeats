@@ -432,9 +432,9 @@ export default function Hero() {
               z-10
               -translate-x-1/2
 
-              w-[760px]
+              w-[780px]
 
-              max-[1280px]:w-[700px]
+              max-[1280px]:w-[750px]
               max-[1024px]:w-[620px]
 
               /* MOBILE */
@@ -470,7 +470,7 @@ export default function Hero() {
                 w-full
                 select-none
                 scale-[1.2]
-                mt-[30px]
+                mt-[0px]
                 object-contain
                 max-[768px]:scale-[1.5]
                 max-[768px]:mt-[59px]

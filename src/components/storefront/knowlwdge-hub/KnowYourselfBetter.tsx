@@ -56,8 +56,10 @@ export default function KnowYourselfBetter() {
     >
       <div
         className="
-          container-content
-          px-[var(--spacing-page)]
+          max-w-full
+          lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
         "
       >
         {/* =========================================================

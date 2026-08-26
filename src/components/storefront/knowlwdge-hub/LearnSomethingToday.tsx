@@ -43,7 +43,9 @@ export default function LearnSomethingToday() {
       aria-labelledby="learn-heading"
       className="bg-primary py-[72px] sm:py-[88px] lg:py-[104px] max-[768px]:pb-[18px]"
     >
-      <div className="container-content px-[var(--spacing-page)]">
+      <div className="max-w-full lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]">
         {/* =========================================================
             SECTION HEADER
         ========================================================= */}

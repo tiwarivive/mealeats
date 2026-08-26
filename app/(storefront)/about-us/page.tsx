@@ -7,7 +7,7 @@ import FAQ from "@/src/components/storefront/landing-page/FAQ";
 
 export default function AboutPage() {
   return (
-    <main className="max-w-[1328px]  w-full mx-auto overflow-x-clip bg-primary lg!mt-[0px]">
+    <main className="max-w-full  w-full mx-auto overflow-x-clip bg-primary lg!mt-[0px]">
       {/* =====================================================
           ABOUT PAGE
       ===================================================== */}

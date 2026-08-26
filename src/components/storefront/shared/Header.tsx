@@ -36,16 +36,16 @@ const navigation = [
     href: "/",
   },
   {
-    label: "About",
-    href: "/about-us",
-  },
-  {
     label: "AI Platform",
     href: "/ai-platform",
   },
   {
     label: "Knowledge Hub",
     href: "/knowledge-hub",
+  },
+   {
+    label: "About Us",
+    href: "/about-us",
   },
   {
     label: "Contact",
@@ -168,9 +168,10 @@ export default function Header({
           z-[1000]
           w-full
 
-          px-[12px]
+          px-[56px]
+          max-[768px]:px-[16px]
 
-          sm:px-[16px]
+         
 
           lg:pt-[0]
 
@@ -187,7 +188,7 @@ export default function Header({
             mx-auto
             w-full
 
-            max-w-[1328px]
+            max-w-full
           "
         >
           {/* =================================================
@@ -426,8 +427,8 @@ export default function Header({
                 className="
                   hidden
 
-                  h-[38px]
-                  min-w-[124px]
+                  h-[48px]
+                  min-w-[196px]
 
                   items-center
                   justify-center
@@ -462,9 +463,7 @@ export default function Header({
                   focus-visible:ring-offset-2
 
                   lg:flex
-
-                  xl:h-[40px]
-                  xl:min-w-[136px]
+                  xl:min-w-[196px]
                   xl:px-[20px]
                   xl:text-[14px]
                 "
@@ -920,7 +919,7 @@ export default function Header({
                     focus-visible:ring-inset
 
                     sm:min-h-[50px]
-                    sm:px-[16px]
+                   
 
                     md:min-h-[52px]
                     md:px-[18px]

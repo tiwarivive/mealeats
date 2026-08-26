@@ -82,7 +82,7 @@ function CookWithWhatYouHaveIcon() {
 
 function PlanAheadIcon() {
   return (
-     <div
+    <div
       aria-hidden="true"
       className="
         flex h-[56px] w-[56px] shrink-0 items-center justify-center
@@ -108,9 +108,11 @@ export default function HealthFeatures() {
         w-full
         overflow-hidden
         bg-primary
-        max-w-[1328px]
+        max-w-full
         !mx-auto
         py-[48px]
+        
+        max-[768px]:px-[16px]
 
         min-[375px]:py-[52px]
 
@@ -146,7 +148,7 @@ export default function HealthFeatures() {
 
       <div
         className="
-          container-content
+          max-w-full
           mx-auto
           flex
           w-full
@@ -339,6 +341,7 @@ export default function HealthFeatures() {
             max-[767px]:leading-[1.5]
 
             max-[480px]:text-[13px]
+            !mt-[15px]
           "
         >
           Healthy eating isn't simply about knowing which foods are considered healthy. It's about finding what works for your preferences, your goals, your kitchen, your routine and your everyday life.  Meal Eats brings these decisions together in one intelligent experience—helping you understand your food, plan ahead and make choices that become more relevant as Meal Eats learns from you.
@@ -352,8 +355,9 @@ export default function HealthFeatures() {
 
       <div
         className="
-          container-page
-          mx-auto
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
           mt-[40px]
           w-full
 
@@ -372,20 +376,15 @@ export default function HealthFeatures() {
           ================================================== */
 
           max-[1023px]:mt-[56px]
-          max-[1023px]:px-[32px]
 
           /* =================================================
              MOBILE
           ================================================== */
 
           max-[767px]:mt-[42px]
-          max-[767px]:px-[20px]
-
           max-[600px]:mt-[40px]
-          max-[600px]:px-[18px]
-
           max-[480px]:mt-[36px]
-          max-[480px]:px-[16px]
+         
         "
       >
         <div
@@ -677,7 +676,7 @@ export default function HealthFeatures() {
                 className="
                   mt-[22px]
                   flex
-                  min-h-[50px]
+                  min-h-[48px]
                   w-full
                   shrink-0
                   items-center
@@ -706,23 +705,18 @@ export default function HealthFeatures() {
 
                   active:scale-[0.99]
 
-                  sm:mt-[24px]
-                  sm:h-[52px]
+                 
                   sm:text-[16px]
 
-                  md:h-[54px]
-
-                  lg:h-[52px]
-
-                  xl:h-[54px]
+                
 
                   /* =================================================
                      TABLET
                   ================================================== */
 
                   max-[1023px]:mt-auto
-                  max-[1023px]:min-h-[50px]
-                  max-[1023px]:h-[50px]
+                  max-[1023px]:min-h-[48px]
+                  max-[1023px]:h-[48px]
                   max-[1023px]:text-[14px]
 
                   /* =================================================
@@ -730,8 +724,8 @@ export default function HealthFeatures() {
                   ================================================== */
 
                   max-[767px]:mt-[22px]
-                  max-[767px]:h-[50px]
-                  max-[767px]:min-h-[50px]
+                  max-[767px]:h-[48px]
+                  max-[767px]:min-h-[48px]
                   max-[767px]:text-[15px]
                 "
               >
@@ -1024,7 +1018,8 @@ export default function HealthFeatures() {
                 className="
                   !mt-[11px]
                   flex
-                  min-h-[47px]
+                  min-h-[48px]
+                  h-[48px]
                   w-full
                   max-w-[313px]
                   items-center
@@ -1054,17 +1049,15 @@ export default function HealthFeatures() {
                   active:scale-[0.99]
 
                   sm:mt-auto
-                  sm:h-[52px]
+                
                   sm:text-[16px]
 
                   max-[1023px]:mt-auto
-                  max-[1023px]:min-h-[50px]
-                  max-[1023px]:h-[50px]
+            
                   max-[1023px]:text-[14px]
 
                   max-[767px]:mt-[22px]
-                  max-[767px]:h-[50px]
-                  max-[767px]:min-h-[50px]
+                
                   max-[767px]:max-w-full
                   max-[767px]:text-[15px]
                 "
@@ -1162,7 +1155,7 @@ export default function HealthFeatures() {
                 className="
                   mt-[20px]
                   flex
-                  min-h-[47px]
+                  min-h-[48px]
                   w-full
                   max-w-[313px]
                   items-center
@@ -1192,17 +1185,14 @@ export default function HealthFeatures() {
                   active:scale-[0.99]
 
                   sm:mt-auto
-                  sm:h-[52px]
+                  sm:h-[48px]
                   sm:text-[16px]
 
                   max-[1023px]:mt-auto
-                  max-[1023px]:min-h-[50px]
-                  max-[1023px]:h-[50px]
                   max-[1023px]:text-[14px]
 
                   max-[767px]:mt-[22px]
-                  max-[767px]:h-[50px]
-                  max-[767px]:min-h-[50px]
+      
                   max-[767px]:max-w-full
                   max-[767px]:text-[15px]
                 "

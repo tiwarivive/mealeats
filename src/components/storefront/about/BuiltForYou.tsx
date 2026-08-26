@@ -515,6 +515,7 @@ export default function BuiltForYou() {
         w-full
         overflow-hidden
         bg-primary
+        
       "
     >
       {/* =====================================================
@@ -523,7 +524,7 @@ export default function BuiltForYou() {
 
       <div
         className="
-          container-content
+          max-w-full
           relative
           mx-auto
           px-page

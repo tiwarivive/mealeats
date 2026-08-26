@@ -12,9 +12,12 @@ export default function AIPlatformHero() {
         w-full
         overflow-hidden
         bg-primary
+        lg:px-[56px]
+        xl:px-[56px]
+        
       "
     >
-      <div className="container-content">
+      <div className="max-w-full">
         <div
           className="
             grid

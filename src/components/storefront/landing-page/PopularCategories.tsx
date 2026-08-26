@@ -161,6 +161,9 @@ export default function PopularCategories() {
       aria-labelledby="popular-categories-heading"
       className="
       mt-[0px]
+      lg:px-[56px]
+      xl:px-[56px]
+      max-[768px]:!px-[16px]
         w-full
         overflow-hidden
         bg-primary
@@ -174,23 +177,22 @@ export default function PopularCategories() {
 
       <div
         className="
-          container-content
+          max-w-full
           mx-auto
-          px-[20px]
+    
           pb-[90px]
           pt-[2px]
 
-          max-[1280px]:px-[24px]
+      
           max-[1280px]:pb-[78px]
 
-          max-[1024px]:px-[20px]
           max-[1024px]:pb-[70px]
 
-          max-[767px]:px-[20px]
+        
           max-[767px]:pb-[56px]
           max-[767px]:pt-[4px]
 
-          max-[480px]:px-[16px]
+       
           max-[480px]:pb-[46px]
         "
       >

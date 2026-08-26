@@ -345,10 +345,12 @@ export default function HowItWorks() {
         w-full
         overflow-hidden
         bg-primary
+        lg:px-[56px]
+        xl:px-[56px]
         max-[768px]:px-[16px]
-        max-w-[1328px]
+        max-w-full
         !mx-auto
-        !px-[10px]
+       
 
         /* ================================================
            MOBILE
@@ -389,7 +391,7 @@ export default function HowItWorks() {
           mx-auto
           flex
           w-full
-          max-w-content
+          max-w-full
           flex-col
           items-center
           px-page

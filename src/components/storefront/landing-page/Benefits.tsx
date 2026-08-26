@@ -318,7 +318,9 @@ function BenefitsHeader() {
   });
 
   return (
-    <header className="flex w-full flex-col items-center text-center">
+    <header className="flex w-full flex-col items-center text-center lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]">
       {/* =====================================================
           EYEBROW
       ===================================================== */}
@@ -509,7 +511,8 @@ function DesktopBenefitsLayout() {
         mt-[48px]
         hidden
         w-full
-        max-w-[1320px]
+        max-w-full
+        xl:!px-[56px]
         lg:grid
         lg:grid-cols-[minmax(250px,1fr)_minmax(350px,430px)_minmax(250px,1fr)]
         justify-between
@@ -710,6 +713,9 @@ function MobileBenefitsLayout() {
         mt-[48px]
         flex
         w-full
+        lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
         max-w-[700px]
         flex-col
 
@@ -929,15 +935,8 @@ export default function Benefits() {
           z-10
           mx-auto
           w-full
-          max-w-container-content
-
-          px-[16px]
-
-          min-[375px]:px-[16px]
-
-          min-[430px]:px-[16px]
-
-          sm:px-page
+          max-w-max-w-full
+         
 
           pt-[0px]
           pb-[90px]

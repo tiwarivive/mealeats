@@ -9,7 +9,9 @@ export default function FoodDecisionCTA() {
       className="
         relative
         w-full
-        px-[18px]
+       lg:px-[56px]
+        xl:px-[56px]
+        max-[768px]:px-[16px]
         py-[18px]
 
         max-md:px-3
@@ -30,7 +32,7 @@ export default function FoodDecisionCTA() {
           flex
           min-h-[670px]
           w-full
-          max-w-[1328px]
+          max-w-full
 
           flex-col
           items-center
@@ -298,7 +300,7 @@ export default function FoodDecisionCTA() {
               type="button"
               className="
                 flex
-                h-[48px]
+                !h-[48px]
                 min-w-[222px]
 
                 items-center
@@ -337,7 +339,7 @@ export default function FoodDecisionCTA() {
                 /*
                  * MOBILE
                  */
-                max-md:h-[46px]
+               
                 max-md:w-full
                 max-md:min-w-0
                 max-md:max-w-[320px]
@@ -345,11 +347,11 @@ export default function FoodDecisionCTA() {
                 max-md:!text-[15px]
                 max-md:leading-[22px]
 
-                max-[480px]:h-[45px]
+   
                 max-[480px]:max-w-[290px]
                 max-[480px]:!text-[14px]
 
-                max-[375px]:h-[44px]
+            
                 max-[375px]:max-w-[270px]
                 max-[375px]:!text-[13.5px]
               "
