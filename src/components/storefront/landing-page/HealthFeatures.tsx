@@ -1150,8 +1150,8 @@ export default function HealthFeatures() {
                   max-[767px]:text-[14px]
                 "
               >
-                Turn ingredients, preferences and your routine into a practical
-                plan that makes everyday food decisions easier.
+                Turn everyday food decisions into a simple plan. Organize meals for the day or week and understand what ingredients you'll need before your next grocery shop.
+
               </p>
 
               <Link

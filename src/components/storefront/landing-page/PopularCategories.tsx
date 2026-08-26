@@ -30,7 +30,7 @@ const categories: Category[] = [
   },
   {
     title: "Balanced Eating",
-    image: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377083/mealeats/products/diabetes-friendly.png",
+    image: "/BalancedEating.png",
   },
   {
     title: "Weight Management",

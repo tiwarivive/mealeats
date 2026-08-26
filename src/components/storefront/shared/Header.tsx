@@ -487,7 +487,7 @@ export default function Header({
                   <Image src='https://res.cloudinary.com/gppcmjpt/image/upload/v1787398839/tryaistar.png' alt="ai-platform-stars" height={20} width={20} className="h-[20px] w-[20px] object-contain mr-[2.8px]" />
                 </span>
 
-                <span>Try AI Beta</span>
+                <span>Try Meal Eats AI</span>
               </Link>
 
               {/* =================================================
@@ -578,7 +578,7 @@ export default function Header({
                 </span>
 
                 <span className="whitespace-nowrap">
-                  Try AI Beta
+                  Try Meal Eats AI
                 </span>
               </Link>
 
@@ -1006,7 +1006,7 @@ export default function Header({
                 ✧
               </span>
 
-              <span>Try AI Beta</span>
+              <span>Try Meal Eats AI</span>
             </Link>
           </nav>
         </div>

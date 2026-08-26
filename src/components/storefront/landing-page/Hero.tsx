@@ -373,7 +373,7 @@ export default function Hero() {
               max-[768px]:font-medium
             "
           >
-            Understand Yourself
+            Build My Food Profile
           </Link>
         </div>
 

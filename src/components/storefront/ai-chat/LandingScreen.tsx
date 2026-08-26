@@ -1406,6 +1406,7 @@ function EmptyChatState({
             left-1/2
             !top-[245px]
             w-[calc(100%-32px)]
+            max-[768px]:w-full
             -translate-x-1/2
             font-primary
             !text-h2
@@ -1421,11 +1422,12 @@ function EmptyChatState({
             lg:!text-h2
             xl:!text-h2
             max-[768px]:!text-[32px]
+            max-[402px]:!text-[28px]
             max-[768px]:!leading-[41px]
             max-[768px]:!top-[225px]
           "
         >
-          <span className="inline mr-[6px] min-[767px]:block">
+          <span className="inline mr-[6px] min-[767px]:block  max-[402px]:!text-[28px]">
             Ask Meal Eats anything about
           </span>
 
@@ -1441,8 +1443,7 @@ function EmptyChatState({
               leading-[0.86]
               tracking-[-0.045em]
               sm:mt-[15px]
-              sm:text-[52px]
-              md:text-[58px]
+              max-[402px]:!text-[28px]
               lg:text-[64px]
               xl:text-[68px]
             "
@@ -1464,6 +1465,7 @@ function EmptyChatState({
             left-1/2
             top-[455px]
             w-[calc(100%-32px)]
+            max-[768px]:w-full
             max-w-[520px]
             -translate-x-1/2
             sm:top-[475px]
@@ -1486,6 +1488,7 @@ function EmptyChatState({
             absolute
             left-1/2
             w-[calc(100%-32px)]
+            max-[768px]:w-full
             max-w-[620px]
             -translate-x-1/2
             px-2

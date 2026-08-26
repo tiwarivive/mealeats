@@ -870,7 +870,7 @@ export default function ChatScreen({
           overflow-y-auto
           overscroll-y-contain
           [scrollbar-gutter:stable]
-          touch-pan-y
+          pt-[20px]
           [scrollbar-color:#d7d7d7_transparent]
           [scrollbar-width:thin]
           !pt-[120px]

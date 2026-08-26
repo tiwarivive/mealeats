@@ -30,10 +30,12 @@ export default function AIHeader() {
           pointer-events-auto
           relative
           flex
-          h-[64px]
-          w-[94px]
+          h-[51px]
+          w-[81px]
           items-center
           justify-center
+          max-[768px]:!block
+          max-[768px]:!ml-[-16px]
           overflow-hidden
           rounded-[20px]
 

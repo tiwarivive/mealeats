@@ -18,29 +18,49 @@ type FAQItem = {
 
 const faqItems: FAQItem[] = [
   {
-    question: "Is MealEats AI a medical service?",
+    question: "What is Meal Eats?",
     answer:
-      "Have questions? Find clear answers about how MealEats works and how our AI can help you make better food decisions.",
+      "Meal Eats is a food, nutrition and wellness platform that helps you make smarter everyday food choices, discover recipes and plan meals.",
   },
   {
-    question: "How does the AI know what's right for me?",
+    question: "Is Meal Eats a medical service?",
     answer:
-      "MealEats uses the information you choose to provide, such as your goals, preferences, dietary needs, activity level, and other profile details, to personalize the recommendations and guidance shown to you.",
+      "No. Meal Eats does not provide medical diagnosis or treatment. For specific health concerns, consult a qualified healthcare professional.",
   },
   {
-    question: "Do I need to log everything manually?",
+    question: "How does Meal Eats personalize my recommendations?",
     answer:
-      "No. MealEats is designed to make food and wellness tracking easier and less demanding. The experience is built to help you make better decisions without requiring you to manually record every detail of your day.",
+      "Meal Eats uses your preferences, dietary needs, goals and food choices to provide recommendations tailored to your everyday lifestyle.",
   },
   {
-    question: "Is my health data sold or shared?",
+    question: "Can Meal Eats create recipes from ingredients I already have?",
     answer:
-      "MealEats handles personal information according to its privacy practices. Your information should only be collected, used, and shared for the purposes described in the applicable Privacy Policy and your interactions with the service.",
+      "Yes. Simply add the ingredients you have, and Meal Eats can suggest recipe ideas using them.",
   },
   {
-    question: "Is there a free plan?",
+    question: "Can Meal Eats help plan my meals for the week?",
     answer:
-      "MealEats offers access to its core experience according to the plans and pricing currently available on the platform. Availability of specific features may vary by plan.",
+      "Yes. Meal Eats can help you organize balanced, personalized meal ideas into a convenient weekly plan.",
+  },
+   {
+    question: "Will Meal Eats help with grocery shopping?",
+    answer:
+      "Yes. Meal Eats can help turn your meal plans into organized grocery lists, making shopping simpler and more efficient.",
+  },
+   {
+    question: "Do I need to log everything I eat?",
+    answer:
+      "No. Meal Eats is designed to be flexible—you can use only the features that fit your lifestyle and preferences.",
+  },
+  {
+    question: "How does Meal Eats use my information?",
+    answer:
+      "Your information is used to personalize your experience and improve recommendations, with privacy and responsible data use in mind.",
+  },
+  {
+    question: "Is Meal Eats free?",
+    answer:
+      "Meal Eats may offer both free and premium features. Pricing and available plans will be clearly shown within the platform.",
   },
 ];
 

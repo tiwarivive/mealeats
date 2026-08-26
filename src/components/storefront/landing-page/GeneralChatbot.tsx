@@ -37,7 +37,7 @@ const capabilities: Capability[] = [
   },
   {
     id: 3,
-    title: "Daily Nutrition Score",
+    title: "Daily Nutrition Insights",
     topLabel:false,
     description:
       "Understand estimated calories, protein, carbohydrates, fats, fibre and available nutrition information behind your meals so you can make more informed everyday choices.",
