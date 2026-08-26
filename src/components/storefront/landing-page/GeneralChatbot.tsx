@@ -303,7 +303,8 @@ export default function GeneralChatbot() {
         overflow-hidden
         bg-primary
         text-secondary
-        py-[76px]
+        py-[48px]
+        !pb-0
         px-[56px]
         max-w-[1328px]
         mx-auto
@@ -362,26 +363,6 @@ export default function GeneralChatbot() {
           ================================================= */}
 
           <div className="">
-
-
-              <p
-            className="
-              m-0
-              font-primary
-              text-[12px]
-              font-medium
-              uppercase
-              leading-none
-              tracking-[0.08em]
-              text-[#237C62]
-
-              max-[1199px]:text-[11px]
-
-              max-[767px]:text-[10px]
-            "
-          >
-            Capabilities
-          </p>
 
           {/* =================================================
               TITLE

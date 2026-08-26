@@ -100,7 +100,7 @@ function DesktopConnectors() {
         className="
           absolute
           left-[36.77%]
-          bottom-[47px]
+          bottom-[14px]
           block
           h-auto
           w-[26.47%]
@@ -162,7 +162,8 @@ function StepIcon({ step }: { step: Step }) {
         rounded-full
         border-[1.5px]
         border-dashed
-        border-accent
+        p-[10px]
+        border-[#9DC0A5DB]
         bg-primary
         max-[768px]:mt-[41px]
 
@@ -188,8 +189,8 @@ function StepIcon({ step }: { step: Step }) {
            EXISTING DESIGN — UNCHANGED
         ================================================ */
 
-        lg:h-[94px]
-        lg:w-[94px]
+        lg:h-[116px]
+        lg:w-[116px]
         lg:border-[2px]
       "
     >
@@ -202,9 +203,12 @@ function StepIcon({ step }: { step: Step }) {
           justify-center
           rounded-full
           border
-          border-[#D8D8D8]
+          border-[#F4F4F4]
           bg-primary
-          shadow-[0_2px_5px_rgba(0,0,0,0.10)]
+          !shadow-[2px_2px_4px_0px_#9F8A8A12]
+
+          
+
         "
       >
         <Image
@@ -215,17 +219,10 @@ function StepIcon({ step }: { step: Step }) {
           unoptimized
           draggable={false}
           className="
-            h-[clamp(44px,13vw,96px)]
-            w-[clamp(44px,13vw,96px)]
+            h-[48px]
+            w-[48px]
             object-contain
             select-none
-
-            sm:h-[clamp(52px,11vw,82px)]
-            sm:w-[clamp(52px,11vw,82px)]
-
-            /* DESKTOP — UNCHANGED */
-            lg:h-[46px]
-            lg:w-[46px]
           "
         />
       </div>
@@ -281,7 +278,7 @@ function StepItem({ step }: { step: Step }) {
       {/* =================================================
           DESCRIPTION
       ================================================= */}
-      <h3 className="!text-[22px] !font-[500] !leading-[30px] text-dark pt-[44px] pb-[12px] max-[768px]:pt-[24px] max-[768px]:pb-[12px]">
+      <h3 className="!text-[22px] !font-[500] !leading-[30px] !tracking-[-3%] text-dark pt-[44px] pb-[12px] max-[768px]:pt-[24px] max-[768px]:pb-[12px]">
         {step.title}
       </h3>
       <p
@@ -296,10 +293,10 @@ function StepItem({ step }: { step: Step }) {
           px-2
 
           font-primary
-          text-[clamp(14px,3.45vw,24px)]
+          text-[14px]
           font-normal
-          leading-[1.42]
-          tracking-[-0.025em]
+          leading-[22px]
+          tracking-[-4%]
           text-text
 
           /* ==============================================
@@ -348,7 +345,10 @@ export default function HowItWorks() {
         w-full
         overflow-hidden
         bg-primary
-        px-[56px]
+        max-[768px]:px-[16px]
+        max-w-[1328px]
+        !mx-auto
+        !px-[10px]
 
         /* ================================================
            MOBILE

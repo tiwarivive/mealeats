@@ -950,15 +950,15 @@ export default function Benefits() {
 
           sm:pt-[54px]
           sm:pb-[165px]
-
+          
           md:pt-[58px]
           md:pb-[190px]
 
-          lg:pt-[52px]
-          lg:pb-[220px]
+          lg:pt-[50px]
+          lg:pb-[130px]
 
-          xl:pt-[55px]
-          xl:pb-[240px]
+          xl:pt-[50px]
+          xl:pb-[130px]
         "
       >
         {/* HEADER */}

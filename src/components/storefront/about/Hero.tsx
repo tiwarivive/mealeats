@@ -29,7 +29,7 @@ export default function Hero() {
 
           lg:px-10
           lg:pb-[70px]
-          lg:pt-[52px]
+          lg:pt-[32px]
           
 
           xl:px-0

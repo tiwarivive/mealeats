@@ -539,6 +539,7 @@ export default function BuiltForYou() {
           lg:py-[104px]
 
           xl:py-[120px]
+          xl:py-[120px]
         "
       >
         {/* ===================================================

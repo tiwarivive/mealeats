@@ -86,10 +86,7 @@ export default function SmartFoodPlanning() {
           w-full
           max-w-[1328px]
           px-[16px]
-          pb-[90px]
-          pt-[-2px]
-
-         
+          pb-[76px]
         "
       >
         {/* =====================================================

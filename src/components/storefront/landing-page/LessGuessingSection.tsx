@@ -46,7 +46,7 @@ export default function LessGuessingSection() {
         bg-primary
         px-4
 
-        pt-[104px]
+        pt-[110px]
         pb-[120px]
 
 
@@ -296,7 +296,7 @@ export default function LessGuessingSection() {
 
               <p
                 className="
-                  mt-[9px]
+                  !mt-[8px]
 
                   max-w-[285px]
 

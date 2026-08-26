@@ -145,11 +145,12 @@ function CapabilityItem({
         <h3
           className="
             m-0
+            !mb-[8px]
             font-primary
             !text-[24px]
             font-medium
             !leading-[30px]
-            tracking-[-0.035em]
+            tracking-[-3%]
             text-dark
 
             max-[1280px]:text-[19px]
@@ -385,7 +386,7 @@ export default function Capabilities() {
           max-[480px]:pt-[30px]
           max-[480px]:pb-[48px]
 
-          pb-[132px]
+          pb-[107px]
         "
       >
         {/* ===================================================

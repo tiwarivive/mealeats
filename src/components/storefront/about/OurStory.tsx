@@ -10,8 +10,7 @@ export default function OurStory() {
         w-full
         overflow-hidden
         py-[66px]
-        lg:px-[56px]
-        xl:px-[56px]
+        px-[0px]
         max-[768px]:px-[16px]
         sm:px-[16px]
         max-[768px]:py-0

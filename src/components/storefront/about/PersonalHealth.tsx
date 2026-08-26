@@ -118,13 +118,13 @@ function StickyStoryContent() {
 
       <p
         className="
-          mt-[14px]
-          max-w-[410px]
+          !mt-[24px]
+          max-w-[537px]
 
-          font-manrope
+          !font-manrope
           text-body
           font-normal
-          leading-[100%]
+          !leading-[110%]
           tracking-[0%]
 
           text-text-muted
@@ -149,7 +149,8 @@ function StickyStoryContent() {
         aria-label="Try MealEats AI"
         className="
           mt-[14px]
-          max-w-[219px]
+          min-w-[219px]
+          mt-[24px]
 
           inline-flex
           h-[48px]
@@ -201,9 +202,9 @@ function StickyStoryContent() {
         className="
           mt-[24px]
 
-          w-[441px]
-          max-w-full
-          min-h-[128px]
+          max-w-[441px]
+          w-full
+          min-h-[236px]
 
           overflow-hidden
           rounded-[9px]
@@ -359,18 +360,19 @@ function HealthCard({
         min-w-0
 
         min-h-[148px]
+        !max-w-[431px]
+        !ml-auto
         w-full
 
         overflow-hidden
 
         rounded-[20px]
 
-        border
-        border-border-light
+     
 
-        !bg-[#F8FCF6]
+        !bg-[#F6FBF4CC]
 
-        px-[18px]
+        px-[24px]
         py-[17px]
 
         transition-[transform,border-color,box-shadow]
@@ -378,8 +380,7 @@ function HealthCard({
         ease-out
 
         hover:-translate-y-[1px]
-        hover:border-border
-        hover:shadow-[0_8px_24px_rgba(0,0,0,0.035)]
+      
 
         max-[1280px]:min-h-[144px]
 
@@ -462,7 +463,7 @@ function HealthCard({
           relative
           z-10
 
-          pr-[80px]
+          pr-[24px]
 
           max-[480px]:pr-[0]
         "
@@ -474,12 +475,12 @@ function HealthCard({
             !mt-[34px]
 
             font-primary
-            !text-h4
+            !text-[24px]
             font-medium
-            leading-[30px]
+            !leading-[30px]
             tracking-[-3%]
 
-            text-secondary
+            text-dark
 
             max-[1024px]:mt-[16px]
             max-[1024px]:!text-h4
@@ -528,7 +529,7 @@ function HealthCardStack() {
         flex-col
         gap-[12px]
 
-        max-[768px]:gap-[10px]
+        max-[768px]:gap-[24px]
       "
     >
       {HEALTH_CARDS.map((card) => (

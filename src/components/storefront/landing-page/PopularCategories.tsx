@@ -160,7 +160,7 @@ export default function PopularCategories() {
       id="popular-categories"
       aria-labelledby="popular-categories-heading"
       className="
-      mt-[42px]
+      mt-[0px]
         w-full
         overflow-hidden
         bg-primary
@@ -177,7 +177,7 @@ export default function PopularCategories() {
           container-content
           mx-auto
           px-[20px]
-          pb-[92px]
+          pb-[90px]
           pt-[2px]
 
           max-[1280px]:px-[24px]

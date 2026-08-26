@@ -121,6 +121,9 @@ export default function HealthFeatures() {
         lg:py-[104px]
 
         xl:py-[120px]
+        xl:py-[120px]
+        xl:pb-[54px]
+        lg:pb-[54px]
 
         /* ===================================================
            TABLET

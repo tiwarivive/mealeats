@@ -47,7 +47,7 @@ export default function MealPlanShoppingList() {
         pb-[92px]
 
         min-[1440px]:pt-[116px]
-        min-[1440px]:pb-[100px]
+        min-[1440px]:pb-[55px]
 
         max-[1279px]:pt-[92px]
         max-[1279px]:pb-[86px]
