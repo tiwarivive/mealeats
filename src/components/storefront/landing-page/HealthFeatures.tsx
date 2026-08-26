@@ -1012,8 +1012,8 @@ export default function HealthFeatures() {
                   max-[767px]:text-[14px]
                 "
               >
-                See recipes that use what&apos;s already in your kitchen and
-                discover new ways to make the most of the food you have.
+                Tell Meal Eats what's already available in your kitchen and discover recipes built around your ingredients, preferences and goals—helping you make better use of food you already have.
+
               </p>
 
               <Link

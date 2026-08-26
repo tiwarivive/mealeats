@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const HERO_IMAGE = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377099/mealeats/products/handphonehero.png";
+const HERO_IMAGE = "/hero-hand.png";
 const HERO_BACKGROUND = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787396914/hero-bg.png";
 
 export default function Hero() {

@@ -10,7 +10,7 @@ type DecisionCard = {
 
 const decisionCards: DecisionCard[] = [
   {
-    title: "Personalized for You",
+    title: "Personalized, Not Generic",
     description:
       "Meal Eats is designed around the preferences and information you choose to share rather than treating everyone the same.",
     gif: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377142/mealeats/products/personalised.gif",
