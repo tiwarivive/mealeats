@@ -414,7 +414,7 @@ export default function FAQ() {
               m-0
               mt-[4px]
 
-              font-accent
+              !font-accent
               text-[36px]
               font-normal
               italic

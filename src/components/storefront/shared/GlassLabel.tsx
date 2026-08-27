@@ -14,15 +14,15 @@ export default function GlassLabel({
   return (
     <div
       className="
-        flex
+        relative
+        inline-flex
         h-[33px]
         min-w-[95px]
         items-center
         justify-center
-        gap-[6px]
+        overflow-hidden
         rounded-[37px]
-        bg-[#F4F4F4]/20
-        px-4
+        bg-[#F4F4F433]
         backdrop-blur-[20px]
       "
     >
@@ -32,16 +32,27 @@ export default function GlassLabel({
           alt="AI stars"
           width={12}
           height={12}
-          className="h-[12px] w-[12px] shrink-0"
+          className="
+            relative
+            z-10
+            mr-[2.5px]
+            h-[12px]
+            w-[12px]
+            shrink-0
+            object-contain
+          "
         />
       )}
 
       <span
         className="
+          relative
+          z-10
+          whitespace-nowrap
           font-primary
-          text-[14px]
+          text-[13px]
           font-normal
-          leading-none
+          leading-[28]
           tracking-[-3%]
           text-[#007246]
         "

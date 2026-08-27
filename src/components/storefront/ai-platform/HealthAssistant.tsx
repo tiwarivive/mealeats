@@ -66,20 +66,22 @@ function HealthFeatureCard({
   return (
     <article
       className="
+      relative
         flex
         min-h-[228px]
         w-full
         flex-col
         rounded-[12px]
         border
+        bg-[#fff]
         border-border-light
-        bg-surface
         px-[24px]
         py-[24px]
         sm:min-h-[214px]
         lg:min-h-[228px]
       "
     >
+      
       <div
         className="
           flex
@@ -218,7 +220,7 @@ export default function HealthAssistant() {
               RIGHT — CONTENT
           ================================================= */}
 
-          <div className="w-full">
+          <div className="w-full relative z-10">
             <h2
               id="health-assistant-heading"
               className="
@@ -232,6 +234,7 @@ export default function HealthAssistant() {
                 font-medium
                 tracking-[-4%]
                 text-secondary
+                relative z-10
               "
             >
               Everything You Need for a{" "} <br />
@@ -251,32 +254,43 @@ export default function HealthAssistant() {
                 text-body
                 font-normal
                 text-text-muted
+                relative z-10
               "
             >
               Personalized AI guidance for healthier meals, smarter workouts,
               recipes, and everyday health decisions.
             </p>
 
-            <div
-              className="
-                mt-[32px]
-                grid
-                w-full
-                grid-cols-1
-                gap-[16px]
-                sm:grid-cols-2
-                lg:max-w-[680px]
-              "
-            >
-              {features.map((feature) => (
-                <HealthFeatureCard
-                  key={feature.title}
-                  icon={feature.icon}
-                  title={feature.title}
-                  description={feature.description}
-                />
-              ))}
-            </div>
+            <div className="relative !mt-[34px]">
+  {/* Shade only behind cards */}
+  <div
+    aria-hidden="true"
+    className="
+      pointer-events-none
+      absolute
+      left-1/2
+      top-1/2
+      z-0
+      h-[530px]
+      w-[576px]
+      -translate-x-1/2
+      -translate-y-1/2
+      rounded-full
+      bg-[#F3F6F2]
+      blur-[200px]
+    "
+  />
+
+  {/* Cards */}
+  <div className="relative z-10 grid grid-cols-1 gap-[16px] sm:grid-cols-2">
+    {features.map((feature) => (
+      <HealthFeatureCard
+        key={feature.title}
+        {...feature}
+      />
+    ))}
+  </div>
+</div>
           </div>
         </div>
       </div>

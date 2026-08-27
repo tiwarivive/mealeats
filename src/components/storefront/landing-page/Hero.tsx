@@ -14,6 +14,7 @@ export default function Hero() {
         relative
         isolate
         w-full
+        min-h-[170vh]
         overflow-hidden
         bg-primary
         text-text
@@ -411,20 +412,13 @@ export default function Hero() {
               z-10
               -translate-x-1/2
 
-              w-[780px]
-
-              max-[1280px]:w-[750px]
-              max-[1024px]:w-[620px]
+              w-[1140px]
 
               /* MOBILE */
               max-[767px]:top-[0px]
               max-[767px]:w-[540px]
 
-              max-[600px]:w-[470px]
-
-              max-[480px]:w-[390px]
-
-              max-[375px]:w-[350px]
+             
             "
           >
             <Image
@@ -470,7 +464,9 @@ export default function Hero() {
           pointer-events-none
           absolute
           inset-x-0
-          bottom-0
+          bottom-[0px]
+          
+          
           z-20
           h-[105px]
 

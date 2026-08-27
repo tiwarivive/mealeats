@@ -59,10 +59,14 @@ export default function ChatScreen({
   const scrollRef = useRef<HTMLDivElement>(null);
   const composerRef = useRef<HTMLDivElement>(null);
   const chatScreenRef = useRef<HTMLElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchInputRef =
+    useRef<HTMLInputElement>(null);
 
-  const previousMessageCountRef = useRef(messages.length);
-  const shouldFollowBottomRef = useRef(true);
+  const previousMessageCountRef =
+    useRef(messages.length);
+
+  const shouldFollowBottomRef =
+    useRef(true);
 
   const messageRefs = useRef<
     Record<string, HTMLDivElement | null>
@@ -72,7 +76,8 @@ export default function ChatScreen({
     Record<string, number>
   >({});
 
-  const [composerHeight, setComposerHeight] = useState(132);
+  const [composerHeight, setComposerHeight] =
+    useState(132);
 
   const [mobileChatHeight, setMobileChatHeight] =
     useState<number | null>(null);
@@ -90,22 +95,17 @@ export default function ChatScreen({
   const [showScrollButton, setShowScrollButton] =
     useState(false);
 
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchOpen, setSearchOpen] =
+    useState(false);
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] =
+    useState("");
 
   const [activeSearchIndex, setActiveSearchIndex] =
     useState(0);
 
   /* =============================================================
      MOBILE VISUAL VIEWPORT
-     
-     Important:
-     90vh does not reliably represent the visible mobile
-     viewport when the browser keyboard is open.
-
-     This calculates the actual available viewport height while
-     keeping desktop behavior unchanged.
   ============================================================= */
 
   useEffect(() => {
@@ -114,33 +114,46 @@ export default function ChatScreen({
         return;
       }
 
-      if (window.innerWidth >= MOBILE_BREAKPOINT) {
+      if (
+        window.innerWidth >=
+        MOBILE_BREAKPOINT
+      ) {
         setMobileChatHeight(null);
         return;
       }
 
-      const section = chatScreenRef.current;
+      const section =
+        chatScreenRef.current;
 
       if (!section) {
         return;
       }
 
-      const visualViewport = window.visualViewport;
+      const visualViewport =
+        window.visualViewport;
 
       const viewportHeight =
-        visualViewport?.height ?? window.innerHeight;
+        visualViewport?.height ??
+        window.innerHeight;
 
       const sectionTop = Math.max(
         0,
-        section.getBoundingClientRect().top,
+        section.getBoundingClientRect()
+          .top,
       );
 
-      const availableHeight = Math.max(
-        MIN_MOBILE_CHAT_HEIGHT,
-        Math.round(viewportHeight - sectionTop),
-      );
+      const availableHeight =
+        Math.max(
+          MIN_MOBILE_CHAT_HEIGHT,
+          Math.round(
+            viewportHeight -
+              sectionTop,
+          ),
+        );
 
-      setMobileChatHeight(availableHeight);
+      setMobileChatHeight(
+        availableHeight,
+      );
     };
 
     updateMobileViewport();
@@ -211,14 +224,17 @@ export default function ChatScreen({
   ============================================================= */
 
   const searchResults = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
+    const query =
+      searchQuery.trim().toLowerCase();
 
     if (!query) {
       return [];
     }
 
     return messages.filter((message) =>
-      message.content.toLowerCase().includes(query),
+      message.content
+        .toLowerCase()
+        .includes(query),
     );
   }, [messages, searchQuery]);
 
@@ -227,7 +243,8 @@ export default function ChatScreen({
   ============================================================= */
 
   useEffect(() => {
-    const element = composerRef.current;
+    const element =
+      composerRef.current;
 
     if (!element) {
       return;
@@ -235,7 +252,8 @@ export default function ChatScreen({
 
     const updateHeight = () => {
       const height = Math.ceil(
-        element.getBoundingClientRect().height,
+        element.getBoundingClientRect()
+          .height,
       );
 
       if (height > 0) {
@@ -246,8 +264,11 @@ export default function ChatScreen({
     updateHeight();
 
     const resizeObserver =
-      typeof ResizeObserver !== "undefined"
-        ? new ResizeObserver(updateHeight)
+      typeof ResizeObserver !==
+      "undefined"
+        ? new ResizeObserver(
+            updateHeight,
+          )
         : null;
 
     resizeObserver?.observe(element);
@@ -271,59 +292,71 @@ export default function ChatScreen({
      SCROLL POSITION
   ============================================================= */
 
-  const checkScrollPosition = useCallback(() => {
-    const element = scrollRef.current;
+  const checkScrollPosition =
+    useCallback(() => {
+      const element =
+        scrollRef.current;
 
-    if (!element) {
-      return true;
-    }
+      if (!element) {
+        return true;
+      }
 
-    const distanceFromBottom =
-      element.scrollHeight -
-      element.scrollTop -
-      element.clientHeight;
+      const distanceFromBottom =
+        element.scrollHeight -
+        element.scrollTop -
+        element.clientHeight;
 
-    const isNearBottom =
-      distanceFromBottom <= AUTO_SCROLL_THRESHOLD;
+      const isNearBottom =
+        distanceFromBottom <=
+        AUTO_SCROLL_THRESHOLD;
 
-    shouldFollowBottomRef.current = isNearBottom;
+      shouldFollowBottomRef.current =
+        isNearBottom;
 
-    setShowScrollButton(!isNearBottom);
+      setShowScrollButton(
+        !isNearBottom,
+      );
 
-    return isNearBottom;
-  }, []);
+      return isNearBottom;
+    }, []);
 
   /* =============================================================
      SCROLL TO BOTTOM
   ============================================================= */
 
-  const scrollToBottom = useCallback(
-    (
-      behavior: ScrollBehavior = "smooth",
-    ) => {
-      const element = scrollRef.current;
+  const scrollToBottom =
+    useCallback(
+      (
+        behavior: ScrollBehavior =
+          "smooth",
+      ) => {
+        const element =
+          scrollRef.current;
 
-      if (!element) {
-        return;
-      }
+        if (!element) {
+          return;
+        }
 
-      element.scrollTo({
-        top: element.scrollHeight,
-        behavior,
-      });
+        element.scrollTo({
+          top: element.scrollHeight,
+          behavior,
+        });
 
-      shouldFollowBottomRef.current = true;
-      setShowScrollButton(false);
-    },
-    [],
-  );
+        shouldFollowBottomRef.current =
+          true;
+
+        setShowScrollButton(false);
+      },
+      [],
+    );
 
   /* =============================================================
      TRACK SCROLL
   ============================================================= */
 
   useEffect(() => {
-    const element = scrollRef.current;
+    const element =
+      scrollRef.current;
 
     if (!element) {
       return;
@@ -359,9 +392,12 @@ export default function ChatScreen({
     const previousCount =
       previousMessageCountRef.current;
 
-    const currentCount = messages.length;
+    const currentCount =
+      messages.length;
 
-    if (currentCount > previousCount) {
+    if (
+      currentCount > previousCount
+    ) {
       const latestMessage =
         messages[currentCount - 1];
 
@@ -394,22 +430,26 @@ export default function ChatScreen({
       return;
     }
 
-    if (!shouldFollowBottomRef.current) {
+    if (
+      !shouldFollowBottomRef.current
+    ) {
       return;
     }
 
-    const frame = requestAnimationFrame(() => {
-      const element = scrollRef.current;
+    const frame =
+      requestAnimationFrame(() => {
+        const element =
+          scrollRef.current;
 
-      if (!element) {
-        return;
-      }
+        if (!element) {
+          return;
+        }
 
-      element.scrollTo({
-        top: element.scrollHeight,
-        behavior: "auto",
+        element.scrollTo({
+          top: element.scrollHeight,
+          behavior: "auto",
+        });
       });
-    });
 
     return () => {
       cancelAnimationFrame(frame);
@@ -434,58 +474,71 @@ export default function ChatScreen({
     setActiveSearchIndex(0);
   }, []);
 
-  const scrollToSearchResult = useCallback(
-    (index: number) => {
-      if (searchResults.length === 0) {
-        return;
-      }
+  const scrollToSearchResult =
+    useCallback(
+      (index: number) => {
+        if (
+          searchResults.length === 0
+        ) {
+          return;
+        }
 
-      const safeIndex =
-        ((index % searchResults.length) +
-          searchResults.length) %
-        searchResults.length;
+        const safeIndex =
+          ((index %
+            searchResults.length) +
+            searchResults.length) %
+          searchResults.length;
 
-      const message =
-        searchResults[safeIndex];
+        const message =
+          searchResults[safeIndex];
 
-      if (!message) {
-        return;
-      }
+        if (!message) {
+          return;
+        }
 
-      setActiveSearchIndex(safeIndex);
+        setActiveSearchIndex(
+          safeIndex,
+        );
 
-      const target =
-        messageRefs.current[message.id];
+        const target =
+          messageRefs.current[
+            message.id
+          ];
 
-      if (!target) {
-        return;
-      }
+        if (!target) {
+          return;
+        }
 
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    },
-    [searchResults],
-  );
-
-  const goToNextSearchResult = useCallback(() => {
-    if (searchResults.length === 0) {
-      return;
-    }
-
-    scrollToSearchResult(
-      activeSearchIndex + 1,
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      },
+      [searchResults],
     );
-  }, [
-    activeSearchIndex,
-    searchResults.length,
-    scrollToSearchResult,
-  ]);
+
+  const goToNextSearchResult =
+    useCallback(() => {
+      if (
+        searchResults.length === 0
+      ) {
+        return;
+      }
+
+      scrollToSearchResult(
+        activeSearchIndex + 1,
+      );
+    }, [
+      activeSearchIndex,
+      searchResults.length,
+      scrollToSearchResult,
+    ]);
 
   const goToPreviousSearchResult =
     useCallback(() => {
-      if (searchResults.length === 0) {
+      if (
+        searchResults.length === 0
+      ) {
         return;
       }
 
@@ -504,15 +557,21 @@ export default function ChatScreen({
 
   /* =============================================================
      KEYBOARD SHORTCUTS
+
+     IMPORTANT:
+     Use the native DOM KeyboardEvent here.
+     Do not import React KeyboardEvent.
   ============================================================= */
 
   useEffect(() => {
     const handleKeyDown = (
-      event: KeyboardEvent,
+      event: globalThis.KeyboardEvent,
     ) => {
       const isSearchShortcut =
-        (event.metaKey || event.ctrlKey) &&
-        event.key.toLowerCase() === "k";
+        (event.metaKey ||
+          event.ctrlKey) &&
+        event.key.toLowerCase() ===
+          "k";
 
       if (isSearchShortcut) {
         event.preventDefault();
@@ -556,7 +615,9 @@ export default function ChatScreen({
     ) => {
       const target = event.target;
 
-      if (!(target instanceof Element)) {
+      if (
+        !(target instanceof Element)
+      ) {
         return;
       }
 
@@ -596,7 +657,8 @@ export default function ChatScreen({
     };
   }, []);
 
-  const hasMessages = messages.length > 0;
+  const hasMessages =
+    messages.length > 0;
 
   return (
     <section
@@ -613,7 +675,6 @@ export default function ChatScreen({
         overflow-hidden
         bg-[var(--color-primary)]
         text-[var(--color-text)]
-        
       "
       style={{
         height:
@@ -699,17 +760,25 @@ export default function ChatScreen({
                   );
                 }}
                 onKeyDown={(event) => {
-                  if (event.key === "Enter") {
+                  if (
+                    event.key ===
+                    "Enter"
+                  ) {
                     event.preventDefault();
 
-                    if (event.shiftKey) {
+                    if (
+                      event.shiftKey
+                    ) {
                       goToPreviousSearchResult();
                     } else {
                       goToNextSearchResult();
                     }
                   }
 
-                  if (event.key === "Escape") {
+                  if (
+                    event.key ===
+                    "Escape"
+                  ) {
                     closeSearch();
                   }
                 }}
@@ -732,7 +801,10 @@ export default function ChatScreen({
                 <button
                   type="button"
                   onClick={() => {
-                    setSearchQuery("");
+                    setSearchQuery(
+                      "",
+                    );
+
                     searchInputRef.current?.focus();
                   }}
                   aria-label="Clear search"
@@ -768,7 +840,8 @@ export default function ChatScreen({
               aria-live="polite"
             >
               {searchQuery
-                ? searchResults.length > 0
+                ? searchResults.length >
+                  0
                   ? `${activeSearchIndex + 1} / ${searchResults.length}`
                   : "No results"
                 : "Search"}
@@ -780,7 +853,8 @@ export default function ChatScreen({
                 goToPreviousSearchResult
               }
               disabled={
-                searchResults.length === 0
+                searchResults.length ===
+                0
               }
               aria-label="Previous search result"
               title="Previous result"
@@ -808,7 +882,8 @@ export default function ChatScreen({
                 goToNextSearchResult
               }
               disabled={
-                searchResults.length === 0
+                searchResults.length ===
+                0
               }
               aria-label="Next search result"
               title="Next result"
@@ -887,10 +962,7 @@ export default function ChatScreen({
             flex-col
             px-4
             sm:px-8
-            
             lg:px-0
-            
-            
           "
           style={{
             paddingBottom: `calc(${composerHeight}px + 18px)`,
@@ -917,7 +989,8 @@ export default function ChatScreen({
                       .toLowerCase();
 
                   const isSearchMatch =
-                    normalizedQuery.length > 0 &&
+                    normalizedQuery.length >
+                      0 &&
                     message.content
                       .toLowerCase()
                       .includes(
@@ -928,7 +1001,8 @@ export default function ChatScreen({
                     isSearchMatch &&
                     searchResults[
                       activeSearchIndex
-                    ]?.id === message.id;
+                    ]?.id ===
+                      message.id;
 
                   return (
                     <div
@@ -946,7 +1020,6 @@ export default function ChatScreen({
                         scroll-mt-24
                         transition-all
                         duration-200
-                        
                         ${
                           isActiveSearchMatch
                             ? "rounded-[18px] ring-2 ring-[var(--color-accent)]/35 ring-offset-8"
@@ -954,14 +1027,21 @@ export default function ChatScreen({
                         }
                       `}
                     >
-                      {message.role === "user" ? (
+                      {message.role ===
+                      "user" ? (
                         <UserMessage
-                          message={message}
-                          searchQuery={searchQuery}
+                          message={
+                            message
+                          }
+                          searchQuery={
+                            searchQuery
+                          }
                         />
                       ) : (
                         <AssistantMessage
-                          message={message}
+                          message={
+                            message
+                          }
                           index={index}
                           feedback={
                             feedback[
@@ -979,7 +1059,9 @@ export default function ChatScreen({
                           searchQuery={
                             searchQuery
                           }
-                          isLoading={isLoading}
+                          isLoading={
+                            isLoading
+                          }
                           onCopy={() =>
                             handleCopyMessage(
                               message,
@@ -1084,10 +1166,6 @@ export default function ChatScreen({
 
       {/* =========================================================
           FIXED COMPOSER
-
-          The composer stays inside ChatScreen so that when the
-          mobile keyboard changes the visual viewport, the entire
-          chat section and composer resize together.
       ========================================================= */}
 
       <div
@@ -1118,7 +1196,9 @@ export default function ChatScreen({
         >
           <ChatComposer
             disabled={isLoading}
-            onSendMessage={onSendMessage}
+            onSendMessage={
+              onSendMessage
+            }
           />
         </div>
       </div>
@@ -1264,8 +1344,6 @@ function AnimatedChatBackground() {
       "
       aria-hidden="true"
     >
-      {/* MAIN IMAGE */}
-
       <img
         src="/chat-bg.png"
         alt=""
@@ -1286,8 +1364,6 @@ function AnimatedChatBackground() {
         "
       />
 
-      {/* SECOND SOFT LAYER */}
-
       <div
         className="
           chat-background-soft
@@ -1296,8 +1372,6 @@ function AnimatedChatBackground() {
           bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.18),transparent_55%)]
         "
       />
-
-      {/* CONTENT READABILITY */}
 
       <div
         className="
@@ -1441,12 +1515,38 @@ function AssistantMessage({
   onToggleMenu,
   onCloseMenu,
 }: AssistantMessageProps) {
-  const pdfUrl = extractPdfUrl(
-    message.content,
-  );
+  /*
+   * IMPORTANT:
+   *
+   * AIChat.tsx now stores generated PDF information
+   * separately in:
+   *
+   * message.pdf
+   *
+   * That is the primary source.
+   *
+   * extractPdfUrl() remains as a fallback for older
+   * responses where the backend placed the PDF URL
+   * directly inside message.content.
+   */
+  const generatedPdf =
+    getMessagePdf(message);
+
+  const fallbackPdfUrl =
+    extractPdfUrl(
+      message.content,
+    );
+
+  const pdfUrl =
+    generatedPdf?.url ??
+    fallbackPdfUrl;
+
+  const pdfFileName =
+    generatedPdf?.fileName ??
+    "MealEats-AI-Plan.pdf";
 
   return (
-    <div className="flex w-full min-w-0 flex-col items-start ">
+    <div className="flex w-full min-w-0 flex-col items-start">
       <div
         className="
           w-full
@@ -1467,6 +1567,25 @@ function AssistantMessage({
           searchQuery={searchQuery}
         />
       </div>
+
+      {/* =====================================================
+          GENERATED PDF
+
+          This is displayed separately from the AI response
+          text so the PDF URL never needs to be appended to
+          the assistant's message.
+      ===================================================== */}
+
+      {pdfUrl && (
+        <GeneratedPdfCard
+          url={pdfUrl}
+          fileName={pdfFileName}
+        />
+      )}
+
+      {/* =====================================================
+          ACTIONS
+      ===================================================== */}
 
       <div
         data-message-actions
@@ -1501,16 +1620,17 @@ function AssistantMessage({
           <LinkIcon />
         </ActionButton>
 
-        {/* =====================================================
-            PDF DOWNLOAD
+        {/* ===================================================
+            COMPACT PDF DOWNLOAD ACTION
 
-            This button appears ONLY when the AI response
-            actually contains a PDF URL.
-        ===================================================== */}
+            Keep the existing action row design.
+            It appears only when a PDF exists.
+        =================================================== */}
 
         {pdfUrl && (
           <PdfDownloadButton
             url={pdfUrl}
+            fileName={pdfFileName}
           />
         )}
 
@@ -1584,22 +1704,349 @@ function AssistantMessage({
 }
 
 /* ===============================================================
+   GET MESSAGE PDF
+=============================================================== */
+
+function getMessagePdf(
+  message: ChatMessage,
+): {
+  url: string;
+  fileName: string;
+} | null {
+  /*
+   * Primary source:
+   *
+   * message.pdf
+   *
+   * This is populated by AIChat.tsx from:
+   *
+   * json.data.pdf
+   */
+  if (
+    message.pdf &&
+    message.pdf.generated === true &&
+    typeof message.pdf.url ===
+      "string" &&
+    message.pdf.url.trim()
+  ) {
+    return {
+      url: message.pdf.url.trim(),
+      fileName:
+        typeof message.pdf.fileName ===
+          "string" &&
+        message.pdf.fileName.trim()
+          ? message.pdf.fileName.trim()
+          : "MealEats-AI-Plan.pdf",
+    };
+  }
+
+  return null;
+}
+
+/* ===============================================================
+   GENERATED PDF CARD
+=============================================================== */
+
+function GeneratedPdfCard({
+  url,
+  fileName,
+}: {
+  url: string;
+  fileName: string;
+}) {
+  return (
+    <div
+      className="
+        mt-4
+        flex
+        w-full
+        max-w-[520px]
+        min-w-0
+        items-center
+        gap-3
+        rounded-[16px]
+        border
+        border-[var(--color-border)]
+        bg-white/90
+        px-3.5
+        py-3
+        shadow-[0_3px_14px_rgba(0,0,0,0.05)]
+        backdrop-blur-sm
+        sm:mt-5
+        sm:px-4
+        sm:py-3.5
+      "
+    >
+      {/* PDF ICON */}
+
+      <div
+        className="
+          flex
+          h-10
+          w-10
+          shrink-0
+          items-center
+          justify-center
+          rounded-[11px]
+          bg-[#f1f6e8]
+          text-[#6f9f27]
+        "
+        aria-hidden="true"
+      >
+        <PdfFileIcon />
+      </div>
+
+      {/* FILE INFORMATION */}
+
+      <div
+        className="
+          min-w-0
+          flex-1
+        "
+      >
+        <p
+          className="
+            text-[13px]
+            font-semibold
+            leading-5
+            text-[var(--color-secondary)]
+          "
+        >
+          PDF Generated
+        </p>
+
+        <p
+          className="
+            mt-0.5
+            truncate
+            text-[12px]
+            leading-5
+            text-[var(--color-text-muted)]
+          "
+          title={fileName}
+        >
+          {fileName}
+        </p>
+      </div>
+
+      {/* DOWNLOAD */}
+
+      <PdfDownloadButton
+        url={url}
+        fileName={fileName}
+        showText
+      />
+    </div>
+  );
+}
+
+/* ===============================================================
    PDF DOWNLOAD BUTTON
 =============================================================== */
 
 function PdfDownloadButton({
   url,
+  fileName,
+  showText = false,
 }: {
   url: string;
+  fileName?: string;
+  showText?: boolean;
 }) {
+  const [isDownloading, setIsDownloading] =
+    useState(false);
+
+  const handleDownload =
+    useCallback(
+      async (
+        event: React.MouseEvent<HTMLAnchorElement>,
+      ) => {
+        /*
+         * If JavaScript is unavailable or something
+         * unexpected happens, the normal anchor href
+         * still points to the PDF.
+         */
+        event.preventDefault();
+
+        if (
+          !url ||
+          isDownloading
+        ) {
+          return;
+        }
+
+        setIsDownloading(true);
+
+        try {
+          /*
+           * Fetch the generated PDF as a Blob.
+           *
+           * This gives the browser a local downloadable
+           * file and works more reliably than relying only
+           * on the HTML download attribute for cross-origin
+           * backend files.
+           */
+          const response =
+            await fetch(url, {
+              method: "GET",
+              mode: "cors",
+            });
+
+          if (!response.ok) {
+            throw new Error(
+              `PDF download failed with status ${response.status}`,
+            );
+          }
+
+          const blob =
+            await response.blob();
+
+          if (
+            !blob ||
+            blob.size === 0
+          ) {
+            throw new Error(
+              "Generated PDF is empty.",
+            );
+          }
+
+          const blobUrl =
+            window.URL.createObjectURL(
+              blob,
+            );
+
+          const anchor =
+            document.createElement(
+              "a",
+            );
+
+          anchor.href = blobUrl;
+
+          anchor.download =
+            sanitizeFileName(
+              fileName ||
+                "MealEats-AI-Plan.pdf",
+            );
+
+          document.body.appendChild(
+            anchor,
+          );
+
+          anchor.click();
+
+          anchor.remove();
+
+          /*
+           * Give the browser enough time to start
+           * the download before revoking the object URL.
+           */
+          window.setTimeout(() => {
+            window.URL.revokeObjectURL(
+              blobUrl,
+            );
+          }, 1500);
+        } catch (error) {
+          /*
+           * Fallback:
+           *
+           * If the backend does not allow CORS for
+           * blob fetching, open the generated PDF
+           * directly in a new tab. The browser's
+           * native PDF viewer can then save/download it.
+           */
+          console.warn(
+            "Direct PDF download failed. Opening generated PDF instead.",
+            error,
+          );
+
+          window.open(
+            url,
+            "_blank",
+            "noopener,noreferrer",
+          );
+        } finally {
+          setIsDownloading(false);
+        }
+      },
+      [
+        fileName,
+        isDownloading,
+        url,
+      ],
+    );
+
+  if (showText) {
+    return (
+      <a
+        href={url}
+        download={
+          fileName ||
+          "MealEats-AI-Plan.pdf"
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleDownload}
+        aria-label={
+          isDownloading
+            ? "Downloading PDF"
+            : "Download PDF"
+        }
+        title="Download PDF"
+        className="
+          flex
+          h-9
+          shrink-0
+          items-center
+          justify-center
+          gap-1.5
+          rounded-[10px]
+          bg-[#f1f6e8]
+          px-3
+          text-[12px]
+          font-medium
+          text-[#6f9f27]
+          transition-all
+          duration-150
+          hover:bg-[#e8f2d8]
+          active:scale-[0.98]
+          focus-visible:outline-none
+          focus-visible:ring-2
+          focus-visible:ring-[var(--color-accent)]/40
+          disabled:pointer-events-none
+          sm:h-9
+        "
+      >
+        <DownloadPdfIcon />
+
+        <span className="hidden sm:inline">
+          {isDownloading
+            ? "Downloading..."
+            : "Download PDF"}
+        </span>
+      </a>
+    );
+  }
+
   return (
     <a
       href={url}
-      download
+      download={
+        fileName ||
+        "MealEats-AI-Plan.pdf"
+      }
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Download PDF"
-      title="Download PDF"
+      onClick={handleDownload}
+      aria-label={
+        isDownloading
+          ? "Downloading PDF"
+          : "Download PDF"
+      }
+      title={
+        isDownloading
+          ? "Downloading PDF"
+          : "Download PDF"
+      }
       className="
         flex
         h-9
@@ -1624,6 +2071,34 @@ function PdfDownloadButton({
       <DownloadPdfIcon />
     </a>
   );
+}
+
+/* ===============================================================
+   SANITIZE PDF FILE NAME
+=============================================================== */
+
+function sanitizeFileName(
+  fileName: string,
+): string {
+  const cleaned =
+    fileName
+      .trim()
+      .replace(
+        /[<>:"/\\|?*\x00-\x1F]/g,
+        "_",
+      );
+
+  if (!cleaned) {
+    return "MealEats-AI-Plan.pdf";
+  }
+
+  if (
+    /\.pdf$/i.test(cleaned)
+  ) {
+    return cleaned;
+  }
+
+  return `${cleaned}.pdf`;
 }
 
 /* ===============================================================
@@ -1864,7 +2339,9 @@ function MessageText({
     >
       {blocks.map(
         (block, index) => {
-          if (block.type === "list") {
+          if (
+            block.type === "list"
+          ) {
             return (
               <ul
                 key={`list-${index}`}
@@ -1901,7 +2378,10 @@ function MessageText({
             );
           }
 
-          if (block.type === "heading") {
+          if (
+            block.type ===
+            "heading"
+          ) {
             return (
               <h4
                 key={`heading-${index}`}
@@ -1926,7 +2406,10 @@ function MessageText({
             );
           }
 
-          if (block.type === "divider") {
+          if (
+            block.type ===
+            "divider"
+          ) {
             return (
               <hr
                 key={`divider-${index}`}
@@ -1995,12 +2478,16 @@ function parseMessage(
     .replace(/\r\n/g, "\n")
     .split("\n");
 
-  const blocks: MessageBlock[] = [];
+  const blocks: MessageBlock[] =
+    [];
 
-  let currentList: string[] = [];
+  let currentList: string[] =
+    [];
 
   const flushList = () => {
-    if (currentList.length === 0) {
+    if (
+      currentList.length === 0
+    ) {
       return;
     }
 
@@ -2013,7 +2500,8 @@ function parseMessage(
   };
 
   for (const originalLine of lines) {
-    const line = originalLine.trim();
+    const line =
+      originalLine.trim();
 
     if (line === "---") {
       flushList();
@@ -2025,7 +2513,9 @@ function parseMessage(
       continue;
     }
 
-    if (/^#{1,3}\s+/.test(line)) {
+    if (
+      /^#{1,3}\s+/.test(line)
+    ) {
       flushList();
 
       blocks.push({
@@ -2039,7 +2529,9 @@ function parseMessage(
       continue;
     }
 
-    if (/^[-*]\s+/.test(line)) {
+    if (
+      /^[-*]\s+/.test(line)
+    ) {
       currentList.push(
         line.replace(
           /^[-*]\s+/,
@@ -2088,8 +2580,12 @@ function InlineText({
       {parts.map(
         (part, index) => {
           const isBold =
-            part.startsWith("**") &&
-            part.endsWith("**") &&
+            part.startsWith(
+              "**",
+            ) &&
+            part.endsWith(
+              "**",
+            ) &&
             part.length > 4;
 
           const value = isBold
@@ -2136,7 +2632,8 @@ function HighlightedText({
   text: string;
   searchQuery: string;
 }) {
-  const query = searchQuery.trim();
+  const query =
+    searchQuery.trim();
 
   if (!query) {
     return <>{text}</>;
@@ -2208,7 +2705,7 @@ function extractPdfUrl(
   const urls: string[] = [];
 
   /*
-   * Normal URLs
+   * Normal URLs.
    */
   const normalUrls =
     content.match(
@@ -2219,36 +2716,42 @@ function extractPdfUrl(
 
   /*
    * Markdown URLs:
+   *
    * [Download PDF](https://example.com/file.pdf)
    */
   const markdownRegex =
     /\[[^\]]*\]\((https?:\/\/[^)\s]+)\)/gi;
 
-  let markdownMatch: RegExpExecArray | null;
+  let markdownMatch:
+    RegExpExecArray | null;
 
   while (
     (markdownMatch =
-      markdownRegex.exec(content)) !== null
+      markdownRegex.exec(
+        content,
+      )) !== null
   ) {
     if (markdownMatch[1]) {
-      urls.push(markdownMatch[1]);
+      urls.push(
+        markdownMatch[1],
+      );
     }
   }
 
-  const cleanedUrls = urls.map(
-    (url) =>
+  const cleanedUrls =
+    urls.map((url) =>
       url.replace(
         /[.,!?;:)\]}]+$/,
         "",
       ),
-  );
+    );
 
-  const pdfUrl = cleanedUrls.find(
-    (url) =>
+  const pdfUrl =
+    cleanedUrls.find((url) =>
       /\.pdf(?:$|[?#&])/i.test(
         url,
       ),
-  );
+    );
 
   return pdfUrl ?? null;
 }
@@ -2295,7 +2798,9 @@ async function handleCopyMessage(
 
       textarea.select();
 
-      document.execCommand("copy");
+      document.execCommand(
+        "copy",
+      );
 
       document.body.removeChild(
         textarea,
@@ -2356,7 +2861,10 @@ function handleOpenLinks(
       /https?:\/\/[^\s<>"'`]+/gi,
     );
 
-  if (!urls || urls.length === 0) {
+  if (
+    !urls ||
+    urls.length === 0
+  ) {
     return;
   }
 
@@ -2632,6 +3140,36 @@ function DownloadPdfIcon() {
       <path d="m7 10 5 5 5-5" />
 
       <path d="M5 21h14" />
+    </svg>
+  );
+}
+
+/* ===============================================================
+   PDF FILE ICON
+=============================================================== */
+
+function PdfFileIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="
+        h-[20px]
+        w-[20px]
+      "
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M6 2.75h8l4 4V21.25H6z" />
+
+      <path d="M14 2.75v4h4" />
+
+      <path d="M8.5 15.5h7" />
+
+      <path d="M8.5 18h5" />
     </svg>
   );
 }

@@ -388,7 +388,7 @@ function BenefitsHeader() {
       ===================================================== */}
 
       <p
-        {...fadeUp()}
+        
         
         className="
           mt-[20px]
@@ -504,7 +504,7 @@ function DesktopBenefitsLayout() {
           xl:pt-[62px]
         "
       >
-        <motion.div {...cardAnimation("left")}>
+        <div >
           <FeatureCard
             type="assistant"
             className="
@@ -513,9 +513,9 @@ function DesktopBenefitsLayout() {
               xl:min-h-[241px]
             "
           />
-        </motion.div>
+        </div>
 
-        <motion.div {...cardAnimation("left", 0.08)}>
+        <div >
           <FeatureCard
             type="workout"
             className="
@@ -524,38 +524,14 @@ function DesktopBenefitsLayout() {
               xl:min-h-[241px]
             "
           />
-        </motion.div>
+        </div>
       </div>
 
       {/* =====================================================
           CENTER PHONE
       ===================================================== */}
 
-      <motion.div
-        initial={
-          shouldReduceMotion
-            ? false
-            : {
-                opacity: 0,
-                y: 20,
-              }
-        }
-        whileInView={
-          shouldReduceMotion
-            ? undefined
-            : {
-                opacity: 1,
-                y: 0,
-              }
-        }
-        viewport={{
-          once: true,
-          amount: 0.15,
-        }}
-        transition={{
-          duration: 0.65,
-          delay: shouldReduceMotion ? 0 : 0.05,
-        }}
+      <div
         className="
           flex
           min-w-0
@@ -563,7 +539,7 @@ function DesktopBenefitsLayout() {
         "
       >
         <PhoneVisual />
-      </motion.div>
+      </div>
 
       {/* =====================================================
           RIGHT
@@ -580,7 +556,7 @@ function DesktopBenefitsLayout() {
           xl:pt-[62px]
         "
       >
-        <motion.div {...cardAnimation("right")}>
+        <div >
           <FeatureCard
             type="diet"
             className="
@@ -589,9 +565,9 @@ function DesktopBenefitsLayout() {
               xl:min-h-[241px]
             "
           />
-        </motion.div>
+        </div>
 
-        <motion.div {...cardAnimation("right", 0.08)}>
+        <div >
           <FeatureCard
             type="recipe"
             className="
@@ -600,7 +576,7 @@ function DesktopBenefitsLayout() {
               xl:min-h-[241px]
             "
           />
-        </motion.div>
+        </div>
       </div>
     </div>
   );
@@ -691,7 +667,7 @@ function MobileBenefitsLayout() {
           AI HEALTH ASSISTANT
       ===================================================== */}
 
-      <motion.div {...mobileAnimation()}>
+      <div >
         <FeatureCard
           type="assistant"
           className="
@@ -709,15 +685,15 @@ function MobileBenefitsLayout() {
             sm:p-[22px]
           "
         />
-      </motion.div>
+      </div>
 
       {/* =====================================================
           MOBILE CARD 2
           WORKOUT
       ===================================================== */}
 
-      <motion.div
-        {...mobileAnimation(0.06)}
+      <div
+        
         className="
           mt-[18px]
 
@@ -745,15 +721,15 @@ function MobileBenefitsLayout() {
             sm:p-[22px]
           "
         />
-      </motion.div>
+      </div>
 
       {/* =====================================================
           MOBILE CARD 3
           DIET
       ===================================================== */}
 
-      <motion.div
-        {...mobileAnimation(0.12)}
+      <div
+        
         className="
           mt-[18px]
 
@@ -781,15 +757,15 @@ function MobileBenefitsLayout() {
             sm:p-[22px]
           "
         />
-      </motion.div>
+      </div>
 
       {/* =====================================================
           MOBILE CARD 4
           RECIPE
       ===================================================== */}
 
-      <motion.div
-        {...mobileAnimation(0.18)}
+      <div
+        
         className="
           mt-[18px]
 
@@ -817,14 +793,14 @@ function MobileBenefitsLayout() {
             sm:p-[22px]
           "
         />
-      </motion.div>
+      </div>
 
       {/* =====================================================
           MOBILE PHONE
       ===================================================== */}
 
-      <motion.div
-        {...phoneAnimation}
+      <div
+       
         className="
           relative
           mt-[56px]
@@ -844,7 +820,7 @@ function MobileBenefitsLayout() {
         "
       >
         <PhoneVisual />
-      </motion.div>
+      </div>
     </div>
   );
 }

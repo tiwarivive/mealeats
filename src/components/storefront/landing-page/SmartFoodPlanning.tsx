@@ -326,7 +326,7 @@ export default function SmartFoodPlanning() {
             className="
               mt-[18px]
               w-full
-              max-w-[760px]
+              max-w-[629px]
               text-center
               font-primary
               text-[16px]

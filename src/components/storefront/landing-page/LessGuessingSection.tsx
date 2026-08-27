@@ -65,7 +65,7 @@ export default function LessGuessingSection() {
             EYEBROW
         ====================================================== */}
 
-        <GlassLabel label="Why Meal Eats" showStar={false} />
+        <GlassLabel label="Why Meal Eats ?" showStar={false} />
 
         {/* =====================================================
             MAIN HEADING
@@ -277,14 +277,11 @@ export default function LessGuessingSection() {
                   max-w-[285px]
 
                   font-primary
-                  text-[12px]
+                  text-[16px]
                   font-normal
-                  leading-[1.55]
+                  leading-[20px]
 
-                  text-text
-
-                  max-[1279px]:text-[11.5px]
-
+                  text-[#7E7E7E]
                   /* MOBILE */
                   max-md:mt-[8px]
                   max-md:max-w-[620px]

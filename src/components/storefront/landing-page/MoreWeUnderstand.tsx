@@ -217,7 +217,9 @@ export default function MoreWeUnderstand() {
               hidden
               h-px
               -translate-y-1/2
-              bg-[linear-gradient(90deg,#EFEFEF_0%,#C4C4C4_47.6%,#E9E9E9_98.56%)]
+              bg-[0px_4px_11.8px_0px_#89898940]
+              
+
               lg:block
             "
           />
@@ -339,7 +341,8 @@ export default function MoreWeUnderstand() {
                     text-body
                     font-normal
                     leading-[20px]
-                    text-text-muted
+                    text-[#7E7E7E]
+                    tracking-[-3%]
 
                     lg:max-w-[280px]
 

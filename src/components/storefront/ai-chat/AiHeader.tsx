@@ -78,6 +78,8 @@ export default function AIHeader() {
               w-[94px]
               select-none
               object-contain
+              bg-[#fff]
+              rounded-[16px]
 
               max-[768px]:h-[50px]
               max-[768px]:w-[98px]

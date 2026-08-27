@@ -46,7 +46,7 @@ export default function MealPlanShoppingList() {
         pt-[104px]
         pb-[92px]
 
-        min-[1440px]:pt-[116px]
+        min-[1440px]:pt-[95px]
         min-[1440px]:pb-[55px]
 
         max-[1279px]:pt-[92px]
@@ -98,7 +98,8 @@ export default function MealPlanShoppingList() {
             inset-x-0
             bottom-0
             top-[142px]
-            bg-accent-light
+            bg-[linear-gradient(0deg,rgba(253,250,250,0.72)_0%,rgba(242,250,240,0.72)_69.86%)]
+]
 
             max-[1279px]:top-[122px]
 
@@ -128,7 +129,7 @@ export default function MealPlanShoppingList() {
             w-[150vw]
             -translate-x-1/2
             rounded-[50%]
-            bg-accent-light
+            bg-[linear-gradient(0deg,rgba(253,250,250,0.72)_0%,rgba(242,250,240,0.72)_69.86%)]
 
             min-[1440px]:h-[1100px]
             min-[1440px]:w-[150vw]
@@ -219,10 +220,10 @@ export default function MealPlanShoppingList() {
             From Meal Plan to{" "}
             <span
               className="
-                font-accent
+                !font-accent
                 font-normal
                 italic
-                tracking-[-0.035em]
+                tracking-[-4%]
               "
             >
               Shopping List

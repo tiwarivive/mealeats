@@ -14,7 +14,7 @@ export default function KnowledgeHero() {
         isolate
         w-full
         overflow-hidden
-        bg-accent-light
+        bg-[linear-gradient(180deg,#F3FDDE_0%,#FFFFFF_100%)]
         mt-[-112px]
         
 
@@ -111,7 +111,7 @@ export default function KnowledgeHero() {
             className="
               pointer-events-none
               absolute
-              right-[-7%]
+              right-[-6%]
               top-[72px]
               z-20
               hidden

@@ -171,7 +171,7 @@ export default function FoodDecisionCTA() {
             You Decide{" "}
             <span
               className="
-                font-accent
+                !font-accent
                 font-normal
                 italic
                 tracking-[-0.035em]
@@ -184,7 +184,7 @@ export default function FoodDecisionCTA() {
 
             <span
               className="
-                font-accent
+                !font-accent
                 font-normal
                 italic
                 tracking-[-0.035em]
@@ -222,7 +222,7 @@ export default function FoodDecisionCTA() {
               !leading-[24px]
               tracking-[-4%]
 
-              text-[#F6F6F6]
+              !text-[#F6F6F6]
 
               /*
                * MOBILE
@@ -293,7 +293,7 @@ export default function FoodDecisionCTA() {
             {/* ===============================================
                 PRIMARY BUTTON
             ================================================ */}
-
+<a href="/ai">
             <button
               type="button"
               className="
@@ -355,13 +355,14 @@ export default function FoodDecisionCTA() {
               "
             >
               Build My Food Profile
-            </button>
+            </button> </a>
 
             {/* ===============================================
                 SECONDARY BUTTON
             ================================================ */}
 
-            <button
+            <a href="/ai">
+              <button
               type="button"
               className="
                 flex
@@ -408,6 +409,8 @@ export default function FoodDecisionCTA() {
                 max-md:max-w-[320px]
                 max-md:px-6
                 max-md:!text-[15px]
+                shadow-[0px_4px_16.1px_0px_#2F770D45]
+
 
                 max-[480px]:h-[45px]
                 max-[480px]:max-w-[290px]
@@ -436,6 +439,7 @@ export default function FoodDecisionCTA() {
 
               <span>Try MealEats AI</span>
             </button>
+            </a>
           </div>
 
           {/* =================================================
@@ -452,7 +456,7 @@ export default function FoodDecisionCTA() {
               leading-[24px]
               tracking-[-4%]
 
-              text-white
+              !text-[#FFFFFF]
 
               /*
                * MOBILE

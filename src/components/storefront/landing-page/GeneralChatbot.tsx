@@ -432,6 +432,7 @@ export default function GeneralChatbot() {
 
         <div
           className="
+          relative
             mt-[58px]
 
             max-[1439px]:mt-[52px]
@@ -443,6 +444,23 @@ export default function GeneralChatbot() {
             max-[767px]:mt-[34px]
           "
         >
+             <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-1/2
+          z-0
+          h-[423.28px]
+          w-[431.45px]
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+          bg-[#61BD37]/[23%]
+          blur-[181.66px]
+        "
+      />
           {/* =================================================
               FIRST ROW
 
@@ -457,6 +475,7 @@ export default function GeneralChatbot() {
 
           <div
             className="
+            relative
               grid
               items-start
               grid-cols-3
@@ -485,6 +504,7 @@ export default function GeneralChatbot() {
               max-[767px]:gap-y-[16px]
             "
           >
+          
             {capabilities.slice(0, 3).map((capability) => (
               <CapabilityCard
                 key={capability.id}

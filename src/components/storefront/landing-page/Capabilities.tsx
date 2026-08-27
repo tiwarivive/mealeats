@@ -61,6 +61,7 @@ function CapabilityItem({
         flex
         w-full
         min-w-0
+        
         items-start
         gap-[18px]
 
@@ -86,6 +87,7 @@ function CapabilityItem({
         aria-hidden="true"
         className="
           flex
+          !mt-[11px]
           h-[48px]
           w-[48px]
           shrink-0
@@ -154,9 +156,6 @@ function CapabilityItem({
             tracking-[-3%]
             text-dark
 
-            max-[1280px]:text-[19px]
-
-            max-[1024px]:text-[18px]
 
             /* =================================================
                MOBILE
@@ -230,7 +229,6 @@ function PhoneMockup() {
         absolute
         right-[-2px]
         top-0
-        lg:top-[109px]
         z-10
 
         flex
@@ -239,33 +237,39 @@ function PhoneMockup() {
         items-start
         justify-end
 
-        max-[1280px]:w-[45%]
-
-        max-[1024px]:w-[45%]
-
-        /* ===================================================
-           MOBILE PHONE
-        ==================================================== */
+        lg:top-[109px]
+        lg:mr-0
 
         max-[767px]:relative
         max-[767px]:right-auto
         max-[767px]:top-auto
-        max-[767px]:z-10
         max-[767px]:mt-[72px]
         max-[767px]:h-auto
         max-[767px]:w-full
         max-[767px]:items-center
         max-[767px]:justify-center
-        max-[767px]:px-0
-
-        max-[600px]:mt-[64px]
-
-        max-[480px]:mt-[58px]
-
-        max-[375px]:mt-[52px]
       "
     >
-      
+      {/* GLOW */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-1/2
+          z-0
+          h-[423.28px]
+          w-[431.45px]
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+          bg-[#61BD37]/[23%]
+          blur-[181.66px]
+        "
+      />
+
+      {/* PHONE */}
       <Image
         src={PHONE_IMAGE}
         alt="MealEats Health Assistant recipe screen"
@@ -279,6 +283,8 @@ function PhoneMockup() {
           37vw
         "
         className="
+          relative
+          z-10
           block
           h-[677px]
           w-auto
@@ -292,10 +298,6 @@ function PhoneMockup() {
           lg:mr-[100px]
 
           max-[1024px]:h-[min(586px,57.2vw)]
-
-          /* =================================================
-             MOBILE IMAGE
-          ================================================== */
 
           max-[767px]:h-auto
           max-[767px]:w-[82vw]
@@ -503,10 +505,10 @@ export default function Capabilities() {
               max-w-[620px]
 
               font-primary
-              text-[14px]
+              text-[16px]
               font-normal
-              leading-[1.45]
-              tracking-[-0.015em]
+              leading-[24px]
+              tracking-[-4%]
               text-[#858585]
 
               max-[1280px]:mt-[24px]

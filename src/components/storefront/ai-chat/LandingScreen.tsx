@@ -11,10 +11,10 @@ import {
 import type {
   ChangeEvent,
   Dispatch,
-  KeyboardEvent as ReactKeyboardEvent,
   MutableRefObject,
   ReactNode,
   SetStateAction,
+  KeyboardEvent as ReactKeyboardEvent,
 } from "react";
 
 import ChatComposer from "./ChatComposer";
@@ -28,6 +28,7 @@ import { Search } from "lucide-react";
 type ChatScreenProps = {
   messages?: ChatMessage[];
   isLoading?: boolean;
+
   onSendMessage?: (
     message: string,
     files?: File[],
@@ -41,10 +42,7 @@ type ChatScreenProps = {
   onStartChat?: () => void;
 };
 
-type FeedbackState =
-  | "like"
-  | "dislike"
-  | null;
+type FeedbackState = "like" | "dislike" | null;
 
 /* ===============================================================
    CONSTANTS
@@ -59,43 +57,33 @@ const AUTO_SCROLL_THRESHOLD = 120;
 export default function ChatScreen({
   messages = [],
   isLoading = false,
-  onSendMessage = async () => { },
+  onSendMessage = async () => {},
   onRegenerateMessage,
 }: ChatScreenProps) {
-  const scrollRef =
-    useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const composerRef =
-    useRef<HTMLDivElement>(null);
+  const composerRef = useRef<HTMLDivElement>(null);
 
-  const searchInputRef =
-    useRef<HTMLInputElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const previousMessageCountRef =
-    useRef(messages.length);
+  const previousMessageCountRef = useRef(messages.length);
 
-  const shouldFollowBottomRef =
-    useRef(true);
+  const shouldFollowBottomRef = useRef(true);
 
-  const messageRefs =
-    useRef<Record<string, HTMLDivElement | null>>(
-      {},
-    );
-  const copyTimeoutsRef =
-    useRef<
-      Record<
-        string,
-        number
-      >
-    >({});
+  const messageRefs = useRef<
+    Record<string, HTMLDivElement | null>
+  >({});
+
+  const copyTimeoutsRef = useRef<
+    Record<string, number>
+  >({});
 
   const [composerHeight, setComposerHeight] =
     useState(132);
 
-  const [feedback, setFeedback] =
-    useState<
-      Record<string, FeedbackState>
-    >({});
+  const [feedback, setFeedback] = useState<
+    Record<string, FeedbackState>
+  >({});
 
   const [menuMessageId, setMenuMessageId] =
     useState<string | null>(null);
@@ -120,17 +108,14 @@ export default function ChatScreen({
   ============================================================= */
 
   const searchResults = useMemo(() => {
-    const query =
-      searchQuery.trim().toLowerCase();
+    const query = searchQuery.trim().toLowerCase();
 
     if (!query) {
       return [];
     }
 
     return messages.filter((message) =>
-      message.content
-        .toLowerCase()
-        .includes(query),
+      message.content.toLowerCase().includes(query),
     );
   }, [messages, searchQuery]);
 
@@ -164,10 +149,7 @@ export default function ChatScreen({
 
     resizeObserver?.observe(element);
 
-    window.addEventListener(
-      "resize",
-      updateHeight,
-    );
+    window.addEventListener("resize", updateHeight);
 
     return () => {
       resizeObserver?.disconnect();
@@ -183,59 +165,51 @@ export default function ChatScreen({
      SCROLL POSITION
   ============================================================= */
 
-  const checkScrollPosition =
-    useCallback(() => {
-      const element = scrollRef.current;
+  const checkScrollPosition = useCallback(() => {
+    const element = scrollRef.current;
 
-      if (!element) {
-        return true;
-      }
+    if (!element) {
+      return true;
+    }
 
-      const distanceFromBottom =
-        element.scrollHeight -
-        element.scrollTop -
-        element.clientHeight;
+    const distanceFromBottom =
+      element.scrollHeight -
+      element.scrollTop -
+      element.clientHeight;
 
-      const isNearBottom =
-        distanceFromBottom <=
-        AUTO_SCROLL_THRESHOLD;
+    const isNearBottom =
+      distanceFromBottom <= AUTO_SCROLL_THRESHOLD;
 
-      shouldFollowBottomRef.current =
-        isNearBottom;
+    shouldFollowBottomRef.current = isNearBottom;
 
-      setShowScrollButton(!isNearBottom);
+    setShowScrollButton(!isNearBottom);
 
-      return isNearBottom;
-    }, []);
+    return isNearBottom;
+  }, []);
 
   /* =============================================================
      SCROLL TO BOTTOM
   ============================================================= */
 
-  const scrollToBottom =
-    useCallback(
-      (
-        behavior: ScrollBehavior = "smooth",
-      ) => {
-        const element =
-          scrollRef.current;
+  const scrollToBottom = useCallback(
+    (behavior: ScrollBehavior = "smooth") => {
+      const element = scrollRef.current;
 
-        if (!element) {
-          return;
-        }
+      if (!element) {
+        return;
+      }
 
-        element.scrollTo({
-          top: element.scrollHeight,
-          behavior,
-        });
+      element.scrollTo({
+        top: element.scrollHeight,
+        behavior,
+      });
 
-        shouldFollowBottomRef.current =
-          true;
+      shouldFollowBottomRef.current = true;
 
-        setShowScrollButton(false);
-      },
-      [],
-    );
+      setShowScrollButton(false);
+    },
+    [],
+  );
 
   /* =============================================================
      TRACK SCROLL
@@ -278,8 +252,7 @@ export default function ChatScreen({
     const previousCount =
       previousMessageCountRef.current;
 
-    const currentCount =
-      messages.length;
+    const currentCount = messages.length;
 
     if (currentCount > previousCount) {
       const latestMessage =
@@ -318,20 +291,18 @@ export default function ChatScreen({
       return;
     }
 
-    const frame =
-      requestAnimationFrame(() => {
-        const element =
-          scrollRef.current;
+    const frame = requestAnimationFrame(() => {
+      const element = scrollRef.current;
 
-        if (!element) {
-          return;
-        }
+      if (!element) {
+        return;
+      }
 
-        element.scrollTo({
-          top: element.scrollHeight,
-          behavior: "auto",
-        });
+      element.scrollTo({
+        top: element.scrollHeight,
+        behavior: "auto",
       });
+    });
 
     return () => {
       cancelAnimationFrame(frame);
@@ -342,61 +313,54 @@ export default function ChatScreen({
      SEARCH
   ============================================================= */
 
-  const openSearch =
-    useCallback(() => {
-      setSearchOpen(true);
+  const openSearch = useCallback(() => {
+    setSearchOpen(true);
 
-      requestAnimationFrame(() => {
-        searchInputRef.current?.focus();
+    requestAnimationFrame(() => {
+      searchInputRef.current?.focus();
+    });
+  }, []);
+
+  const closeSearch = useCallback(() => {
+    setSearchOpen(false);
+    setSearchQuery("");
+    setActiveSearchIndex(0);
+  }, []);
+
+  const scrollToSearchResult = useCallback(
+    (index: number) => {
+      if (searchResults.length === 0) {
+        return;
+      }
+
+      const safeIndex =
+        ((index % searchResults.length) +
+          searchResults.length) %
+        searchResults.length;
+
+      const message =
+        searchResults[safeIndex];
+
+      if (!message) {
+        return;
+      }
+
+      setActiveSearchIndex(safeIndex);
+
+      const target =
+        messageRefs.current[message.id];
+
+      if (!target) {
+        return;
+      }
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
       });
-    }, []);
-
-  const closeSearch =
-    useCallback(() => {
-      setSearchOpen(false);
-      setSearchQuery("");
-      setActiveSearchIndex(0);
-    }, []);
-
-  const scrollToSearchResult =
-    useCallback(
-      (index: number) => {
-        if (searchResults.length === 0) {
-          return;
-        }
-
-        const safeIndex =
-          ((index % searchResults.length) +
-            searchResults.length) %
-          searchResults.length;
-
-        const message =
-          searchResults[safeIndex];
-
-        if (!message) {
-          return;
-        }
-
-        setActiveSearchIndex(
-          safeIndex,
-        );
-
-        const target =
-          messageRefs.current[
-          message.id
-          ];
-
-        if (!target) {
-          return;
-        }
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      },
-      [searchResults],
-    );
+    },
+    [searchResults],
+  );
 
   const goToNextSearchResult =
     useCallback(() => {
@@ -434,17 +398,21 @@ export default function ChatScreen({
 
   /* =============================================================
      KEYBOARD SHORTCUTS
+
+     IMPORTANT:
+     Use globalThis.KeyboardEvent here.
+
+     React's KeyboardEvent type is different from the native DOM
+     KeyboardEvent expected by document.addEventListener().
   ============================================================= */
 
   useEffect(() => {
-  const handleKeyDown = (
-    event: globalThis.KeyboardEvent,
-  ) => {
+    const handleKeyDown = (
+      event: globalThis.KeyboardEvent,
+    ) => {
       const isSearchShortcut =
-        (event.metaKey ||
-          event.ctrlKey) &&
-        event.key.toLowerCase() ===
-        "k";
+        (event.metaKey || event.ctrlKey) &&
+        event.key.toLowerCase() === "k";
 
       if (isSearchShortcut) {
         event.preventDefault();
@@ -528,8 +496,7 @@ export default function ChatScreen({
     };
   }, []);
 
-  const hasMessages =
-    messages.length > 0;
+  const hasMessages = messages.length > 0;
 
   return (
     <section
@@ -587,17 +554,18 @@ export default function ChatScreen({
             className="
               mx-auto
               flex
+              min-h-10
               w-full
               max-w-[920px]
               items-center
               gap-1.5
               sm:gap-2
-              min-h-10
             "
           >
             <div
               className="
                 flex
+                min-h-10
                 min-w-0
                 flex-1
                 items-center
@@ -605,7 +573,6 @@ export default function ChatScreen({
                 rounded-[14px]
                 border
                 border-[var(--color-border)]
-                min-h-10
                 bg-[var(--color-surface-light)]
                 px-3
                 transition-colors
@@ -624,25 +591,17 @@ export default function ChatScreen({
                   );
                 }}
                 onKeyDown={(event) => {
-                  if (
-                    event.key ===
-                    "Enter"
-                  ) {
+                  if (event.key === "Enter") {
                     event.preventDefault();
 
-                    if (
-                      event.shiftKey
-                    ) {
+                    if (event.shiftKey) {
                       goToPreviousSearchResult();
                     } else {
                       goToNextSearchResult();
                     }
                   }
 
-                  if (
-                    event.key ===
-                    "Escape"
-                  ) {
+                  if (event.key === "Escape") {
                     closeSearch();
                   }
                 }}
@@ -666,7 +625,6 @@ export default function ChatScreen({
                   type="button"
                   onClick={() => {
                     setSearchQuery("");
-
                     searchInputRef.current?.focus();
                   }}
                   aria-label="Clear search"
@@ -702,25 +660,16 @@ export default function ChatScreen({
               aria-live="polite"
             >
               {searchQuery
-                ? searchResults.length >
-                  0
-                  ? `${activeSearchIndex +
-                  1
-                  } / ${searchResults.length
-                  }`
+                ? searchResults.length > 0
+                  ? `${activeSearchIndex + 1} / ${searchResults.length}`
                   : "No results"
                 : "Search"}
             </span>
 
             <button
               type="button"
-              onClick={
-                goToPreviousSearchResult
-              }
-              disabled={
-                searchResults.length ===
-                0
-              }
+              onClick={goToPreviousSearchResult}
+              disabled={searchResults.length === 0}
               aria-label="Previous search result"
               title="Previous result"
               className="
@@ -743,13 +692,8 @@ export default function ChatScreen({
 
             <button
               type="button"
-              onClick={
-                goToNextSearchResult
-              }
-              disabled={
-                searchResults.length ===
-                0
-              }
+              onClick={goToNextSearchResult}
+              disabled={searchResults.length === 0}
               aria-label="Next search result"
               title="Next result"
               className="
@@ -795,12 +739,6 @@ export default function ChatScreen({
       )}
 
       {/* =========================================================
-          DEFAULT SEARCH BUTTON
-      ========================================================= */}
-
-
-
-      {/* =========================================================
           CHAT SCROLL AREA
       ========================================================= */}
 
@@ -829,14 +767,17 @@ export default function ChatScreen({
             w-full
             min-w-0
             flex-col
-            ${hasMessages
-              ? "max-w-[920px] px-4 pt-16 sm:px-8 sm:pt-20 lg:px-0 lg:pt-[92px]"
-              : "max-w-none px-0 pt-0"
+            ${
+              hasMessages
+                ? "max-w-[920px] px-4 pt-16 sm:px-8 sm:pt-20 lg:px-0 lg:pt-[92px]"
+                : "max-w-none px-0 pt-0"
             }
           `}
           style={
             hasMessages
-              ? { paddingBottom: `calc(${composerHeight}px + 32px)` }
+              ? {
+                  paddingBottom: `calc(${composerHeight}px + 32px)`,
+                }
               : undefined
           }
         >
@@ -856,138 +797,107 @@ export default function ChatScreen({
                 sm:gap-12
               "
             >
-              {messages.map(
-                (message, index) => {
-                  const normalizedQuery =
-                    searchQuery
-                      .trim()
-                      .toLowerCase();
+              {messages.map((message, index) => {
+                const normalizedQuery =
+                  searchQuery.trim().toLowerCase();
 
-                  const isSearchMatch =
-                    normalizedQuery.length >
-                    0 &&
-                    message.content
-                      .toLowerCase()
-                      .includes(
-                        normalizedQuery,
-                      );
+                const isSearchMatch =
+                  normalizedQuery.length > 0 &&
+                  message.content
+                    .toLowerCase()
+                    .includes(normalizedQuery);
 
-                  const isActiveSearchMatch =
-                    isSearchMatch &&
-                    searchResults[
-                      activeSearchIndex
-                    ]?.id ===
+                const isActiveSearchMatch =
+                  isSearchMatch &&
+                  searchResults[activeSearchIndex]?.id ===
                     message.id;
 
-                  return (
-                    <div
-                      key={message.id}
-                      ref={(element) => {
-                        messageRefs.current[
-                          message.id
-                        ] = element;
-                      }}
-                      className={`
-                        w-full
-                        min-w-0
-                        max-w-full
-                        overflow-visible
-                        scroll-mt-24
-                        transition-all
-                        duration-200
-                        ${isActiveSearchMatch
+                return (
+                  <div
+                    key={message.id}
+                    ref={(element) => {
+                      messageRefs.current[message.id] =
+                        element;
+                    }}
+                    className={`
+                      w-full
+                      min-w-0
+                      max-w-full
+                      overflow-visible
+                      scroll-mt-24
+                      transition-all
+                      duration-200
+                      ${
+                        isActiveSearchMatch
                           ? "rounded-[18px] ring-2 ring-[var(--color-accent)]/35 ring-offset-8"
                           : ""
+                      }
+                    `}
+                  >
+                    {message.role === "user" ? (
+                      <UserMessage
+                        message={message}
+                        searchQuery={searchQuery}
+                      />
+                    ) : (
+                      <AssistantMessage
+                        message={message}
+                        index={index}
+                        feedback={
+                          feedback[message.id] ?? null
                         }
-                      `}
-                    >
-                      {message.role ===
-                        "user" ? (
-                        <UserMessage
-                          message={
-                            message
-                          }
-                          searchQuery={
-                            searchQuery
-                          }
-                        />
-                      ) : (
-                        <AssistantMessage
-                          message={
-                            message
-                          }
-                          index={index}
-                          feedback={
-                            feedback[
-                            message.id
-                            ] ?? null
-                          }
-                          copied={
-                            copiedMessageId ===
-                            message.id
-                          }
-                          isMenuOpen={
-                            menuMessageId ===
-                            message.id
-                          }
-                          searchQuery={
-                            searchQuery
-                          }
-                          isLoading={
-                            isLoading
-                          }
-                          onCopy={() =>
-                            handleCopyMessage(
-                              message,
-                              setCopiedMessageId,
-                              copyTimeoutsRef,
-                            )
-                          }
-                          onOpenLink={() =>
-                            handleOpenLinks(
-                              message,
-                            )
-                          }
-                          onFeedback={(
+                        copied={
+                          copiedMessageId ===
+                          message.id
+                        }
+                        isMenuOpen={
+                          menuMessageId ===
+                          message.id
+                        }
+                        searchQuery={searchQuery}
+                        isLoading={isLoading}
+                        onCopy={() =>
+                          handleCopyMessage(
+                            message,
+                            setCopiedMessageId,
+                            copyTimeoutsRef,
+                          )
+                        }
+                        onOpenLink={() =>
+                          handleOpenLinks(message)
+                        }
+                        onFeedback={(value) =>
+                          handleFeedback(
+                            message.id,
                             value,
-                          ) =>
-                            handleFeedback(
-                              message.id,
-                              value,
-                              setFeedback,
-                            )
-                          }
-                          onRegenerate={() =>
-                            handleRegenerate(
-                              message,
-                              index,
-                              onRegenerateMessage,
-                            )
-                          }
-                          onToggleMenu={() =>
-                            setMenuMessageId(
-                              (current) =>
-                                current ===
-                                  message.id
-                                  ? null
-                                  : message.id,
-                            )
-                          }
-                          onCloseMenu={() =>
-                            setMenuMessageId(
-                              null,
-                            )
-                          }
-                        />
-                      )}
-                    </div>
-                  );
-                },
-              )}
+                            setFeedback,
+                          )
+                        }
+                        onRegenerate={() =>
+                          handleRegenerate(
+                            message,
+                            index,
+                            onRegenerateMessage,
+                          )
+                        }
+                        onToggleMenu={() =>
+                          setMenuMessageId(
+                            (current) =>
+                              current === message.id
+                                ? null
+                                : message.id,
+                          )
+                        }
+                        onCloseMenu={() =>
+                          setMenuMessageId(null)
+                        }
+                      />
+                    )}
+                  </div>
+                );
+              })}
 
-              {isLoading && (
-                <TypingIndicator />
-              )}
+              {isLoading && <TypingIndicator />}
             </div>
           )}
         </div>
@@ -1040,9 +950,6 @@ export default function ChatScreen({
 
       {/* =========================================================
           FIXED COMPOSER
-
-          Active conversations keep the fixed composer. The empty Figma
-          state renders the composer inline in the center of the page.
       ========================================================= */}
 
       {hasMessages && (
@@ -1089,9 +996,6 @@ export default function ChatScreen({
           isolation: isolate;
         }
 
-        /* Base Figma-style green/white field. The movement is intentionally
-           very slow so the background feels alive without distracting from
-           the chat UI. */
         .chat-background-base {
           animation: chatBackgroundWave 24s ease-in-out infinite;
           transform-origin: 50% 42%;
@@ -1104,9 +1008,6 @@ export default function ChatScreen({
           will-change: transform, opacity;
         }
 
-        /* Individual vertical Figma bars. Each bar has a slightly different
-           delay, creating a soft left-to-right wave instead of moving the
-           entire background as one block. */
         .chat-background-bar {
           animation: chatBarWave 18s ease-in-out infinite;
           transform-origin: 50% 50%;
@@ -1114,50 +1015,80 @@ export default function ChatScreen({
         }
 
         @keyframes chatBackgroundWave {
-          0%, 100% {
-            transform: scale(1.035) translate3d(0, 0, 0);
+          0%,
+          100% {
+            transform: scale(1.035)
+              translate3d(0, 0, 0);
             background-position: 50% 50%;
           }
+
           25% {
-            transform: scale(1.045) translate3d(-0.35%, 0.12%, 0);
+            transform: scale(1.045)
+              translate3d(-0.35%, 0.12%, 0);
             background-position: 49% 50.5%;
           }
+
           50% {
-            transform: scale(1.055) translate3d(0.35%, -0.16%, 0);
+            transform: scale(1.055)
+              translate3d(0.35%, -0.16%, 0);
             background-position: 51% 49.5%;
           }
+
           75% {
-            transform: scale(1.045) translate3d(0.2%, 0.1%, 0);
+            transform: scale(1.045)
+              translate3d(0.2%, 0.1%, 0);
             background-position: 50.5% 50%;
           }
         }
 
         @keyframes chatBarWave {
-          0%, 100% {
-            transform: translate3d(0, 0, 0) skewX(0deg) scaleX(1);
+          0%,
+          100% {
+            transform:
+              translate3d(0, 0, 0)
+              skewX(0deg)
+              scaleX(1);
             opacity: 0.72;
           }
+
           25% {
-            transform: translate3d(10px, -0.2%, 0) skewX(-0.45deg) scaleX(1.015);
+            transform:
+              translate3d(10px, -0.2%, 0)
+              skewX(-0.45deg)
+              scaleX(1.015);
             opacity: 0.88;
           }
+
           50% {
-            transform: translate3d(-12px, 0.25%, 0) skewX(0.55deg) scaleX(0.985);
+            transform:
+              translate3d(-12px, 0.25%, 0)
+              skewX(0.55deg)
+              scaleX(0.985);
             opacity: 0.78;
           }
+
           75% {
-            transform: translate3d(7px, -0.12%, 0) skewX(-0.3deg) scaleX(1.01);
+            transform:
+              translate3d(7px, -0.12%, 0)
+              skewX(-0.3deg)
+              scaleX(1.01);
             opacity: 0.86;
           }
         }
 
         @keyframes chatBackgroundSoftWave {
-          0%, 100% {
-            transform: translate3d(0, 0, 0) scale(1);
+          0%,
+          100% {
+            transform:
+              translate3d(0, 0, 0)
+              scale(1);
             opacity: 0.68;
           }
+
           50% {
-            transform: translate3d(-0.5%, 0.25%, 0) scale(1.025);
+            transform:
+              translate3d(-0.5%, 0.25%, 0)
+              scale(1.025);
             opacity: 0.88;
           }
         }
@@ -1179,6 +1110,19 @@ export default function ChatScreen({
 =============================================================== */
 
 function AnimatedChatBackground() {
+  const bars = [
+    { left: "2%", width: "8.5%", delay: "-1.0s" },
+    { left: "12.5%", width: "7.5%", delay: "-3.2s" },
+    { left: "22%", width: "8%", delay: "-5.4s" },
+    { left: "32.5%", width: "7%", delay: "-7.6s" },
+    { left: "42%", width: "8%", delay: "-9.8s" },
+    { left: "52.5%", width: "7.5%", delay: "-12.0s" },
+    { left: "62%", width: "8%", delay: "-14.2s" },
+    { left: "72.5%", width: "7.5%", delay: "-16.4s" },
+    { left: "82%", width: "8.5%", delay: "-4.1s" },
+    { left: "92%", width: "7%", delay: "-8.7s" },
+  ];
+
   return (
     <div
       className="
@@ -1200,8 +1144,14 @@ function AnimatedChatBackground() {
         "
         style={{
           backgroundImage: `
-            radial-gradient(ellipse at 50% 34%, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.82) 24%, rgba(255,255,255,0) 56%),
-            linear-gradient(90deg,
+            radial-gradient(
+              ellipse at 50% 34%,
+              rgba(255,255,255,0.98) 0%,
+              rgba(255,255,255,0.82) 24%,
+              rgba(255,255,255,0) 56%
+            ),
+            linear-gradient(
+              90deg,
               rgba(190,222,150,0.42) 0%,
               rgba(226,242,204,0.30) 10%,
               rgba(255,255,255,0.86) 23%,
@@ -1212,19 +1162,19 @@ function AnimatedChatBackground() {
               rgba(220,239,198,0.32) 85%,
               rgba(194,226,155,0.42) 100%
             ),
-            linear-gradient(180deg, #ffffff 0%, #fbfdf8 34%, #f3f9e9 68%, #dff0c5 100%)
+            linear-gradient(
+              180deg,
+              #ffffff 0%,
+              #fbfdf8 34%,
+              #f3f9e9 68%,
+              #dff0c5 100%
+            )
           `,
-          backgroundSize: "120% 120%, 120% 100%, 100% 100%",
+          backgroundSize:
+            "120% 120%, 120% 100%, 100% 100%",
         }}
       />
 
-      {/* =============================================================
-          FIGMA VERTICAL WAVE BARS
-          -------------------------------------------------------------
-          These are real layered elements rather than a repeating-gradient.
-          That lets every vertical band move independently and slowly, which
-          creates the soft wave visible in the Figma reference.
-      ============================================================= */}
       <div
         className="
           absolute
@@ -1232,18 +1182,7 @@ function AnimatedChatBackground() {
           overflow-hidden
         "
       >
-        {[
-          { left: "2%", width: "8.5%", delay: "-1.0s" },
-          { left: "12.5%", width: "7.5%", delay: "-3.2s" },
-          { left: "22%", width: "8%", delay: "-5.4s" },
-          { left: "32.5%", width: "7%", delay: "-7.6s" },
-          { left: "42%", width: "8%", delay: "-9.8s" },
-          { left: "52.5%", width: "7.5%", delay: "-12.0s" },
-          { left: "62%", width: "8%", delay: "-14.2s" },
-          { left: "72.5%", width: "7.5%", delay: "-16.4s" },
-          { left: "82%", width: "8.5%", delay: "-4.1s" },
-          { left: "92%", width: "7%", delay: "-8.7s" },
-        ].map((bar, index) => (
+        {bars.map((bar, index) => (
           <div
             key={`chat-bg-bar-${index}`}
             className="
@@ -1337,10 +1276,6 @@ function EmptyChatState({
         sm:px-6
       "
     >
-
-      {/* =========================================================
-          FIGMA EMPTY STATE
-      ========================================================= */}
       <div
         className="
           relative
@@ -1355,6 +1290,7 @@ function EmptyChatState({
         "
       >
         {/* BADGE */}
+
         <div
           className="
             absolute
@@ -1390,23 +1326,17 @@ function EmptyChatState({
             lg:top-[202px]
           "
         >
-          <span
-            aria-hidden="true"
-            className="text-[16px] leading-none sm:text-[17px]"
-          >
-
-          </span>
           AI POWERED FOOD DECISION PLATFORM
         </div>
 
         {/* HEADING */}
+
         <h1
           className="
             absolute
             left-1/2
             !top-[245px]
             w-[calc(100%-32px)]
-            max-[768px]:w-full
             -translate-x-1/2
             font-primary
             !text-h2
@@ -1421,13 +1351,21 @@ function EmptyChatState({
             lg:max-w-full
             lg:!text-h2
             xl:!text-h2
+            max-[768px]:!w-full
             max-[768px]:!text-[32px]
-            max-[402px]:!text-[28px]
             max-[768px]:!leading-[41px]
             max-[768px]:!top-[225px]
+            max-[402px]:!text-[28px]
           "
         >
-          <span className="inline mr-[6px] min-[767px]:block  max-[402px]:!text-[28px]">
+          <span
+            className="
+              mr-[6px]
+              inline
+              min-[767px]:block
+              max-[402px]:!text-[28px]
+            "
+          >
             Ask Meal Eats anything about
           </span>
 
@@ -1438,10 +1376,10 @@ function EmptyChatState({
               font-accent
               text-[42px]
               font-normal
-              min-[767px]:block
               italic
               leading-[0.86]
               tracking-[-0.045em]
+              min-[767px]:block
               sm:mt-[15px]
               max-[402px]:!text-[28px]
               lg:text-[64px]
@@ -1452,28 +1390,23 @@ function EmptyChatState({
           </span>
         </h1>
 
-        {/* =======================================================
-            FIGMA EMPTY COMPOSER
+        {/* EMPTY COMPOSER */}
 
-            Intentionally independent from ChatComposer. The normal
-            ChatComposer owns its own layout rules and was causing
-            the oversized white bar in the empty state.
-        ======================================================= */}
         <div
           className="
             absolute
             left-1/2
             top-[455px]
             w-[calc(100%-32px)]
-            max-[768px]:w-full
             max-w-[520px]
             -translate-x-1/2
             sm:top-[475px]
             sm:w-[520px]
             lg:top-[433px]
             lg:max-w-[520px]
-            max-[768px]:!top-[330px]
             xl:w-[520px]
+            max-[768px]:!top-[330px]
+            max-[768px]:!w-full
           "
         >
           <FigmaEmptyComposer
@@ -1483,12 +1416,12 @@ function EmptyChatState({
         </div>
 
         {/* PRIVACY */}
+
         <p
           className="
             absolute
             left-1/2
             w-[calc(100%-32px)]
-            max-[768px]:w-full
             max-w-[620px]
             -translate-x-1/2
             px-2
@@ -1502,6 +1435,7 @@ function EmptyChatState({
             lg:top-[625px]
             lg:text-[13px]
             max-[768px]:!top-[580px]
+            max-[768px]:!w-full
           "
         >
           By messaging MealEatsAI, you agree to our{" "}
@@ -1535,17 +1469,24 @@ function FigmaEmptyComposer({
     files?: File[],
   ) => void | Promise<void>;
 }) {
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const inputRef =
+    useRef<HTMLTextAreaElement>(null);
+
+  const fileInputRef =
+    useRef<HTMLInputElement>(null);
 
   const [value, setValue] = useState("");
+
   const [selectedFile, setSelectedFile] =
     useState<File | null>(null);
 
   const submit = useCallback(() => {
     const message = value.trim();
 
-    if (disabled || (!message && !selectedFile)) {
+    if (
+      disabled ||
+      (!message && !selectedFile)
+    ) {
       return;
     }
 
@@ -1575,6 +1516,7 @@ function FigmaEmptyComposer({
     event: ChangeEvent<HTMLTextAreaElement>,
   ) => {
     const textarea = event.target;
+
     setValue(textarea.value);
 
     textarea.style.height = "0px";
@@ -1588,8 +1530,8 @@ function FigmaEmptyComposer({
   };
 
   const handleKeyDown = (
-  event: ReactKeyboardEvent<HTMLTextAreaElement>,
-) => {
+    event: ReactKeyboardEvent<HTMLTextAreaElement>,
+  ) => {
     if (
       event.key === "Enter" &&
       !event.shiftKey &&
@@ -1637,13 +1579,22 @@ function FigmaEmptyComposer({
             shadow-[0_4px_16px_rgba(0,0,0,0.05)]
           "
         >
-          <span className="min-w-0 truncate text-[11px] text-[#626662]">
+          <span
+            className="
+              min-w-0
+              truncate
+              text-[11px]
+              text-[#626662]
+            "
+          >
             {selectedFile.name}
           </span>
 
           <button
             type="button"
-            onClick={() => setSelectedFile(null)}
+            onClick={() =>
+              setSelectedFile(null)
+            }
             className="
               ml-2
               shrink-0
@@ -1658,14 +1609,12 @@ function FigmaEmptyComposer({
         </div>
       )}
 
-
-
       <div
         className="
           flex
-          flex-col
           min-h-[84px]
           w-full
+          flex-col
           items-center
           gap-[12px]
           rounded-[24px]
@@ -1684,36 +1633,50 @@ function FigmaEmptyComposer({
           sm:px-[20px]
         "
       >
-        <div className="flex items-center mr-auto gap-[5.5px]">
-          <div className="search-icon"><Search className="h-[16px] w-[16px] text-dark" /> </div>
-          <div className="text"><p className="text-body leading-[150%] text-dark">Hey Dia...</p></div>
+        <div className="mr-auto flex items-center gap-[5.5px]">
+          <div className="search-icon">
+            <Search className="h-[16px] w-[16px] text-dark" />
+          </div>
+
+          <div className="text">
+            <p className="text-body leading-[150%] text-dark">
+              Hey Dia...
+            </p>
+          </div>
         </div>
-        <div className="flex justify-between items-center !w-full">
+
+        <div className="flex w-full items-center justify-between">
           <button
             type="button"
-            onClick={() => fileInputRef.current?.click()}
+            onClick={() =>
+              fileInputRef.current?.click()
+            }
             disabled={disabled}
             aria-label="Add tabs or files"
             title="Add tabs or files"
             className="
-            flex
-            h-[36px]
-            w-[36px]
-            shrink-0
-            items-center
-            justify-center
-            rounded-full
-            text-[#7c817c]
-            transition-colors
-            hover:bg-[#f2f4f0]
-            hover:text-[#202420]
-            disabled:pointer-events-none
-            disabled:opacity-40
-          "
+              flex
+              h-[36px]
+              w-[36px]
+              shrink-0
+              items-center
+              justify-center
+              rounded-full
+              text-[#7c817c]
+              transition-colors
+              hover:bg-[#f2f4f0]
+              hover:text-[#202420]
+              disabled:pointer-events-none
+              disabled:opacity-40
+            "
           >
             <span
               aria-hidden="true"
-              className="text-[28px] font-light leading-none"
+              className="
+                text-[28px]
+                font-light
+                leading-none
+              "
             >
               +
             </span>
@@ -1736,26 +1699,26 @@ function FigmaEmptyComposer({
             placeholder="Ask anything"
             aria-label="Ask Meal Eats anything"
             className="
-            min-h-[40px]
-            min-w-0
-            flex-1
-            resize-none
-            overflow-hidden
-            border-0
-            bg-transparent
-            px-0
-            py-[9px]
-            font-primary
-            text-[15px]
-            font-normal
-            leading-[22px]
-            tracking-[-0.01em]
-            text-[#252725]
-            outline-none
-            placeholder:text-[#8b8f8a]
-            disabled:cursor-not-allowed
-            disabled:opacity-50
-          "
+              min-h-[40px]
+              min-w-0
+              flex-1
+              resize-none
+              overflow-hidden
+              border-0
+              bg-transparent
+              px-0
+              py-[9px]
+              font-primary
+              text-[15px]
+              font-normal
+              leading-[22px]
+              tracking-[-0.01em]
+              text-[#252725]
+              outline-none
+              placeholder:text-[#8b8f8a]
+              disabled:cursor-not-allowed
+              disabled:opacity-50
+            "
           />
 
           <button
@@ -1765,24 +1728,24 @@ function FigmaEmptyComposer({
             aria-label="Send message"
             title="Send message"
             className="
-            flex
-            h-[42px]
-            w-[42px]
-            shrink-0
-            items-center
-            justify-center
-            rounded-full
-            bg-[#050505]
-            text-white
-            shadow-[0_4px_12px_rgba(0,0,0,0.10)]
-            transition-[transform,background-color,opacity]
-            duration-200
-            hover:scale-[1.03]
-            hover:bg-[#111]
-            active:scale-95
-            disabled:cursor-default
-            disabled:bg-[#bfc1bf]
-          "
+              flex
+              h-[42px]
+              w-[42px]
+              shrink-0
+              items-center
+              justify-center
+              rounded-full
+              bg-[#050505]
+              text-white
+              shadow-[0_4px_12px_rgba(0,0,0,0.10)]
+              transition-[transform,background-color,opacity]
+              duration-200
+              hover:scale-[1.03]
+              hover:bg-[#111]
+              active:scale-95
+              disabled:cursor-default
+              disabled:bg-[#bfc1bf]
+            "
           >
             <svg
               viewBox="0 0 24 24"
@@ -1924,11 +1887,7 @@ function AssistantMessage({
         "
       >
         <ActionButton
-          label={
-            copied
-              ? "Copied"
-              : "Copy response"
-          }
+          label={copied ? "Copied" : "Copy response"}
           onClick={onCopy}
           active={copied}
         >
@@ -1951,9 +1910,7 @@ function AssistantMessage({
                 : "like",
             )
           }
-          active={
-            feedback === "like"
-          }
+          active={feedback === "like"}
         >
           <ThumbUpIcon />
         </ActionButton>
@@ -1967,9 +1924,7 @@ function AssistantMessage({
                 : "dislike",
             )
           }
-          active={
-            feedback === "dislike"
-          }
+          active={feedback === "dislike"}
         >
           <ThumbDownIcon />
         </ActionButton>
@@ -1998,9 +1953,7 @@ function AssistantMessage({
           {isMenuOpen && (
             <MessageMenu
               onCopy={onCopy}
-              onRegenerate={
-                onRegenerate
-              }
+              onRegenerate={onRegenerate}
               onClose={onCloseMenu}
               disabled={isLoading}
             />
@@ -2054,9 +2007,10 @@ function ActionButton({
         focus-visible:ring-[var(--color-accent)]/40
         sm:h-8
         sm:w-8
-        ${active
-          ? "bg-[#f1f6e8] text-[#6f9f27]"
-          : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
+        ${
+          active
+            ? "bg-[#f1f6e8] text-[#6f9f27]"
+            : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
         }
       `}
     >
@@ -2245,114 +2199,90 @@ function MessageText({
         [overflow-wrap:anywhere]
       "
     >
-      {blocks.map(
-        (block, index) => {
-          if (
-            block.type ===
-            "list"
-          ) {
-            return (
-              <ul
-                key={`list-${index}`}
-                className="
-                  my-2
-                  list-disc
-                  space-y-1
-                  pl-5
-                "
-              >
-                {block.items.map(
-                  (
-                    item,
-                    itemIndex,
-                  ) => (
-                    <li
-                      key={`${item}-${itemIndex}`}
-                      className="
-                        min-w-0
-                        break-words
-                        [overflow-wrap:anywhere]
-                      "
-                    >
-                      <InlineText
-                        text={item}
-                        searchQuery={
-                          searchQuery
-                        }
-                      />
-                    </li>
-                  ),
-                )}
-              </ul>
-            );
-          }
-
-          if (
-            block.type ===
-            "heading"
-          ) {
-            return (
-              <h4
-                key={`heading-${index}`}
-                className="
-                  mb-2
-                  mt-4
-                  break-words
-                  text-[16px]
-                  font-semibold
-                  leading-6
-                  text-[var(--color-secondary)]
-                  first:mt-0
-                "
-              >
-                <InlineText
-                  text={
-                    block.text
-                  }
-                  searchQuery={
-                    searchQuery
-                  }
-                />
-              </h4>
-            );
-          }
-
-          if (
-            block.type ===
-            "divider"
-          ) {
-            return (
-              <hr
-                key={`divider-${index}`}
-                className="
-                  my-4
-                  border-0
-                  border-t
-                  border-[var(--color-border)]
-                "
-              />
-            );
-          }
-
+      {blocks.map((block, index) => {
+        if (block.type === "list") {
           return (
-            <p
-              key={`paragraph-${index}`}
-              className={
-                index > 0
-                  ? "mt-2"
-                  : ""
-              }
+            <ul
+              key={`list-${index}`}
+              className="
+                my-2
+                list-disc
+                space-y-1
+                pl-5
+              "
+            >
+              {block.items.map(
+                (item, itemIndex) => (
+                  <li
+                    key={`${item}-${itemIndex}`}
+                    className="
+                      min-w-0
+                      break-words
+                      [overflow-wrap:anywhere]
+                    "
+                  >
+                    <InlineText
+                      text={item}
+                      searchQuery={searchQuery}
+                    />
+                  </li>
+                ),
+              )}
+            </ul>
+          );
+        }
+
+        if (block.type === "heading") {
+          return (
+            <h4
+              key={`heading-${index}`}
+              className="
+                mb-2
+                mt-4
+                break-words
+                text-[16px]
+                font-semibold
+                leading-6
+                text-[var(--color-secondary)]
+                first:mt-0
+              "
             >
               <InlineText
                 text={block.text}
-                searchQuery={
-                  searchQuery
-                }
+                searchQuery={searchQuery}
               />
-            </p>
+            </h4>
           );
-        },
-      )}
+        }
+
+        if (block.type === "divider") {
+          return (
+            <hr
+              key={`divider-${index}`}
+              className="
+                my-4
+                border-0
+                border-t
+                border-[var(--color-border)]
+              "
+            />
+          );
+        }
+
+        return (
+          <p
+            key={`paragraph-${index}`}
+            className={
+              index > 0 ? "mt-2" : ""
+            }
+          >
+            <InlineText
+              text={block.text}
+              searchQuery={searchQuery}
+            />
+          </p>
+        );
+      })}
     </div>
   );
 }
@@ -2363,20 +2293,20 @@ function MessageText({
 
 type MessageBlock =
   | {
-    type: "paragraph";
-    text: string;
-  }
+      type: "paragraph";
+      text: string;
+    }
   | {
-    type: "heading";
-    text: string;
-  }
+      type: "heading";
+      text: string;
+    }
   | {
-    type: "list";
-    items: string[];
-  }
+      type: "list";
+      items: string[];
+    }
   | {
-    type: "divider";
-  };
+      type: "divider";
+    };
 
 /* ===============================================================
    MESSAGE PARSER
@@ -2389,33 +2319,25 @@ function parseMessage(
     .replace(/\r\n/g, "\n")
     .split("\n");
 
-  const blocks: MessageBlock[] =
-    [];
+  const blocks: MessageBlock[] = [];
 
-  let currentList: string[] =
-    [];
+  let currentList: string[] = [];
 
   const flushList = () => {
-    if (
-      currentList.length ===
-      0
-    ) {
+    if (currentList.length === 0) {
       return;
     }
 
     blocks.push({
       type: "list",
-      items: [
-        ...currentList,
-      ],
+      items: [...currentList],
     });
 
     currentList = [];
   };
 
   for (const originalLine of lines) {
-    const line =
-      originalLine.trim();
+    const line = originalLine.trim();
 
     if (line === "---") {
       flushList();
@@ -2427,9 +2349,7 @@ function parseMessage(
       continue;
     }
 
-    if (
-      /^#{1,3}\s+/.test(line)
-    ) {
+    if (/^#{1,3}\s+/.test(line)) {
       flushList();
 
       blocks.push({
@@ -2443,14 +2363,9 @@ function parseMessage(
       continue;
     }
 
-    if (
-      /^[-*]\s+/.test(line)
-    ) {
+    if (/^[-*]\s+/.test(line)) {
       currentList.push(
-        line.replace(
-          /^[-*]\s+/,
-          "",
-        ),
+        line.replace(/^[-*]\s+/, ""),
       );
 
       continue;
@@ -2491,46 +2406,34 @@ function InlineText({
 
   return (
     <>
-      {parts.map(
-        (part, index) => {
-          const isBold =
-            part.startsWith(
-              "**",
-            ) &&
-            part.endsWith(
-              "**",
-            ) &&
-            part.length > 4;
+      {parts.map((part, index) => {
+        const isBold =
+          part.startsWith("**") &&
+          part.endsWith("**") &&
+          part.length > 4;
 
-          const value = isBold
-            ? part.slice(2, -2)
-            : part;
+        const value = isBold
+          ? part.slice(2, -2)
+          : part;
 
-          return (
-            <span
-              key={`${part}-${index}`}
-            >
-              {isBold ? (
-                <strong className="font-semibold text-[var(--color-secondary)]">
-                  <HighlightedText
-                    text={value}
-                    searchQuery={
-                      searchQuery
-                    }
-                  />
-                </strong>
-              ) : (
+        return (
+          <span key={`${part}-${index}`}>
+            {isBold ? (
+              <strong className="font-semibold text-[var(--color-secondary)]">
                 <HighlightedText
                   text={value}
-                  searchQuery={
-                    searchQuery
-                  }
+                  searchQuery={searchQuery}
                 />
-              )}
-            </span>
-          );
-        },
-      )}
+              </strong>
+            ) : (
+              <HighlightedText
+                text={value}
+                searchQuery={searchQuery}
+              />
+            )}
+          </span>
+        );
+      })}
     </>
   );
 }
@@ -2546,8 +2449,7 @@ function HighlightedText({
   text: string;
   searchQuery: string;
 }) {
-  const query =
-    searchQuery.trim();
+  const query = searchQuery.trim();
 
   if (!query) {
     return <>{text}</>;
@@ -2565,37 +2467,33 @@ function HighlightedText({
 
   return (
     <>
-      {parts.map(
-        (part, index) => {
-          const matches =
-            part.toLowerCase() ===
-            query.toLowerCase();
+      {parts.map((part, index) => {
+        const matches =
+          part.toLowerCase() ===
+          query.toLowerCase();
 
-          if (!matches) {
-            return (
-              <span
-                key={`${part}-${index}`}
-              >
-                {part}
-              </span>
-            );
-          }
-
+        if (!matches) {
           return (
-            <mark
-              key={`${part}-${index}`}
-              className="
-                rounded-[3px]
-                bg-[#dff0b9]
-                px-0.5
-                text-[var(--color-secondary)]
-              "
-            >
+            <span key={`${part}-${index}`}>
               {part}
-            </mark>
+            </span>
           );
-        },
-      )}
+        }
+
+        return (
+          <mark
+            key={`${part}-${index}`}
+            className="
+              rounded-[3px]
+              bg-[#dff0b9]
+              px-0.5
+              text-[var(--color-secondary)]
+            "
+          >
+            {part}
+          </mark>
+        );
+      })}
     </>
   );
 }
@@ -2619,10 +2517,7 @@ async function handleCopyMessage(
     SetStateAction<string | null>
   >,
   copyTimeoutsRef: MutableRefObject<
-    Record<
-      string,
-      number
-    >
+    Record<string, number>
   >,
 ) {
   try {
@@ -2635,68 +2530,50 @@ async function handleCopyMessage(
       );
     } else {
       const textarea =
-        document.createElement(
-          "textarea",
-        );
+        document.createElement("textarea");
 
-      textarea.value =
-        message.content;
+      textarea.value = message.content;
 
-      textarea.style.position =
-        "fixed";
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
 
-      textarea.style.opacity =
-        "0";
-
-      document.body.appendChild(
-        textarea,
-      );
+      document.body.appendChild(textarea);
 
       textarea.select();
 
-      document.execCommand(
-        "copy",
-      );
+      document.execCommand("copy");
 
-      document.body.removeChild(
-        textarea,
-      );
+      document.body.removeChild(textarea);
     }
 
-    setCopiedMessageId(
-      message.id,
-    );
+    setCopiedMessageId(message.id);
 
     if (
       copyTimeoutsRef.current[
-      message.id
+        message.id
       ]
     ) {
       clearTimeout(
         copyTimeoutsRef.current[
-        message.id
+          message.id
         ],
       );
     }
 
     copyTimeoutsRef.current[
       message.id
-    ] = window.setTimeout(
-      () => {
-        setCopiedMessageId(
-          (current) =>
-            current ===
-              message.id
-              ? null
-              : current,
-        );
+    ] = window.setTimeout(() => {
+      setCopiedMessageId(
+        (current) =>
+          current === message.id
+            ? null
+            : current,
+      );
 
-        delete copyTimeoutsRef.current[
-          message.id
-        ];
-      },
-      1800,
-    );
+      delete copyTimeoutsRef.current[
+        message.id
+      ];
+    }, 1800);
   } catch (error) {
     console.error(
       "Unable to copy AI response:",
@@ -2717,29 +2594,21 @@ function handleOpenLinks(
       /https?:\/\/[^\s<>"'`]+/g,
     );
 
-  if (
-    !urls ||
-    urls.length === 0
-  ) {
+  if (!urls || urls.length === 0) {
     return;
   }
 
-  const cleanUrl =
-    urls[0].replace(
-      /[.,!?;:)\]}]+$/,
-      "",
-    );
+  const cleanUrl = urls[0].replace(
+    /[.,!?;:)\]}]+$/,
+    "",
+  );
 
   try {
-    const url = new URL(
-      cleanUrl,
-    );
+    const url = new URL(cleanUrl);
 
     if (
-      url.protocol !==
-      "http:" &&
-      url.protocol !==
-      "https:"
+      url.protocol !== "http:" &&
+      url.protocol !== "https:"
     ) {
       return;
     }
@@ -2766,20 +2635,14 @@ function handleFeedback(
   value: FeedbackState,
   setFeedback: Dispatch<
     SetStateAction<
-      Record<
-        string,
-        FeedbackState
-      >
+      Record<string, FeedbackState>
     >
   >,
 ) {
-  setFeedback(
-    (current) => ({
-      ...current,
-      [messageId]:
-        value,
-    }),
-  );
+  setFeedback((current) => ({
+    ...current,
+    [messageId]: value,
+  }));
 }
 
 /* ===============================================================
@@ -2878,10 +2741,7 @@ function ChevronUpIcon() {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="
-        h-[17px]
-        w-[17px]
-      "
+      className="h-[17px] w-[17px]"
       stroke="currentColor"
       strokeWidth="1.8"
       strokeLinecap="round"
@@ -2902,10 +2762,7 @@ function ChevronDownIcon() {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="
-        h-[17px]
-        w-[17px]
-      "
+      className="h-[17px] w-[17px]"
       stroke="currentColor"
       strokeWidth="1.8"
       strokeLinecap="round"
@@ -2926,10 +2783,7 @@ function CopyIcon() {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="
-        h-[17px]
-        w-[17px]
-      "
+      className="h-[17px] w-[17px]"
       stroke="currentColor"
       strokeWidth="1.7"
       strokeLinecap="round"
@@ -2958,10 +2812,7 @@ function LinkIcon() {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="
-        h-[17px]
-        w-[17px]
-      "
+      className="h-[17px] w-[17px]"
       stroke="currentColor"
       strokeWidth="1.7"
       strokeLinecap="round"
@@ -2984,10 +2835,7 @@ function ThumbUpIcon() {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="
-        h-[17px]
-        w-[17px]
-      "
+      className="h-[17px] w-[17px]"
       stroke="currentColor"
       strokeWidth="1.7"
       strokeLinecap="round"
@@ -3010,10 +2858,7 @@ function ThumbDownIcon() {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="
-        h-[17px]
-        w-[17px]
-      "
+      className="h-[17px] w-[17px]"
       stroke="currentColor"
       strokeWidth="1.7"
       strokeLinecap="round"
@@ -3036,10 +2881,7 @@ function RefreshIcon() {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="
-        h-[17px]
-        w-[17px]
-      "
+      className="h-[17px] w-[17px]"
       stroke="currentColor"
       strokeWidth="1.7"
       strokeLinecap="round"
@@ -3066,10 +2908,7 @@ function MoreIcon() {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="
-        h-[17px]
-        w-[17px]
-      "
+      className="h-[17px] w-[17px]"
       stroke="currentColor"
       strokeWidth="1.7"
       aria-hidden="true"
@@ -3110,10 +2949,7 @@ function ArrowDownIcon() {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="
-        h-[18px]
-        w-[18px]
-      "
+      className="h-[18px] w-[18px]"
       stroke="currentColor"
       strokeWidth="1.8"
       strokeLinecap="round"
@@ -3126,3 +2962,5 @@ function ArrowDownIcon() {
     </svg>
   );
 }
+
+
