@@ -200,7 +200,8 @@ export default function Header({
               relative
 
               flex
-              h-[64px]
+              min-h-[88px]
+              max-[768px]:min-h-[64px]
               w-full
               items-center
 

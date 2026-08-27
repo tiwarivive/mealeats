@@ -945,10 +945,10 @@ function FooterBrandArea() {
           md:pb-[18px]
 
           lg:px-[36px]
-          lg:pb-[20px]
+          lg:pb-[0px]
 
           xl:px-[44px]
-          xl:pb-[22px]
+          xl:pb-[0px]
         "
       >
         <span
@@ -959,7 +959,7 @@ function FooterBrandArea() {
             overflow-visible
             whitespace-nowrap
             text-center
-
+            opacity-[50%]
             font-primary
             text-[clamp(53px,16.8vw,220px)]
             font-medium

@@ -14,10 +14,8 @@ export default function FoodDecisionCTA() {
         max-[768px]:px-[16px]
         py-[18px]
 
-        max-md:px-3
+      
         max-md:py-3
-
-        max-[480px]:px-2
         max-[480px]:py-2
       "
     >

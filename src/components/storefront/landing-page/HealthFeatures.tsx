@@ -154,24 +154,19 @@ export default function HealthFeatures() {
           w-full
           flex-col
           items-center
-          px-page
           text-center
 
           /* =================================================
              TABLET
           ================================================== */
 
-          max-[1023px]:px-[32px]
-
           /* =================================================
              MOBILE
           ================================================== */
 
-          max-[767px]:px-[20px]
+          
 
-          max-[600px]:px-[18px]
-
-          max-[480px]:px-[16px]
+          
         "
       >
         {/* ===================================================
@@ -357,7 +352,6 @@ export default function HealthFeatures() {
         className="
         lg:px-[56px]
         xl:px-[56px]
-        max-[768px]:px-[16px]
           mt-[40px]
           w-full
 
