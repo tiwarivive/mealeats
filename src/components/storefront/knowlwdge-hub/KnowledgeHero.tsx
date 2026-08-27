@@ -161,7 +161,7 @@ export default function KnowledgeHero() {
                 EYEBROW
             ================================================= */}
 
-              <SectionBadge>Knowledge Hub</SectionBadge>
+              <div className="upercase text-[#007246] text-[13px] leading-[28px] px-[12px] py-[3px] bg-[#CED9BD33] rounded-[37px] tracking-[-4%]">Knowledge Hub</div>
            
 
             {/* =================================================
@@ -328,7 +328,7 @@ export default function KnowledgeHero() {
                   lg:text-[12px]
                 "
               >
-                ✧
+               <Image src='https://res.cloudinary.com/gppcmjpt/image/upload/v1787398839/tryaistar.png' height={14} width={15} alt="star" className="h-[15px] w-[15px] object-cover" />
               </span>
 
               <span>Try MealEats AI</span>

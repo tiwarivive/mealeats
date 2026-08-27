@@ -205,10 +205,10 @@ export default function HealthAssistant() {
               className="
                 block
                 h-auto
-                w-[360px]
+                w-[404px]
                 max-w-full
                 object-contain
-                lg:w-[440px]
+                ml-[129px]
                 rounded-md
               "
             />

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import GlassLabel from "../shared/GlassLabel";
 
 /* =========================================================
    TYPES
@@ -100,28 +101,7 @@ export default function SmartFoodPlanning() {
               BADGE
           =================================================== */}
 
-          <p
-            className="
-            !mb-[16px]
-              m-0
-              inline-flex
-              items-center
-              justify-center
-              rounded-full
-              bg-accent-light
-              px-[13px]
-              py-[5px]
-              font-primary
-              !text-[13px]
-              font-medium
-              uppercase
-              leading-none
-              tracking-[0.025em]
-              text-[#007246]
-            "
-          >
-            SMART FOOD PLANNING
-          </p>
+        <div className="w-fit flex text-left"><GlassLabel label="SMART FOOD PLANNING" showStar={false} /></div>
 
           {/* ===================================================
               HEADING + DESCRIPTION

@@ -166,8 +166,9 @@ export default function ClinicalCare() {
         w-full
         overflow-hidden
         bg-primary
+        
         pt-[62px]
-        pb-[17px]
+        !pb-[91px]
         max-[768px]:pt-0
         sm:pt-[62px]
         sm:pb-[17px]
@@ -204,7 +205,7 @@ export default function ClinicalCare() {
             <h2
               id="clinical-care-heading"
               className="
-                max-w-[536px]
+                !max-w-[736px]
                 font-primary
                 !text-h2
                 font-medium
@@ -216,12 +217,10 @@ export default function ClinicalCare() {
                 
               "
             >
-              Where{" "}
+              Where Meal Planning Ends,{" "} <br className=" max-[768px]:hidden" />
               <span className="font-accent font-normal italic">
-                Clinical Care Ends,
+                Smarter Choices Begin
               </span> {" "}
-              <br className=" max-[768px]:hidden" />
-              daily support begins
             </h2>
 
             <p
@@ -237,9 +236,7 @@ export default function ClinicalCare() {
                 text-text-muted
               "
             >
-              Clinicians handle diagnosis and treatment. We handle the
-              thousand small decisions in between — and we make sure both
-              sides see the same data.
+              Clinicians handle diagnosis and treatment. We handle the thousand small decisions in between — and we make sure both sides see the same data.
             </p>
           </div>
 

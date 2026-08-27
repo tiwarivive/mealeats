@@ -52,15 +52,15 @@ export default function OurStory() {
               justify-center
               rounded-full
               border
-              border-[#eeeeee]
+              border-[#F4F4F4]
               bg-white
               px-[22px]
-              text-[15px]
-              font-medium
+              text-[13px]
+              font-[400]
               leading-none
               tracking-[-0.01em]
-              text-[#16805b]
-              shadow-[0_1px_4px_rgba(0,0,0,0.04)]
+              text-[#007246]
+              shadow-[1px_1px_4px_0px_#CCCCCC12]
 
               sm:h-[44px]
               sm:min-w-[140px]

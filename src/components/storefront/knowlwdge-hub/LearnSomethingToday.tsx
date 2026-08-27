@@ -52,28 +52,7 @@ export default function LearnSomethingToday() {
         <div className="grid items-end gap-[24px] max-[768px]:gap-[12px] items-center lg:grid-cols-[1.15fr_0.85fr] lg:gap-[72px]">
           {/* Heading */}
           <div >
-            <span
-              className="
-                inline-flex
-                items-center
-                rounded-full
-                border
-                border-border-light
-                bg-[#CED9BD33]
-                px-[10px]
-                py-[5px]
-                font-primary
-                text-[13px]
-                font-medium
-                uppercase
-                leading-[28px]
-                tracking-[-3%]
-                text-accent
-                max-[768px]:hidden
-              "
-            >
-              Featured Knowledge
-            </span>
+            <div className="upercase w-fit text-[#007246] text-[13px] leading-[28px] px-[12px] py-[3px] bg-[#CED9BD33] rounded-[37px] tracking-[-4%]">FEATURED KNOWLEDGE</div>
 
             <h2
               id="learn-heading"

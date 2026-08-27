@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import GlassLabel from "../shared/GlassLabel";
 
 /* =========================================================
    DATA
@@ -169,56 +170,7 @@ export default function HealthFeatures() {
           
         "
       >
-        {/* ===================================================
-            EYEBROW
-        ==================================================== */}
-
-        <div
-          className="
-            inline-flex
-            min-h-[32px]
-            max-w-full
-            items-center
-            justify-center
-            rounded-full
-            bg-primary
-            px-[14px]
-            py-[7px]
-
-            font-primary
-            text-[11px]
-            font-[400]
-            uppercase
-            leading-none
-            tracking-[0.08em]
-            text-[#007246]
-
-            sm:min-h-[36px]
-            sm:px-[19px]
-            sm:text-[11px]
-
-            md:text-[12px]
-
-            /* =================================================
-               TABLET
-            ================================================== */
-
-            max-[1023px]:min-h-[34px]
-            max-[1023px]:px-[18px]
-            max-[1023px]:text-[11px]
-
-            /* =================================================
-               MOBILE
-            ================================================== */
-
-            max-[480px]:min-h-[31px]
-            max-[480px]:px-[14px]
-            max-[480px]:py-[7px]
-            max-[480px]:text-[9px]
-          "
-        >
-          Built for everyday health
-        </div>
+     
 
         {/* ===================================================
             HEADING

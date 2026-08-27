@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import GlassLabel from "../shared/GlassLabel";
 
 const HERO_IMAGE = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377085/mealeats/products/erp-dashboard.png";
 
@@ -29,7 +30,7 @@ export default function AIPlatformHero() {
             pb-[57px]
             max-[768px]:pt-0
             max-[768px]:px-[16px]
-            lg:grid-cols-[minmax(0,1fr)_680px]
+            lg:grid-cols-[minmax(0,1fr)_779px]
       
             lg:py-[72px]
             lg:pb-[65px]
@@ -43,43 +44,7 @@ export default function AIPlatformHero() {
           <div className="relative z-10 flex flex-col items-start">
             {/* Eyebrow */}
 
-            <div
-              className="
-                mb-[16px]
-                inline-flex
-                items-center
-                rounded-full
-                border
-                border-border-light
-                bg-accent-light
-                px-[12px]
-                py-[6px]
-              "
-            >
-              <span
-                className="
-                  flex
-                  items-center
-                  font-primary
-                  text-[10px]
-                  font-medium
-                  uppercase
-                  leading-none
-                  tracking-[0.04em]
-                  !text-[#007246]
-                "
-              >
-                <Image
-                  src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377070/mealeats/products/ai-platform-stars.png"
-                  alt=""
-                  width={15}
-                  height={15}
-                  aria-hidden="true"
-                  className="mr-[3px] h-[15px] w-[15px] object-contain"
-                />
-                Your best healthcare tool
-              </span>
-            </div>
+            <GlassLabel label="Your best healthcare tool" />
 
             {/* Heading */}
 
@@ -173,13 +138,12 @@ export default function AIPlatformHero() {
             <Image
               src='https://res.cloudinary.com/gppcmjpt/image/upload/v1787377073/mealeats/products/altplatformheromobile.png'
               alt="MealEats AI health platform dashboard"
-              width={2048}
-              height={1308}
+              width={779}
+              height={489}
               quality={90}
-              priority
-              sizes="(max-width: 1023px) 100vw, 575px"
               className="
               min-[768px]:hidden
+              !max-w-[779px]
                 block
                 h-auto
                 w-full

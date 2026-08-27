@@ -18,7 +18,7 @@ const SOLUTION_GIF = "https://res.cloudinary.com/gppcmjpt/image/upload/v17873771
 ========================================================= */
 
 const MISSION_DESCRIPTION =
-  "We believe better health starts with better understanding. Our AI-powered platform brings personalised nutrition, fitness, health guidance, and everyday wellness into one simple experience — designed around your needs, goals, and lifestyle.";
+  "We believe better healthcare starts with better understanding. Our AI-powered platform brings personalized nutrition, fitness, health guidance, and everyday wellness into one simple experience—designed around your needs, goals, and lifestyle.";
 
 const PROBLEM_DESCRIPTION =
   "Meal Ideas are often generic, scattered, and difficult to follow. People struggle to know what to eat, which exercises are right for them, how to build healthier habits, or which information they can trust. Managing everyday wellness shouldn't mean searching through countless apps and websites.";
@@ -92,29 +92,23 @@ export default function MissionVision() {
             id="mission-vision-heading"
             className="
               mt-[16px]
-              max-w-[700px]
-
+              !max-w-[860px]
+              !w-full
               font-primary
               text-h2
               font-medium
               leading-[60px]
               tracking-[-4%]
               text-secondary
-
-              max-[1024px]:max-w-[620px]
-
               max-[768px]:mt-[14px]
               max-[768px]:max-w-[560px]
-
-              max-[600px]:max-w-[450px]
-
               max-[480px]:mt-[12px]
               max-[480px]:max-w-[340px]
               max-[768px]:!text-[28px]
               max-[768px]:!leading-[41px]
             "
           >
-            Healthcare, Built Around You
+            Food Suggestions, Built Around You
           </h2>
 
           {/* =================================================
@@ -124,7 +118,7 @@ export default function MissionVision() {
           <p
             className="
               mt-[12px]
-              max-w-[680px]
+              max-w-[880px]
 
               font-primary
               text-body

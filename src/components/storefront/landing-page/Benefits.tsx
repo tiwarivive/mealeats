@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import GlassLabel from "../shared/GlassLabel";
 
 /* =========================================================
    TYPES
@@ -324,53 +325,17 @@ function BenefitsHeader() {
       {/* =====================================================
           EYEBROW
       ===================================================== */}
+      <GlassLabel label='BENEFITS' showStar={false}  />
 
-      <motion.div
-        {...fadeUp()}
-        transition={{
-          duration: 0.45,
-        }}
-        className="
-          inline-flex
-          min-h-[34px]
-          items-center
-          justify-center
-          rounded-full
-          bg-primary
-          px-[17px]
-          py-[8px]
-
-          font-primary
-          text-[13px]
-          font-[400]
-          uppercase
-          leading-none
-          tracking-[0.08em]
-          text-[#007246]
-
-          border-0
-
-          sm:min-h-[36px]
-          sm:px-[19px]
-          sm:text-[11px]
-
-          md:text-[12px]
-        "
-      >
-        Benefits
-      </motion.div>
 
       {/* =====================================================
           HEADING
       ===================================================== */}
 
-      <motion.h2
+      <h2
         id="benefits-title"
         {...fadeUp()}
-        transition={{
-          duration: 0.55,
-          delay: shouldReduceMotion ? 0 : 0.05,
-        }}
+      
         className="
           mt-[18px]
           w-full
@@ -416,18 +381,15 @@ function BenefitsHeader() {
         >
           Everyday Lifestyle
         </span>
-      </motion.h2>
+      </h2>
 
       {/* =====================================================
           DESCRIPTION
       ===================================================== */}
 
-      <motion.p
+      <p
         {...fadeUp()}
-        transition={{
-          duration: 0.5,
-          delay: shouldReduceMotion ? 0 : 0.12,
-        }}
+        
         className="
           mt-[20px]
           w-full
@@ -462,7 +424,7 @@ function BenefitsHeader() {
         "
       >
         Food choices don't happen in isolation. Your goals, preferences, routine, available ingredients and everyday habits influence what works for you. Meal Eats brings this context together to make food recommendations more personal, practical and easier to follow.
-      </motion.p>
+      </p>
     </header>
   );
 }

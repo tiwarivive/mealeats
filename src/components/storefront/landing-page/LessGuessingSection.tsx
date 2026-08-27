@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import GlassLabel from "../shared/GlassLabel";
 
 type DecisionCard = {
   title: string;
@@ -64,35 +65,7 @@ export default function LessGuessingSection() {
             EYEBROW
         ====================================================== */}
 
-        <p
-          className="
-            mb-[12px]
-            w-fit
-            !mx-auto
-            rounded-full
-            bg-[#F4F4F433]
-            px-[12px]
-            py-[5px]
-
-            text-center
-
-            font-primary
-            text-[12px]
-            font-medium
-            uppercase
-            leading-[1.2]
-            tracking-[0.085em]
-
-            text-accent
-
-            max-md:mb-[9px]
-            max-md:px-[10px]
-            max-md:py-[4px]
-            max-md:text-[10px]
-          "
-        >
-          Why Meal Eats
-        </p>
+        <GlassLabel label="Why Meal Eats" showStar={false} />
 
         {/* =====================================================
             MAIN HEADING

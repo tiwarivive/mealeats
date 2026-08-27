@@ -31,7 +31,7 @@ const profileItems = [
     title: "Ingredients at Home",
     description:
       "What's already in your pantry and fridge, so recommendations are practical tonight.",
-    icon: "/ingredients.gif",
+    icon: "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377118/mealeats/products/holi.gif",
   },
   {
     title: "Food Preferences",
@@ -114,8 +114,7 @@ export default function KnowYourselfBetter() {
               max-[767px]:!leading-[22px]
             "
           >
-            The more you share, the better the meal suggestions and health
-            guidance can fit your life.
+            The more you share the better meal eats understands you
           </p>
         </header>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import GlassLabel from "../shared/GlassLabel";
 
 /* =========================================================
    TYPES
@@ -420,43 +421,8 @@ export default function Capabilities() {
               EYEBROW
           ================================================= */}
 
-          <div
-            className="
-              flex
-              w-full
-              justify-start
-
-              max-[767px]:justify-center
-            "
-          >
-            <p
-              className="
-                m-0
-                inline-flex
-                items-center
-                justify-center
-                rounded-full
-                bg-[#FFFFFF]
-                px-[22px]
-                py-[10px]
-
-                font-primary
-                text-[10px]
-                font-medium
-                uppercase
-                leading-none
-                tracking-[0.035em]
-                text-[#237C62]
-
-                shadow-[0_1px_8px_rgba(0,0,0,0.08)]
-
-                max-[480px]:px-[20px]
-                max-[480px]:py-[9px]
-                max-[480px]:text-[9px]
-              "
-            >
-              Capabilities
-            </p>
+          <div className="w-fit flex text-left">
+            <GlassLabel label="Capabilities" showStar={false}/>
           </div>
 
           {/* =================================================

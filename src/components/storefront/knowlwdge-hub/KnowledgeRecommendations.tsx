@@ -43,9 +43,7 @@ export default function KnowledgeRecommendations() {
         <div className="grid items-end gap-[18px] max-[768px]:!gap-[12px] sm:gap-[24px] lg:grid-cols-[1.15fr_0.85fr] lg:gap-[72px]">
           {/* LEFT */}
           <div>
-            <span className="inline-flex items-center rounded-full border border-border-light bg-[#CED9BD33] px-[9px] py-[4px] font-primary !text-[13px] font-medium uppercase leading-[28px] tracking-[-3%] text-[#007246] sm:px-[10px] sm:py-[5px] max-[768px]:!text-[10px]">
-              AI + KNOWLEDGE
-            </span>
+            <div className="upercase w-fit text-[#007246] text-[13px] leading-[28px] px-[12px] py-[3px] bg-[#CED9BD33] rounded-[37px] tracking-[-4%]">AI + KNOWLEDGE</div>
 
             <h2
               id="recommendations-heading"

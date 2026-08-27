@@ -463,7 +463,8 @@ export default function QuestionsPeopleAsk() {
         >
             <div
                 className="
-                    container-page
+                    lg:px-[56px]
+                    xl:px-[56px]
                     mx-auto
                     w-full
                     min-w-0
@@ -475,8 +476,7 @@ export default function QuestionsPeopleAsk() {
                        Remove inherited container padding.
                     ----------------------------------------- */
 
-                    max-[767px]:
-                    !w-full
+                    max-[767px]:!w-full
                     !max-w-none
                     
         max-[768px]:px-[16px]
@@ -490,25 +490,7 @@ export default function QuestionsPeopleAsk() {
                     FAQ reference starts directly with the heading.
                 ================================================= */}
 
-                <div
-                    className="
-                        mx-auto
-                        mb-[24px]
-
-                        flex
-                        justify-center
-
-                        max-[767px]:
-                        hidden
-
-                        md:
-                        flex
-                    "
-                >
-                    <SectionBadge>
-                        FEATURED KNOWLEDGE
-                    </SectionBadge>
-                </div>
+                <div className="upercase w-fit mx-auto text-[#007246] text-[13px] leading-[28px] px-[12px] h-[32px] flex items-center justify-center bg-[#CED9BD33] rounded-[37px] tracking-[-4%]">FEATURED KNOWLEDGE</div>
 
                 {/* =================================================
                     HEADING

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import GlassLabel from "../shared/GlassLabel";
 
 const HERO_IMAGE = "/hero-hand.png";
 const HERO_BACKGROUND = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787396914/hero-bg.png";
@@ -101,30 +102,8 @@ export default function Hero() {
             EYEBROW
         ======================================================= */}
 
-        <div
-          className="
-            flex
-            items-center
-            justify-center
-            gap-[6px]
-            font-primary
-            text-[13px]
-            tracking-[-3%]
-            font-[400]
-            font-[#007246]
-            uppercase
-            leading-[28px]
-            text-[#007246]
-
-            max-[767px]:text-[10px]
-            max-[480px]:text-[10px]
+        <GlassLabel label="YOUR PERSONAL AI FOOD COMPANION" />
       
-          "
-        >
-          <Image src='https://res.cloudinary.com/gppcmjpt/image/upload/v1787377070/mealeats/products/ai-platform-stars.png' alt="ai-platform-stars" height={12} width={12} className="h-[12px] w-[12px] mr-[2.5px]" />
-
-          YOUR PERSONAL AI FOOD COMPANION
-        </div>
 
         {/* =======================================================
             MAIN HEADING
