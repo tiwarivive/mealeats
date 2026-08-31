@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const profileItems = [
   {
@@ -362,7 +363,7 @@ export default function MoreWeUnderstand() {
             CTA
         ========================================================= */}
 
-        <button
+       <Link href='/ai' > <button
           type="button"
           className="
             !mt-[40px]
@@ -380,7 +381,7 @@ export default function MoreWeUnderstand() {
           "
         >
           Build my Food Profile
-        </button>
+        </button></Link>
       </div>
     </section>
   );

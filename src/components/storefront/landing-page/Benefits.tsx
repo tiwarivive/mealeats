@@ -334,8 +334,6 @@ function BenefitsHeader() {
 
       <h2
         id="benefits-title"
-        {...fadeUp()}
-      
         className="
           mt-[18px]
           w-full

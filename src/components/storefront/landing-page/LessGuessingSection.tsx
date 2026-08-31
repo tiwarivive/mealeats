@@ -65,7 +65,9 @@ export default function LessGuessingSection() {
             EYEBROW
         ====================================================== */}
 
-        <GlassLabel label="Why Meal Eats ?" showStar={false} />
+        <div className="flex !w-fit !mx-auto">
+          <GlassLabel label="Why Meal Eats ?" showStar={false} />
+        </div>
 
         {/* =====================================================
             MAIN HEADING
