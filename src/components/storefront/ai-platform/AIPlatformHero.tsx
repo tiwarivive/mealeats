@@ -13,6 +13,7 @@ export default function AIPlatformHero() {
         w-full
         overflow-hidden
         bg-primary
+        mt-[32px]
         lg:px-[56px]
         xl:px-[56px]
         

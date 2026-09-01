@@ -326,26 +326,63 @@ export default function ChatComposer({
       return;
     }
 
-    textarea.style.height =
-      "auto";
-
+    /*
+     * Keep the composer itself from
+     * growing with the amount of text.
+     *
+     * We only resize the textarea up to
+     * the defined maximum height.
+     */
     const maxHeight =
       window.innerWidth <= 640
         ? 96
         : 140;
 
+    /*
+     * Reset the textarea height before
+     * measuring its actual content height.
+     */
+    textarea.style.height =
+      "24px";
+
+    /*
+     * scrollHeight measures the complete
+     * content height, including wrapped lines.
+     */
+    const contentHeight =
+      textarea.scrollHeight;
+
+    /*
+     * Never allow the textarea to become
+     * taller than the maximum height.
+     */
     const nextHeight =
       Math.min(
-        textarea.scrollHeight,
+        Math.max(
+          contentHeight,
+          24,
+        ),
         maxHeight,
       );
 
-    textarea.style.height = `${
-      Math.max(
-        24,
-        nextHeight,
-      )
-    }px`;
+    textarea.style.height = `${nextHeight}px`;
+
+    /*
+     * Once the maximum height is reached,
+     * scrolling happens INSIDE the textarea.
+     *
+     * The outer composer does not grow.
+     */
+    textarea.style.overflowY =
+      contentHeight > maxHeight
+        ? "auto"
+        : "hidden";
+
+    /*
+     * Never allow horizontal scrolling.
+     */
+    textarea.style.overflowX =
+      "hidden";
   }, [value]);
 
   /* =======================================================
@@ -390,8 +427,7 @@ export default function ChatComposer({
   ) => {
     const incomingFiles =
       Array.from(
-        event.target.files ??
-          [],
+        event.target.files ?? [],
       );
 
     /**
@@ -527,7 +563,7 @@ export default function ChatComposer({
 
         /* ---------------------------------------------
            MAX FILE WARNING
-        --------------------------------------------- */
+        ---------------------------------------------- */
 
         if (
           incomingFiles.length >
@@ -687,6 +723,12 @@ export default function ChatComposer({
     ) {
       textareaRef.current.style.height =
         "24px";
+
+      textareaRef.current.style.overflowY =
+        "hidden";
+
+      textareaRef.current.style.overflowX =
+        "hidden";
     }
   };
 
@@ -756,6 +798,7 @@ export default function ChatComposer({
           mx-auto
           w-full
           max-w-[920px]
+          min-w-0
           pointer-events-auto
         "
       >
@@ -1004,8 +1047,13 @@ export default function ChatComposer({
             ai-composer
             flex
             w-full
-            items-end
+            min-w-0
+            max-w-full
+
+            items-center
+
             gap-2
+            overflow-y-clip
             rounded-[38px]
             border
             border-border-light
@@ -1062,7 +1110,7 @@ export default function ChatComposer({
           <button
             type="button"
             className="
-              mb-0.5
+              self-center
               flex
               h-10
               w-10
@@ -1132,23 +1180,38 @@ export default function ChatComposer({
             maxLength={4000}
             className="
               ai-composer-input
+
+              min-w-0
+              w-0
+              max-w-full
+              basis-0
+              flex-1
+              shrink
+
               min-h-[24px]
               max-h-[140px]
-              flex-1
+
               resize-none
-              overflow-y-auto
               self-center
+
+              overflow-x-hidden
+              overflow-y-auto
+
               border-0
               bg-transparent
               px-1
               py-1.5
+
               text-[16px]
               leading-6
               text-secondary
+
               outline-none
               placeholder:text-text-muted
               focus:outline-none
+
               disabled:cursor-not-allowed
+
               sm:max-h-[140px]
             "
             aria-label="Ask anything"
@@ -1161,7 +1224,7 @@ export default function ChatComposer({
           <button
             type="button"
             className="
-              mb-0.5
+              self-center
               flex
               h-10
               w-10

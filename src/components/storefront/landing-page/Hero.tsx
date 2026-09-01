@@ -15,6 +15,7 @@ export default function Hero() {
         isolate
         w-full
         min-h-[170vh]
+        max-[768px]:min-h-[100vh]
         overflow-hidden
         bg-primary
         text-text

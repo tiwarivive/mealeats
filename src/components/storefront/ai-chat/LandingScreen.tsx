@@ -20,6 +20,7 @@ import type {
 import ChatComposer from "./ChatComposer";
 import type { ChatMessage } from "./AIChat";
 import { Search } from "lucide-react";
+import GlassLabel from "../shared/GlassLabel";
 
 /* ===============================================================
    TYPES
@@ -1294,39 +1295,12 @@ function EmptyChatState({
         <div
           className="
             absolute
-            left-1/2
             top-[168px]
-            inline-flex
-            h-[38px]
-            -translate-x-1/2
-            items-center
-            justify-center
-            gap-[8px]
-            whitespace-nowrap
-            rounded-full
-            border
-            border-white/80
-            bg-white/55
-            px-[20px]
-            font-primary
-            text-[13px]
-            font-medium
-            uppercase
-            leading-none
-            tracking-[-0.012em]
-            text-[#007246]
-            shadow-[0_6px_24px_rgba(72,115,40,0.07)]
-            backdrop-blur-[5px]
-            sm:top-[190px]
-            sm:h-[40px]
-            sm:px-[22px]
-            sm:text-[12px]
-            max-[768px]:!text-[10px]
-            max-[768px]:!leading-[28px]
             lg:top-[202px]
           "
         >
-          AI POWERED FOOD DECISION PLATFORM
+          <GlassLabel showStar={true} label="AI POWERED FOOD DECISION PLATFORM"/>
+          
         </div>
 
         {/* HEADING */}

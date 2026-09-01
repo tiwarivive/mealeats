@@ -17,7 +17,7 @@ export default function StorefrontLayout({
   const isAIPage = pathname === "/ai" || pathname.startsWith("/ai/");
 
   return (
-    <div className="min-h-screen w-full bg-primary">
+    <div className="min-h-screen w-full bg-primary overflow-clip">
       {/* =====================================================
           HEADER
       ===================================================== */}
