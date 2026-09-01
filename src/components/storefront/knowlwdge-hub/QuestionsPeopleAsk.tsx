@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import SectionBadge from "../about/SectionBadge";
+import GreenGlassLabel from "../shared/GreenGlassLabel";
 
 /* =========================================================
    TYPES
@@ -99,8 +100,7 @@ function FAQItem({
                 border-[var(--color-border-light)]
 
                 bg-white
-
-                shadow-[0px_4px_11.8px_0px_#89898940]
+                shadow-[0px_4px_11.8px_0px_#6868681F]
 
                 transition-[box-shadow,border-color]
                 duration-[var(--transition-normal)]
@@ -490,7 +490,7 @@ export default function QuestionsPeopleAsk() {
                     FAQ reference starts directly with the heading.
                 ================================================= */}
 
-                <div className="upercase w-fit mx-auto text-[#007246] text-[13px] leading-[28px] px-[12px] h-[32px] flex items-center justify-center bg-[#CED9BD33] rounded-[37px] tracking-[-4%]">FEATURED KNOWLEDGE</div>
+                <div className="mx-auto w-fit"><GreenGlassLabel label="FEATURED KNOWLEDGE"/></div>
 
                 {/* =================================================
                     HEADING
@@ -573,6 +573,7 @@ export default function QuestionsPeopleAsk() {
                         mx-auto
 
                         mt-[80px]
+                        max-[768px]:mt-[32px]
 
                         w-full
                         max-w-full

@@ -7,6 +7,7 @@ export default function ProgressTracking() {
     <section
       aria-labelledby="progress-tracking-heading"
       className="
+      bg-transparent
         w-full
         bg-primary
         py-[80px]

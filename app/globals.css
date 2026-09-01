@@ -170,6 +170,7 @@
 
    --font-primary: var(--font-instrument-sans);
    --font-accent: var(--font-instrument-serif);
+   --font-inter: var(--font-inter-family);
 
    /* =======================================================
      TYPOGRAPHY

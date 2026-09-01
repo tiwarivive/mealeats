@@ -3,6 +3,7 @@ import Link from "next/link";
 import GlassLabel from "../shared/GlassLabel";
 
 const HERO_IMAGE = "/hero-hand.png";
+const HERO_MOBILE_IMAGE = "/mobile-phone-moch-up.png";
 const HERO_BACKGROUND = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787396914/hero-bg.png";
 
 export default function Hero() {
@@ -15,7 +16,7 @@ export default function Hero() {
         isolate
         w-full
         min-h-[170vh]
-        max-[768px]:min-h-[100vh]
+        max-[768px]:min-h-[115vh]
         overflow-hidden
         bg-primary
         text-text
@@ -52,10 +53,12 @@ export default function Hero() {
           draggable={false}
           className="
             select-none
+            min-[767px]:hidden
             object-cover
             object-center
           "
         />
+        
 
         <div
           className="
@@ -417,7 +420,11 @@ export default function Hero() {
 
               /* MOBILE */
               max-[767px]:top-[0px]
-              max-[767px]:w-[540px]
+              max-[767px]:w-full
+              max-[767px]:mx-auto
+              max-[767px]:scale-[1.3]
+              max-[767px]:mt-[34px]
+              max-[767px]:px-[20px]
 
              
             "
@@ -446,10 +453,32 @@ export default function Hero() {
                 scale-[1.2]
                 mt-[0px]
                 object-contain
-                max-[768px]:scale-[1.5]
+                max-[768px]:scale-[1.4]
                 max-[768px]:mt-[59px]
+                max-[768px]:hidden
               "
             />
+
+            <Image
+              src={HERO_MOBILE_IMAGE}
+              alt="Hand holding the Meal Eats AI health assistant"
+              width={1024}
+              height={1024}
+              priority
+              draggable={false}
+             
+              className="
+                block
+                h-auto
+                w-full
+                select-none
+                mt-[0px]
+                object-cover
+                max-[768px]:scale-[1]
+                min-[767px]:hidden
+              "
+            />
+
           </div>
         </div>
       </div>
@@ -471,10 +500,8 @@ export default function Hero() {
           z-20
           h-[105px]
 
-          max-[767px]:h-[78px]
-          max-[600px]:h-[70px]
-          max-[480px]:h-[62px]
-          max-[375px]:h-[56px]
+          max-[768px]:h-[150px]
+          max-[768px]:!bottom-[0px]
         "
         style={{
           background: `

@@ -7,7 +7,7 @@ label: string;
 showStar?: boolean;
 };
 
-export default function GlassLabel({
+export default function GreenGlassLabel({
 label,
 showStar = true,
 }: GlassLabelProps) {
@@ -25,16 +25,12 @@ items-center
 justify-center
 overflow-hidden
 rounded-full
-    border
-    border-black/[0.05]
+    
 
-    bg-[#F4F4F433]
+    bg-[#CED9BD33]
 
     px-[16px]
     py-[8px]
-
-    shadow-[0_3px_12px_rgba(0,0,0,0.04)]
-
     backdrop-blur-[24px]
   "
 >
@@ -58,7 +54,10 @@ rounded-full
       -translate-y-1/2
       rounded-full
 
-      bg-[#F4F4F433]
+      bg-gradient-to-b
+      from-[#CED9BD33]
+      via-[#CED9BD33]
+      opacity-[50%]
 
       blur-[28px]
     "
@@ -78,7 +77,10 @@ rounded-full
       -translate-y-1/2
       rounded-full
 
-      bg-[#F4F4F433]
+      bg-gradient-to-b
+      from-[#CED9BD33]
+      via-[#CED9BD33]
+      opacity-[50%]
 
       blur-[28px]
     "
@@ -95,9 +97,10 @@ rounded-full
       z-[1]
 
       bg-gradient-to-b
-      from-white/[0.45]
-      via-white/[0.10]
+      from-[#CED9BD33]
+      via-[#CED9BD33]
       to-transparent
+      opacity-[50%]
     "
   />
 
@@ -112,9 +115,7 @@ rounded-full
       z-[2]
 
       rounded-full
-
-      border
-      border-white/[0.55]
+      opacity-[50%]
     "
   />
 
@@ -134,34 +135,13 @@ rounded-full
 
       rounded-full
 
-      bg-white/80
+      bg-[#CED9BD33]
     "
   />
 
   {/* =========================================================
       CONTENT
-  ========================================================== */}
-  {showStar && (
-    <Image
-      src="https://res.cloudinary.com/gppcmjpt/image/upload/v1787377070/mealeats/products/ai-platform-stars.png"
-      alt="AI stars"
-      width={12}
-      height={12}
-      className="
-        relative
-        z-10
-        mr-[2.5px]
-
-        h-[12px]
-        w-[12px]
-
-        shrink-0
-        object-contain
-      "
-    />
-  )}
-
-  <span
+  ========================================================== */}  <span
     className="
       relative
       z-10

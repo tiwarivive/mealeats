@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import GreenGlassLabel from "../shared/GreenGlassLabel";
 
 const articles = [
   {
@@ -52,7 +53,7 @@ export default function LearnSomethingToday() {
         <div className="grid items-end gap-[24px] max-[768px]:gap-[12px] items-center lg:grid-cols-[1.15fr_0.85fr] lg:gap-[72px]">
           {/* Heading */}
           <div >
-            <div className="upercase w-fit text-[#007246] text-[13px] leading-[28px] px-[12px] py-[3px] bg-[#CED9BD33] rounded-[37px] tracking-[-4%]">FEATURED KNOWLEDGE</div>
+            <GreenGlassLabel label="FEATURED KNOWLEDGE" />
 
             <h2
               id="learn-heading"
@@ -177,29 +178,7 @@ export default function LearnSomethingToday() {
                 ================================================= */}
                 <div className="px-[24px] py-[34px] sm:p-[16px]">
                   {/* Category */}
-                  <span
-                    className="
-                      inline-flex
-                      items-center
-                      rounded-full
-                      bg-[#CED9BD33]
-                      px-[9px]
-                      py-[4px]
-                      font-primary
-                      text-[13px]
-                      font-[400]
-                      uppercase
-                      leading-none
-                      tracking-[-3%]
-                      text-[#007246]
-                      max-[768px]:!text-[13px]
-                      max-[768px]:leading-[28px]
-                      max-[768px]:!font-[400]
-                      max-[768px]:!px-[8px]
-                    "
-                  >
-                    {article.category}
-                  </span>
+                  <GreenGlassLabel label={article.category} />
 
                   {/* Title */}
                   <h3

@@ -9,6 +9,7 @@ export default function GrowthRecommendations() {
       className="
         w-full
         bg-primary
+        bg-transparent
         py-[56px]
         lg:py-[56px]
       "

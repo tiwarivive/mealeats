@@ -1,5 +1,7 @@
 "use client";
 
+import GreenGlassLabel from "../shared/GreenGlassLabel";
+
 const recommendations = [
   {
     title: "Why This Meal?",
@@ -43,7 +45,7 @@ export default function KnowledgeRecommendations() {
         <div className="grid items-end gap-[18px] max-[768px]:!gap-[12px] sm:gap-[24px] lg:grid-cols-[1.15fr_0.85fr] lg:gap-[72px]">
           {/* LEFT */}
           <div>
-            <div className="upercase w-fit text-[#007246] text-[13px] leading-[28px] px-[12px] py-[3px] bg-[#CED9BD33] rounded-[37px] tracking-[-4%]">AI + KNOWLEDGE</div>
+            <GreenGlassLabel label="AI + KNOWLEDGE" />
 
             <h2
               id="recommendations-heading"

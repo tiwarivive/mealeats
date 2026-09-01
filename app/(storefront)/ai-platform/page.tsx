@@ -13,9 +13,11 @@ export default function AIPlatformPage() {
   return (
     <main>
       <AIPlatformHero />
-      <EverythingYouNeed />
+      <div className="max-[767px]:bg-[#1674010A] max-[767px]:pt-[21px] max-[767px]:pb-[39px]">
+        <EverythingYouNeed />
       <GrowthRecommendations />
       <ProgressTracking />
+      </div>
       <HealthAssistant />
       <WhatMakesUsDifferent />
       <ClinicalCare />

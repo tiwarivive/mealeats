@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SectionBadge from "../about/SectionBadge";
+import GreenGlassLabel from "../shared/GreenGlassLabel";
 
 const HERO_BACKGROUND = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377112/mealeats/products/hero-sectio.png";
 const HERO_DASHBOARD = "https://res.cloudinary.com/gppcmjpt/image/upload/v1787377114/mealeats/products/heromiddle%20image.png";
@@ -161,7 +162,7 @@ export default function KnowledgeHero() {
                 EYEBROW
             ================================================= */}
 
-              <div className="upercase text-[#007246] text-[13px] leading-[28px] px-[12px] py-[3px] bg-[#CED9BD33] rounded-[37px] tracking-[-4%]">Knowledge Hub</div>
+            <GreenGlassLabel label="Knowledge Hub" />
            
 
             {/* =================================================

@@ -255,19 +255,19 @@ function InstagramIcon() {
 function SocialLinks() {
   const socialLinks = [
     {
-      label: "Facebook",
+      label: "Instagram",
       href: "",
-      icon: FacebookIcon,
+      icon: InstagramIcon,
     },
     {
       label: "LinkedIn",
       href: "",
       icon: LinkedInIcon,
     },
-    {
-      label: "Instagram",
+     {
+      label: "Facebook",
       href: "",
-      icon: InstagramIcon,
+      icon: FacebookIcon,
     },
   ];
 
@@ -745,6 +745,7 @@ function FooterUtility() {
           lg:pb-[31px]
 
           xl:pb-[34px]
+          max-[768px]:!p-0
         "
       >
         {/* Divider */}
@@ -774,10 +775,13 @@ function FooterUtility() {
             sm:hidden
           "
         >
+          <div className="border-[1px] border-[#E3E3E3] max-w-[95%] w-full mx-auto my-[24px]"></div>
           {/* Social icons */}
           <div className="flex justify-center">
             <SocialLinks />
           </div>
+
+           
 
           {/* Legal links */}
           <nav
@@ -881,6 +885,8 @@ function FooterUtility() {
             © {new Date().getFullYear()} MealEats. All rights reserved.
           </p>
 
+         
+
           <SocialLinks />
         </div>
       </div>
@@ -906,7 +912,7 @@ function FooterBrandArea() {
 
         min-[400px]:min-h-[145px]
 
-        sm:min-h-[170px]
+        max-[768px]:min-h-[107px]
 
         md:min-h-[195px]
 
@@ -915,6 +921,8 @@ function FooterBrandArea() {
         xl:min-h-[250px]
         bg-[linear-gradient(181.18deg,#FFFFFF_12.77%,#7BB322_97.78%)]
         opacity-[70%]
+        xl
+
       "
 
     >
@@ -938,8 +946,8 @@ function FooterBrandArea() {
           min-[400px]:px-[8px]
           min-[400px]:pb-[12px]
 
-          sm:px-[20px]
-          sm:pb-[16px]
+          max-[768px]:!px-[0px]
+          max-[768px]:!pb-[0px]
 
           md:px-[28px]
           md:pb-[18px]
@@ -959,14 +967,20 @@ function FooterBrandArea() {
             overflow-visible
             whitespace-nowrap
             text-center
-            opacity-[50%]
-            font-primary
+            opacity-[40%]
+            !font-inter
             text-[clamp(53px,16.8vw,220px)]
             font-medium
             uppercase
-            leading-[0.78]
-            tracking-[-0.085em]
+            max-[768px]:text-[70px]
+            max-[401px]:text-[62px]
+            max-[349px]:text-[57px]
+            leading-[65px]
+            tracking-[1%]
             text-white
+            lg:!mb-[53px]
+            xl:!mb-[53px]
+            
           "
         >
           MEAL EATS

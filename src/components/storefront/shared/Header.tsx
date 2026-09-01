@@ -214,6 +214,7 @@ export default function Header({
 
               pl-[16px]
               pr-[12px]
+              max-[768px]:!pr-[16px]
 
               shadow-[2px_2px_8.2px_0_#97979714]
 
@@ -408,6 +409,7 @@ export default function Header({
                 items-center
 
                 gap-[10px]
+                max-[768px]:!gap-[0px]
 
                 sm:gap-[12px]
 
@@ -646,11 +648,9 @@ export default function Header({
 
                   lg:hidden
 
-                  sm:h-[42px]
-                  sm:w-[42px]
+                  max-[768px]:h-[42px]
+                  max-[768px]:w-[42px]
 
-                  md:h-[44px]
-                  md:w-[44px]
                 "
               >
                 <span

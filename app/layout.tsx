@@ -3,6 +3,7 @@ import {
   Instrument_Sans,
   Instrument_Serif,
   Manrope,
+  Inter,
 } from "next/font/google";
 
 import "./globals.css";
@@ -26,10 +27,41 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
+const inter = Inter({
+  variable: "--font-inter-family",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "MealEats | Nutrition & Healthy Eating Guidance",
+
   description:
     "Get personalized nutrition guidance, healthy meal recommendations, and helpful information to make better food choices with MealEats.",
+
+  icons: {
+    icon: [
+      {
+        url: "/favicon.svg",
+        type: "image/svg+xml",
+      },
+      {
+        url: "/favicon-96x96.png",
+        type: "image/png",
+        sizes: "96x96",
+      },
+    ],
+
+    shortcut: "/favicon.ico",
+
+    apple: [
+      {
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -44,6 +76,7 @@ export default function RootLayout({
         ${instrumentSans.variable}
         ${manrope.variable}
         ${instrumentSerif.variable}
+        ${inter.variable}
       `}
     >
       <body className="min-h-full bg-white text-[#1A1A1A] antialiased">

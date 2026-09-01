@@ -210,7 +210,8 @@ export default function HealthAssistant() {
                 w-[404px]
                 max-w-full
                 object-contain
-                ml-[129px]
+                lg:ml-[129px]
+                xl:ml-[129px]
                 rounded-md
               "
             />
