@@ -174,6 +174,7 @@ function CapabilityItem({
             m-[8px]
             mt-[5px]
             max-w-[560px]
+            !mx-auto
 
             font-primary
             text-body
