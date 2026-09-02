@@ -12,16 +12,16 @@ import RecentSubmissions from "./components/RecentSubmissions";
 import { useDashboard } from "./hooks/useDashboard";
 
 export default function DashboardPage() {
-  const {
-    contacts,
-    totalForms,
-    last24HoursCount,
-    questions,
-    totalQuestions,
-    loading,
-    error,
-    refresh,
-  } = useDashboard();
+ const {
+  contacts,
+  totalForms,
+  last24HoursCount,
+  questions,
+  totalQuestions,
+  loading,
+  error,
+  refresh,
+} = useDashboard();
 
   const emailCount = useMemo(() => {
     return contacts.filter(
@@ -54,7 +54,7 @@ export default function DashboardPage() {
               totalForms={totalForms}
               last24HoursCount={last24HoursCount}
               totalQuestions={totalQuestions}
-              emailCount={emailCount}
+              
             />
 
             <div className="mt-5 grid grid-cols-1 items-start gap-5 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,400px)] lg:gap-6">

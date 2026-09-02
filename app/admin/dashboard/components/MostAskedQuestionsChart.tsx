@@ -18,6 +18,19 @@ const PIE_COLORS = [
   "#3FA6A9",
 ];
 
+type ChartQuestion = {
+  key: string;
+  value: number;
+  color: string;
+  rank?: number;
+  question: string;
+  count: number;
+  percentage: number;
+  date?: string;
+  time?: string;
+  isOther?: boolean;
+};
+
 const OTHER_COLOR = "#98A2B3";
 const MAX_VISIBLE_QUESTIONS = 5;
 
@@ -29,7 +42,7 @@ type NormalizedQuestion = AskedQuestion & {
 type ChartItem = NormalizedQuestion & {
   color: string;
   isOther?: boolean;
-  rank?: number;
+  rank: number;
 };
 
 function truncateQuestion(
@@ -222,88 +235,74 @@ export default function MostAskedQuestionsChart({
    * by the dashboard, not merely the sum of the rows
    * returned by the API.
    */
-  const chartData = useMemo<ChartItem[]>(() => {
-    if (!normalizedQuestions.length) {
-      /*
-       * If the API says there are questions but no
-       * question rows were returned, represent the
-       * entire total as Other.
-       */
-      if (displayTotal > 0) {
-        return [
-          {
-            question: "Other",
-            count: displayTotal,
-            percentage: 100,
-            date: undefined,
-            time: undefined,
-            value: displayTotal,
-            key: "other",
-            color: OTHER_COLOR,
-            isOther: true,
-          },
-        ];
-      }
-
-      return [];
+const chartData = useMemo<ChartQuestion[]>(() => {
+  if (!normalizedQuestions.length) {
+    if (displayTotal > 0) {
+      return [
+        {
+          question: "Other",
+          count: displayTotal,
+          percentage: 100,
+          date: undefined,
+          time: undefined,
+          value: displayTotal,
+          key: "other",
+          color: OTHER_COLOR,
+          isOther: true,
+        },
+      ];
     }
 
-    const topQuestions =
-      normalizedQuestions
-        .slice(0, MAX_VISIBLE_QUESTIONS)
-        .map((question, index) => ({
-          ...question,
-          color:
-            PIE_COLORS[
-              index % PIE_COLORS.length
-            ],
-          rank: index + 1,
-        }));
+    return [];
+  }
 
-    const topQuestionsTotal =
-      topQuestions.reduce(
-        (sum, question) =>
-          sum + question.value,
-        0
-      );
+  const topQuestions: ChartQuestion[] =
+    normalizedQuestions
+      .slice(0, MAX_VISIBLE_QUESTIONS)
+      .map((question, index) => ({
+        ...question,
+        color:
+          PIE_COLORS[
+            index % PIE_COLORS.length
+          ],
+        rank: index + 1,
+        isOther: false,
+      }));
 
-    /*
-     * Anything not represented by the top five
-     * belongs to Other.
-     *
-     * This includes:
-     *
-     * 1. Questions returned by the API after top five.
-     * 2. Any missing occurrences implied by totalQuestions.
-     */
-    const otherCount = Math.max(
-      displayTotal - topQuestionsTotal,
+  const topQuestionsTotal =
+    topQuestions.reduce(
+      (sum, question) =>
+        sum + question.value,
       0
     );
 
-    if (otherCount > 0) {
-      topQuestions.push({
-        question: "Other",
-        count: otherCount,
-        percentage:
-          displayTotal > 0
-            ? (otherCount / displayTotal) *
-              100
-            : 0,
-        date: undefined,
-        time: undefined,
-        value: otherCount,
-        key: "other",
-        color: OTHER_COLOR,
-        isOther: true,
-      });
-    }
+  const otherCount = Math.max(
+    displayTotal - topQuestionsTotal,
+    0
+  );
 
-    return topQuestions;
-  }, [
-    normalizedQuestions,
-    displayTotal,
-  ]);
+  if (otherCount > 0) {
+    topQuestions.push({
+      question: "Other",
+      count: otherCount,
+      percentage:
+        displayTotal > 0
+          ? (otherCount / displayTotal) * 100
+          : 0,
+      date: undefined,
+      time: undefined,
+      value: otherCount,
+      key: "other",
+      color: OTHER_COLOR,
+      isOther: true,
+    });
+  }
+
+  return topQuestions;
+}, [
+  normalizedQuestions,
+  displayTotal,
+]);
 
   /*
    * ---------------------------------------------------------
