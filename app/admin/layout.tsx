@@ -1,9 +1,14 @@
-import type { ReactNode } from "react";
+import ProtectedLayout from "@/src/features/shared/components/ProtectedLayout";
+import AppShell from "@/src/features/layout/components/AppShell";
 
 export default function AdminLayout({
   children,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <ProtectedLayout>
+      <AppShell>{children}</AppShell>
+    </ProtectedLayout>
+  );
 }

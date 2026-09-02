@@ -7,10 +7,9 @@ export default function ContactPage() {
     <>
       <div className=" ">
         <ContactFormSection />
-      <FAQ/>
+     
       </div>
-      {/* FAQ */}
-      {/* Footer */}
+    
     </>
   );
 }
