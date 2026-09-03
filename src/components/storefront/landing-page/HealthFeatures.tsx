@@ -254,7 +254,7 @@ export default function HealthFeatures() {
           className="
             mt-[14px]
             w-full
-            max-w-[700px]
+            max-w-[900px]
 
             font-primary
             text-[14px]
@@ -274,7 +274,6 @@ export default function HealthFeatures() {
             ================================================== */
 
             max-[1023px]:mt-[18px]
-            max-[1023px]:max-w-[680px]
             max-[1023px]:text-[14px]
             max-[1023px]:leading-[1.5]
 
@@ -283,7 +282,6 @@ export default function HealthFeatures() {
             ================================================== */
 
             max-[767px]:mt-[14px]
-            max-[767px]:max-w-[520px]
             max-[767px]:text-[13.5px]
             max-[767px]:leading-[1.5]
 

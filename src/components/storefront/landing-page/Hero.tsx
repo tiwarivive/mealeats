@@ -53,7 +53,9 @@ export default function Hero() {
           draggable={false}
           className="
             select-none
-            min-[767px]:hidden
+            w-full
+            h-full
+            
             object-cover
             object-center
           "
@@ -90,8 +92,7 @@ export default function Hero() {
 
           pt-[54px]
 
-          max-[1024px]:pt-[50px]
-
+          
           max-[767px]:px-[16px]
          
 
@@ -100,7 +101,7 @@ export default function Hero() {
 
           max-[375px]:px-[16px]
          
-          pt-[103px]
+          pt-[123px]
         "
       >
         {/* =======================================================
